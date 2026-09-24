@@ -30,7 +30,7 @@
 <link rel="apple-touch-icon" href="public/apple-touch-icon.png">
 <link rel="preload" href="public/fonts/PublicPixel.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","name":"HELIOBANE","url":"https://heliobane.gand.games/","description":"An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship Heliobane inward to the heart of a star, then chase what gets away across three worlds and fifteen stages.","image":"https://heliobane.gand.games/public/og.png","genre":["Shoot 'em up","Action","Arcade"],"playMode":"SinglePlayer","applicationCategory":"Game","inLanguage":["en","tr","ja"],"author":{"@type":"Organization","name":"Gand","url":"https://gand.tr/"},"publisher":{"@type":"Organization","name":"Gand Games","url":"https://gand.games/"}}
+{"@context":"https://schema.org","@type":"VideoGame","name":"HELIOBANE","url":"https://heliobane.gand.games/","description":"An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship Heliobane inward to the heart of a star, then chase what gets away across three worlds and fifteen stages.","image":"https://heliobane.gand.games/public/og.png","genre":["Shoot 'em up","Action","Arcade"],"playMode":"SinglePlayer","applicationCategory":"Game","inLanguage":["en","tr","ja"],"author":{"@type":"Organization","name":"Gand","url":"https://gand.tr/"},"publisher":{"@type":"Organization","name":"Gand Games","url":"https://gand.games/"},"trailer":{"@type":"VideoObject","name":"HELIOBANE trailer","description":"Fly into the sun. Kill what lives there. The HELIOBANE trailer.","thumbnailUrl":"https://heliobane.gand.games/public/trailer-poster.jpg","contentUrl":"https://heliobane.gand.games/public/trailer.mp4","uploadDate":"2026-09-25","duration":"PT83S","inLanguage":"en"}}
 </script>
 <style>
 /* HELIOBANE · the game's own 32-colour master palette (assets/palette.hex) */
@@ -468,6 +468,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
     <figure class="tv panel">
       <video id="trailer-video" controls playsinline preload="none" width="1920" height="1080" poster="public/trailer-poster.jpg" aria-label="HELIOBANE trailer">
         <source src="public/trailer.mp4" type="video/mp4">
+        <track kind="captions" src="public/trailer.en.vtt" srclang="en" label="English">
       </video>
       <div class="still"><img class="px" src="public/art/trailer-still.png" width="320" height="180" alt="The HELIOBANE title screen: the chrome logo over a gunship rising from a burning star, above Oda Venn's words, We built her to kill a star. We never thought we'd have to." data-alt-ja="HELIOBANEのタイトル画面。燃える星から上昇するガンシップの上にクロームのロゴ、その下にオダ・ヴェンの言葉。">
         <span class="pending pix"><span class="l-en">Trailer incoming</span><span class="l-ja" lang="ja">トレーラー準備中</span></span></div>

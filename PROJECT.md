@@ -19,8 +19,9 @@ CNAME, robots.txt, sitemap.xml, .nojekyll
 public/
   og.png                    1200x630 social card (400x210 composed at 1x, scaled x3 nearest)
   favicon.ico, favicon-64.png, apple-touch-icon.png   from the ship sprite (player_ship frame 2)
-  trailer-poster.jpg        1920x1080 PLACEHOLDER poster (title screen, 320x180 crop x6)
-  trailer.mp4               NOT PRESENT YET (see Trailer)
+  trailer-poster.jpg        1920x1080 poster (trailer's clean title frame)
+  trailer.mp4               83 s web encode of the trailer (see Trailer)
+  trailer.en.vtt            English captions for the narration
   shots/<name>.png          960x768 captures (the game's own x3 output) for the viewer / full size
   shots/1x/<name>.png       320x256, centre-sampled from the captures; shown at x1/x2 with pixelated scaling
   art/                      game art copied unchanged: logo, intro paintings (aurel, wren),
@@ -118,19 +119,23 @@ of 1x material.
 
 ## Trailer
 
-The `<video>` in `#trailer` points at `public/trailer.mp4` with
-`poster="public/trailer-poster.jpg"`, `preload="none"`, native controls. Drop in:
+Source: `../heliobane-trailer/` (commit 52ab391; master `output/heliobane-trailer.mp4`,
+poster `review/poster.jpg`, captions `output/heliobane-trailer.srt`). The site copies are
+re-encoded for the web:
 
-- `public/trailer.mp4` (H.264/AAC MP4, 16:9)
-- `public/trailer-poster.jpg` (1920x1080, replaces the placeholder)
+```sh
+T=../heliobane-trailer
+ffmpeg -i $T/output/heliobane-trailer.mp4 -map 0:v -map 0:a -c:v libx264 -profile:v high \
+  -pix_fmt yuv420p -preset slow -crf 20 -tune animation -c:a aac -b:a 160k \
+  -movflags +faststart public/trailer.mp4
+ffmpeg -i $T/review/poster.jpg -q:v 4 public/trailer-poster.jpg
+ffmpeg -i $T/output/heliobane-trailer.srt public/trailer.en.vtt
+```
 
-No HTML edit is needed. On load, the script sends a `HEAD` for `trailer.mp4`; while it
-is missing (or not served as `video/*`), the page hides the video and the hero's
-"Watch the trailer" button and shows the native title-screen still at a whole-pixel
-scale with a "Trailer incoming" label. The pending state logs one expected 404 in the
-console. Without JavaScript the video element shows its poster and controls. Once the
-trailer exists, consider adding it to the JSON-LD (`trailer` VideoObject) and optional
-captions (`<track>`), as on the Studs Up site.
+The `<video>` in `#trailer` has `preload="none"`, native controls and an English
+captions `<track>`; the JSON-LD carries a `trailer` VideoObject. The script still sends
+a `HEAD` for `trailer.mp4` and falls back to the title-screen still with a "Trailer
+incoming" label if it is missing or not served as `video/*`.
 
 ## Validation done
 
