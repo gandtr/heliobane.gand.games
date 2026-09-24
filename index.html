@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HELIOBANE · an Amiga-style vertical shoot 'em up by Gand</title>
+<meta name="description" content="Fly the sun-killer gunship inward to the heart of a star, then chase what gets away across three worlds and fifteen stages. An Amiga-style vertical shoot 'em up in 32 colours, in development at Gand. Free demo coming to Steam.">
+<link rel="canonical" href="https://heliobane.gand.games/">
+<link rel="alternate" hreflang="en" href="https://heliobane.gand.games/">
+<link rel="alternate" hreflang="ja" href="https://heliobane.gand.games/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://heliobane.gand.games/">
+<meta name="theme-color" content="#0b0b1a">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HELIOBANE">
+<meta property="og:title" content="HELIOBANE · HB-0, the sun-killer">
+<meta property="og:description" content="An Amiga-style vertical shoot 'em up. Fly the sun-killer inward to the heart of a star, then chase what gets away. Three worlds, fifteen stages. In development at Gand.">
+<meta property="og:url" content="https://heliobane.gand.games/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:image" content="https://heliobane.gand.games/public/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The chrome and gold HELIOBANE logo beside Aurel, an old orange star, with asteroids and its worlds trailing away into the dark.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://heliobane.gand.games/public/og.png">
+<meta name="twitter:image:alt" content="The chrome and gold HELIOBANE logo beside Aurel, an old orange star, with asteroids and its worlds trailing away into the dark.">
+<link rel="icon" href="public/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="public/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="public/apple-touch-icon.png">
+<link rel="preload" href="public/fonts/PublicPixel.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"VideoGame","name":"HELIOBANE","url":"https://heliobane.gand.games/","description":"An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship Heliobane inward to the heart of a star, then chase what gets away across three worlds and fifteen stages.","image":"https://heliobane.gand.games/public/og.png","genre":["Shoot 'em up","Action","Arcade"],"playMode":"SinglePlayer","applicationCategory":"Game","inLanguage":["en","tr","ja"],"author":{"@type":"Organization","name":"Gand","url":"https://gand.tr/"},"publisher":{"@type":"Organization","name":"Gand Games","url":"https://gand.games/"}}
+</script>
+<style>
+/* HELIOBANE · the game's own 32-colour master palette (assets/palette.hex) */
+@font-face{font-family:"Public Pixel";src:url(public/fonts/PublicPixel.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"PixelMplus12";src:url(public/fonts/PixelMplus12-ja.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Fira Sans Condensed";src:url(public/fonts/FiraSansCondensed-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Fira Sans Condensed";src:url(public/fonts/FiraSansCondensed-Italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Fira Sans Condensed";src:url(public/fonts/FiraSansCondensed-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Fira Sans Condensed";src:url(public/fonts/FiraSansCondensed-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --black:#000000; --void:#0b0b1a; --night:#1a1c2c;
+  --steel1:#2b2f4a; --steel2:#3e4a6b; --steel3:#5b6ea0; --steel4:#8aa4d6; --ice:#cfe0ff; --white:#ffffff;
+  --umber0:#1b1410; --umber1:#3a2616; --umber2:#6b3e12; --umber3:#a8641a; --amber:#e09a2a; --gold:#ffd24a; --pale:#fff3a8;
+  --sea0:#0e2a24; --sea1:#16503e; --sea2:#2f8a5a; --sea3:#7ad08a;
+  --blood0:#3b0d14; --blood1:#7a1a1a; --red:#c8321e; --fire:#ff6a1a; --flame:#ff9e3d;
+  --dusk0:#2a1a3a; --dusk1:#5a2e7a; --violet:#a45ad8;
+  --grey0:#3a3a3a; --grey1:#6e6e6e; --grey2:#a8a8a8; --cyan:#20e0ff;
+  --px:"Public Pixel",ui-monospace,monospace;
+  --body:"Fira Sans Condensed","Arial Narrow",sans-serif;
+  --ja-px:"PixelMplus12","Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
+  --ja-body:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic","Meiryo",sans-serif;
+  --gut:16px; --max:1216px;
+  /* Copper bars: stepped ramps straight off the palette, dark-light-dark. */
+  --cop-fire:linear-gradient(var(--blood0) 0 2px,var(--blood1) 2px 4px,var(--red) 4px 6px,var(--fire) 6px 8px,var(--flame) 8px 10px,var(--pale) 10px 12px,var(--flame) 12px 14px,var(--fire) 14px 16px,var(--red) 16px 18px,var(--blood1) 18px 20px,var(--blood0) 20px 22px);
+  --cop-gold:linear-gradient(var(--umber0) 0 2px,var(--umber1) 2px 4px,var(--umber2) 4px 6px,var(--umber3) 6px 8px,var(--amber) 8px 10px,var(--gold) 10px 12px,var(--pale) 12px 14px,var(--gold) 14px 16px,var(--amber) 16px 18px,var(--umber3) 18px 20px,var(--umber2) 20px 22px,var(--umber1) 22px 24px);
+  --cop-steel:linear-gradient(var(--void) 0 2px,var(--steel1) 2px 4px,var(--steel2) 4px 6px,var(--steel3) 6px 8px,var(--steel4) 8px 10px,var(--ice) 10px 12px,var(--steel4) 12px 14px,var(--steel3) 14px 16px,var(--steel2) 16px 18px,var(--steel1) 18px 20px,var(--void) 20px 22px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--void);color:var(--ice);-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font:400 19px/1.55 var(--body);overflow-x:hidden}
+html[data-lang=ja] body{font-family:var(--ja-body);font-size:17px;line-height:1.8}
+img{max-width:100%;height:auto;display:block}
+.px{image-rendering:pixelated;image-rendering:crisp-edges}
+::selection{background:var(--gold);color:var(--void)}
+a{color:var(--gold);text-underline-offset:4px;text-decoration-thickness:2px}
+a:hover{color:var(--pale)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+html{scrollbar-color:var(--steel3) var(--night)}
+p{margin:0 0 1em;max-width:62ch}
+h1,h2,h3{margin:0;font-weight:400}
+b,strong{font-weight:600;color:var(--white)}
+.wrap{width:min(var(--max),100% - 2*var(--gut));margin-inline:auto}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Language: both are in the document, one is shown. */
+html:not([data-lang=ja]) .l-ja{display:none!important}
+html[data-lang=ja] .l-en{display:none!important}
+
+/* Pixel type sits on its 8 px grid; the Japanese face sits on 12. */
+.pix{font-family:var(--px);font-size:16px;line-height:1.5;letter-spacing:0;text-transform:uppercase}
+.pix:lang(ja){font-family:var(--ja-px);font-size:24px;line-height:1.35;text-transform:none}
+h2.pix{font-size:32px;line-height:1.25;color:var(--gold);text-shadow:0 4px 0 var(--umber1)}
+h2.pix:lang(ja){font-size:36px;text-shadow:0 3px 0 var(--umber1)}
+h3.pix{font-size:16px;line-height:1.5;color:var(--ice)}
+h3.pix:lang(ja){font-size:24px}
+@media (max-width:640px){
+  h2.pix{font-size:24px;text-shadow:0 3px 0 var(--umber1)}
+  h2.pix:lang(ja){font-size:24px}
+}
+
+/* Bevelled steel panel: the game's sidebar frame. */
+.panel{background:var(--night);border:2px solid var(--black);box-shadow:inset 2px 2px 0 var(--steel3),inset -2px -2px 0 var(--steel1)}
+
+.copper{height:22px;background:var(--cop-fire);border:0;margin:0}
+.copper.gold{height:24px;background:var(--cop-gold)}
+.copper.steel{background:var(--cop-steel)}
+@media (prefers-reduced-motion:no-preference){.copper.cycle{animation:cycle 1.4s steps(11) infinite}}
+@keyframes cycle{to{background-position:0 22px}}
+
+/* ── top bar ─────────────────────────────────────────── */
+.bar{position:sticky;top:0;z-index:20;background:var(--void);border-bottom:2px solid var(--steel1)}
+.bar .wrap{display:flex;align-items:center;gap:20px;min-height:56px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ice);text-decoration:none;flex:none}
+.brand img{width:32px;height:32px}
+.brand span{font-family:var(--px);font-size:16px}
+.nav{display:flex;gap:4px 20px;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+.nav a{font-family:var(--px);font-size:16px;line-height:24px;color:var(--steel4);text-decoration:none;text-transform:uppercase}
+.nav a:lang(ja){font-family:var(--ja-px);font-size:12px}
+.nav a:hover{color:var(--gold)}
+.langs{display:flex;flex:none;border:2px solid var(--steel2)}
+.langs button{font:16px/1 var(--px);color:var(--steel4);background:none;border:0;padding:6px 8px;min-width:44px;min-height:36px;cursor:pointer}
+.langs button:lang(ja){font:12px/1 var(--ja-px)}
+.langs button[aria-pressed=true]{background:var(--steel2);color:var(--white)}
+.langs button:hover{color:var(--gold)}
+@media (max-width:1180px){.nav{display:none}.langs{margin-left:auto}}
+
+/* ── hero ────────────────────────────────────────────── */
+/* The intro painting at whole-pixel scale (x3, x2 below 1180px). Where the
+   page runs past the painting, its edge fades out in eight steps, the way the
+   intro fades to black, instead of cutting the sun off with a hard line. */
+.hero{--iw:1440px;--ih:768px;position:relative;background:var(--black) url(public/art/scene_aurel.png) no-repeat 0 0/var(--iw) var(--ih);image-rendering:pixelated;min-height:var(--ih);display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;left:0;right:0;top:calc(var(--ih) - 64px);height:64px;pointer-events:none;
+  background:linear-gradient(rgb(0 0 0/0) 0 8px,rgb(0 0 0/.14) 8px 16px,rgb(0 0 0/.28) 16px 24px,rgb(0 0 0/.42) 24px 32px,rgb(0 0 0/.57) 32px 40px,rgb(0 0 0/.71) 40px 48px,rgb(0 0 0/.85) 48px 56px,#000 56px 64px)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(90deg,rgb(0 0 0/0) 0 8px,rgb(0 0 0/.14) 8px 16px,rgb(0 0 0/.28) 16px 24px,rgb(0 0 0/.42) 24px 32px,rgb(0 0 0/.57) 32px 40px,rgb(0 0 0/.71) 40px 48px,rgb(0 0 0/.85) 48px 56px,#000 56px 64px) no-repeat calc(var(--iw) - 64px) 0/64px 100%,
+  linear-gradient(#000,#000) no-repeat var(--iw) 0/100% 100%,
+  linear-gradient(90deg,transparent 0 40%,rgb(0 0 0 / .35) 70%,rgb(0 0 0 / .5) 100%)}
+.hero .wrap{position:relative;z-index:1;display:flex;justify-content:flex-end}
+.hero-copy{width:min(768px,100%);image-rendering:auto;padding:40px 0}
+.logo{position:relative;width:768px;height:192px;margin:0 0 20px -8px}
+.logo img{width:100%;height:100%}
+.logo::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(100deg,transparent 42%,var(--pale) 46%,var(--white) 49%,var(--pale) 52%,transparent 56%) no-repeat;background-size:300% 100%;background-position:120% 0;
+  -webkit-mask:url(public/art/logo.png) 0 0/100% 100% no-repeat;mask:url(public/art/logo.png) 0 0/100% 100% no-repeat;opacity:0}
+.subtitle{color:var(--steel4);margin:0 0 16px}
+.subtitle:lang(ja){font-size:24px}
+.hero-card{width:fit-content;max-width:100%;padding:24px 28px 22px;background:rgb(11 11 26 / .9);border:2px solid var(--black);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black)}
+.pitch{font-size:24px;line-height:1.45;color:var(--white);max-width:30ch;margin:0 0 24px}
+.pitch:lang(ja){font-size:21px;line-height:1.75;max-width:26em}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:12px 20px;font:16px/1.2 var(--px);text-transform:uppercase;text-decoration:none;color:var(--void);background:var(--gold);border:2px solid var(--black);box-shadow:inset 2px 2px 0 var(--pale),inset -2px -2px 0 var(--umber3)}
+.btn:lang(ja){font:24px/1.2 var(--ja-px)}
+.btn:hover{color:var(--void);background:var(--pale)}
+.btn:active{box-shadow:inset -2px -2px 0 var(--pale),inset 2px 2px 0 var(--umber3)}
+.btn .tri{width:0;height:0;border-left:10px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
+.btn.soon{color:var(--steel4);background:var(--night);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black);cursor:default}
+.btn.soon b{color:var(--ice);font-weight:400}
+.status{margin:18px 0 0;color:var(--steel4);font-size:16px;line-height:24px}
+.status:lang(ja){font-size:12px}
+.status .dot{display:inline-block;width:8px;height:8px;background:var(--sea3);margin-right:10px;vertical-align:2px}
+html.no-trailer .cta-trailer{display:none}
+
+@media (min-width:1920px){.hero{--iw:1920px;--ih:1024px}.hero-copy{padding-top:120px}}
+@media (max-width:1179px){
+  .hero{--iw:960px;--ih:512px}
+  .logo{width:512px;height:128px;margin-left:-4px}
+  .hero-copy{width:min(560px,100%);padding:32px 0}
+}
+@media (max-width:760px){
+  .hero{display:block;padding-top:300px}
+  .hero::after{background:none}
+  .hero .wrap{display:block}
+  .hero-copy{padding:0 0 40px}
+  .pitch{font-size:21px}
+}
+@media (max-width:560px){
+  .logo{width:256px;height:64px;margin:0 0 16px}
+  .hero{background-position:-40px 0;padding-top:250px}
+  .btn{width:100%;justify-content:center}
+}
+
+/* ── sections ─────────────────────────────────────────── */
+section{padding:96px 0}
+.sec-head{margin-bottom:40px}
+.sec-head p{margin-top:20px;color:var(--steel4)}
+@media (max-width:640px){section{padding:64px 0}}
+
+/* trailer */
+#trailer{padding-top:80px;background:var(--void)}
+.tv{margin:0;padding:10px;position:relative}
+.tv video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--black)}
+.tv .still{display:none}
+html.no-trailer .tv video{display:none}
+html.no-trailer .tv .still{display:grid;place-items:center;position:relative;background:var(--black);padding:24px 0}
+.still img{width:960px}
+.still .pending{position:absolute;top:20px;left:20px;background:var(--void);border:2px solid var(--steel2);padding:10px 14px;color:var(--gold)}
+@media (max-width:1040px){.still img{width:640px}}
+@media (max-width:720px){.still img{width:320px}html.no-trailer .tv .still{padding:48px 0 12px}.still .pending{top:8px;left:8px;padding:4px 8px}}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:32px 56px;align-items:start}
+.pillar{display:flex;flex-direction:column;gap:20px}
+.pillar h3{color:var(--gold)}
+.p1 h3{font-size:24px;line-height:1.35}
+.p1 h3:lang(ja){font-size:36px}
+.pillar p{color:var(--ice);margin:0}
+.p1{grid-row:span 2}
+.p2,.p3{display:grid;grid-template-columns:256px 1fr;gap:12px 28px;align-items:center;padding:24px}
+.p2 .art,.p3 .art{grid-row:span 2;justify-content:center}
+.p2 h3,.p3 h3{align-self:end}
+.p2 p,.p3 p{align-self:start}
+.art{display:flex;align-items:center}
+@media (max-width:1100px){.pillars{grid-template-columns:1fr}.p1{grid-row:auto}}
+@media (max-width:620px){.p2,.p3{grid-template-columns:1fr;padding:20px}.p2 .art,.p3 .art{grid-row:auto}}
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:0;width:100%;max-width:512px;border:2px solid var(--black)}
+.chips i{aspect-ratio:1;display:block}
+.chips i:nth-child(1){background:#000000}
+.chips i:nth-child(2){background:#0b0b1a}
+.chips i:nth-child(3){background:#1a1c2c}
+.chips i:nth-child(4){background:#2b2f4a}
+.chips i:nth-child(5){background:#3e4a6b}
+.chips i:nth-child(6){background:#5b6ea0}
+.chips i:nth-child(7){background:#8aa4d6}
+.chips i:nth-child(8){background:#cfe0ff}
+.chips i:nth-child(9){background:#ffffff}
+.chips i:nth-child(10){background:#1b1410}
+.chips i:nth-child(11){background:#3a2616}
+.chips i:nth-child(12){background:#6b3e12}
+.chips i:nth-child(13){background:#a8641a}
+.chips i:nth-child(14){background:#e09a2a}
+.chips i:nth-child(15){background:#ffd24a}
+.chips i:nth-child(16){background:#fff3a8}
+.chips i:nth-child(17){background:#0e2a24}
+.chips i:nth-child(18){background:#16503e}
+.chips i:nth-child(19){background:#2f8a5a}
+.chips i:nth-child(20){background:#7ad08a}
+.chips i:nth-child(21){background:#3b0d14}
+.chips i:nth-child(22){background:#7a1a1a}
+.chips i:nth-child(23){background:#c8321e}
+.chips i:nth-child(24){background:#ff6a1a}
+.chips i:nth-child(25){background:#ff9e3d}
+.chips i:nth-child(26){background:#2a1a3a}
+.chips i:nth-child(27){background:#5a2e7a}
+.chips i:nth-child(28){background:#a45ad8}
+.chips i:nth-child(29){background:#3a3a3a}
+.chips i:nth-child(30){background:#6e6e6e}
+.chips i:nth-child(31){background:#a8a8a8}
+.chips i:nth-child(32){background:#20e0ff}
+.chipfig{width:100%}
+.chips-cap{margin:10px 0 0;font-size:16px;color:var(--steel4)}
+.chips-cap:lang(ja){font-size:14px}
+.rig{position:relative;width:240px;height:200px}
+.rig img{position:absolute}
+.rig .ship{width:128px;left:56px;top:40px}
+.rig .flame{width:32px;left:104px;top:166px}
+.rig .pod-l{width:64px;left:-8px;top:104px}
+.rig .pod-r{width:48px;left:196px;top:112px}
+.rig .s1{left:116px;top:0}.rig .s2{left:28px;top:56px}
+.rig .shot{position:absolute;width:8px;height:20px;background:var(--cyan);box-shadow:inset 0 4px 0 var(--white)}
+.herald-art img{width:320px}
+@media (max-width:360px){.herald-art img{width:160px}}
+
+/* magpie */
+#magpie{background:var(--night);border-block:2px solid var(--steel1)}
+.split{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+.shot2{width:660px;padding:10px}
+.shot2 img{width:640px}
+.shot2 figcaption,.cap{font-family:var(--px);font-size:8px;line-height:16px;color:var(--steel4);margin-top:10px;text-transform:uppercase}
+.shot2 figcaption:lang(ja),.cap:lang(ja){font-family:var(--ja-px);font-size:12px;line-height:18px}
+figure{margin:0}
+.mott{display:flex;gap:16px;align-items:center;margin:0 0 28px}
+.mott img{width:96px;height:96px;flex:none;border:2px solid var(--black);box-shadow:0 0 0 2px var(--steel2)}
+.mott blockquote{margin:0;font-size:24px;line-height:1.35;color:var(--gold)}
+.mott blockquote:lang(ja){font-size:20px}
+.mott cite{display:block;font:normal 16px/24px var(--px);color:var(--steel4);margin-top:8px;text-transform:uppercase}
+.mott cite:lang(ja){font:normal 12px/18px var(--ja-px)}
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:8px 0 24px;border:2px solid var(--black)}
+.type{padding:14px 16px 16px;background:var(--void)}
+.type + .type{border-left:2px solid var(--black)}
+.type h3{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:16px}
+.type h3:lang(ja){font-size:12px}
+.type h3 i{width:12px;height:12px;flex:none;border:2px solid var(--black)}
+.type ul{list-style:none;margin:0;padding:0;font-size:17px;line-height:1.5;color:var(--ice)}
+.type ul:lang(ja){font-size:14px}
+.k h3{color:var(--amber)} .k h3 i{background:var(--amber)}
+.b h3{color:var(--cyan)} .b h3 i{background:var(--cyan)}
+.x h3{color:var(--fire)} .x h3 i{background:var(--fire)}
+.fine{font-size:16px;color:var(--steel4)}
+.fine:lang(ja){font-size:14px}
+@media (max-width:1180px){.split{grid-template-columns:1fr}.shot2{width:auto;max-width:660px}}
+@media (max-width:700px){.shot2{width:340px;max-width:100%}.shot2 img{width:320px}}
+@media (max-width:520px){.types{grid-template-columns:1fr}.type + .type{border-left:0;border-top:2px solid var(--black)}}
+
+/* breaker: a 240x256 slice of playfield at x2 (x1 on phones) */
+#breaker .split{grid-template-columns:1fr auto;align-items:center}
+.demo{--k:2;padding:10px;width:calc(240px*var(--k) + 20px)}
+.field{position:relative;width:calc(240px*var(--k));height:calc(256px*var(--k));overflow:hidden;image-rendering:pixelated;
+  background:var(--black) url(public/art/field.png) repeat-y 0 0/calc(240px*var(--k)) calc(512px*var(--k))}
+.field .ship{position:absolute;left:calc(104px*var(--k));top:calc(212px*var(--k));width:calc(32px*var(--k))}
+.beam{position:absolute;left:calc(112px*var(--k));top:0;width:calc(16px*var(--k));height:calc(214px*var(--k));
+  background:linear-gradient(90deg,var(--gold) 0 12.5%,var(--pale) 12.5% 25%,var(--white) 25% 75%,var(--pale) 75% 87.5%,var(--gold) 87.5%);
+  transform-origin:50% 100%;transform:scaleY(0)}
+.orb{position:absolute;width:calc(8px*var(--k));top:0}
+.orb.g1{left:calc(134px*var(--k))}
+.orb.g2{left:calc(94px*var(--k))}
+.orb.g3{left:calc(138px*var(--k))}
+.meter{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;align-items:center;padding:16px 6px 6px}
+.meter .lab{color:var(--steel4)}
+.track{position:relative;height:16px;background:var(--black);border:2px solid var(--steel2)}
+.fill{position:absolute;inset:0 auto 0 0;width:64%;background:linear-gradient(var(--pale) 0 2px,var(--fire) 2px 10px,var(--red) 10px)}
+.mark{position:absolute;left:50%;top:-6px;bottom:-6px;width:4px;margin-left:-2px;background:var(--gold)}
+.ready{grid-column:2;color:var(--gold)}
+@media (prefers-reduced-motion:no-preference){
+  .demo.run .field{animation:scroll 16s steps(256) infinite}
+  .demo.run .fill{animation:heat 7s steps(50) infinite}
+  .demo.run .ready{animation:ready 7s steps(1) infinite}
+  .demo.run .beam{animation:beam 7s steps(8) infinite}
+  .demo.run .orb{animation:fall 2.33s steps(60) infinite}
+  .demo.run .g2{animation-delay:-.8s}.demo.run .g3{animation-delay:-1.6s}
+}
+@keyframes scroll{to{background-position:0 calc(512px*var(--k))}}
+@keyframes heat{0%{width:0}62%{width:62%}70%{width:62%}72%{width:12%}100%{width:30%}}
+@keyframes ready{0%{opacity:.15}45%{opacity:1}72%{opacity:.15}}
+@keyframes beam{0%,70%{transform:scaleY(0)}72%{transform:scaleY(1)}86%{transform:scaleY(1);opacity:1}88%,100%{transform:scaleY(1);opacity:0}}
+@keyframes fall{0%{transform:translateY(calc(-16px*var(--k)))}100%{transform:translateY(calc(264px*var(--k)))}}
+@media (max-width:1180px){#breaker .split{grid-template-columns:1fr}}
+@media (max-width:560px){.demo{--k:1}}
+
+/* heralds */
+#heralds{background:var(--black)}
+.heralds{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+.hlist{list-style:none;margin:0;padding:0;border-top:2px solid var(--steel1)}
+.hlist li{display:grid;grid-template-columns:40px 1fr;gap:4px 16px;padding:16px 0;border-bottom:2px solid var(--steel1)}
+.hlist .n{font-family:var(--px);font-size:16px;color:var(--steel3);grid-row:span 2;padding-top:4px}
+.hlist h3{font-family:var(--px);font-size:16px;color:var(--gold);text-transform:uppercase}
+.hlist h3:lang(ja){font-family:var(--ja-px);font-size:24px}
+.hlist p{margin:0;font-size:17px;color:var(--ice)}
+.hlist p:lang(ja){font-size:15px}
+.more{margin-top:20px;color:var(--steel4)}
+@media (max-width:1180px){.heralds{grid-template-columns:1fr}}
+
+/* worlds */
+.worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.world{padding:0 0 20px;background:var(--night)}
+.world .copper{margin-bottom:20px}
+.world > *:not(.copper){margin-inline:20px}
+.world h3{font-family:var(--px);font-size:24px;line-height:1.3;color:var(--white);text-transform:uppercase}
+.world h3:lang(ja){font-family:var(--ja-px);font-size:36px}
+.world .sub{margin:8px 20px 16px;font-size:16px;line-height:24px;color:var(--gold)}
+.world .sub:lang(ja){font-size:12px}
+.world ol{margin:0 20px 16px;padding:0;list-style:none;counter-reset:st 0}
+.world ol.st5{counter-reset:st 5}.world ol.st10{counter-reset:st 10}
+.world li{counter-increment:st;display:flex;gap:12px;padding:6px 0;border-bottom:2px solid var(--steel1);font-size:18px}
+.world li:lang(ja){font-size:15px}
+.world li::before{content:counter(st,decimal-leading-zero);font:8px/2.6 var(--px);color:var(--steel3);width:20px;flex:none}
+.world p{font-size:17px;color:var(--steel4);margin-bottom:0}
+.world p:lang(ja){font-size:14px}
+.w2 .copper{background:var(--cop-steel)}
+.w3 .copper{background:linear-gradient(var(--black) 0 2px,var(--dusk0) 2px 4px,var(--dusk1) 4px 6px,var(--violet) 6px 8px,var(--blood1) 8px 10px,var(--red) 10px 12px,var(--blood1) 12px 14px,var(--violet) 14px 16px,var(--dusk1) 16px 18px,var(--dusk0) 18px 20px,var(--black) 20px 22px)}
+@media (max-width:980px){.worlds{grid-template-columns:1fr}}
+
+/* gallery */
+#screens{background:var(--night);border-block:2px solid var(--steel1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,320px);gap:24px 28px;justify-content:center}
+.grid a{display:block;width:320px;text-decoration:none;color:var(--steel4)}
+.grid img{width:320px;height:256px;border:0}
+.grid a:hover img,.grid a:focus-visible img{outline:2px solid var(--gold);outline-offset:2px}
+.grid .cap{display:block;margin-top:8px}
+.grid a:hover .cap{color:var(--gold)}
+
+/* story */
+.story{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+.story .shot2 img{width:640px}
+.story blockquote{margin:32px 0 0;padding:20px 24px;background:var(--night);border:2px solid var(--black);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black)}
+.story blockquote p{font-size:24px;line-height:1.4;color:var(--gold);margin:0 0 10px;max-width:none}
+.story blockquote p:lang(ja){font-size:20px}
+.story blockquote footer{font:16px/24px var(--px);color:var(--steel4);text-transform:uppercase}
+.story blockquote footer:lang(ja){font:12px/18px var(--ja-px)}
+.pilot{display:flex;gap:16px;align-items:flex-start;margin-top:8px}
+.pilot img{width:96px;height:96px;flex:none;border:2px solid var(--black);box-shadow:0 0 0 2px var(--steel2)}
+@media (max-width:1180px){.story{grid-template-columns:1fr}}
+@media (max-width:700px){.story .shot2 img{width:320px}}
+@media (max-width:420px){.pilot{flex-direction:column}}
+
+/* facts: the game's sidebar, as a fact sheet */
+#facts{background:var(--void)}
+.sheet{max-width:880px;padding:12px}
+.sheet dl{margin:0;display:grid;grid-template-columns:184px 1fr}
+.sheet dt,.sheet dd{margin:0;padding:12px 14px;border-bottom:2px solid var(--black)}
+.sheet dt{font:16px/24px var(--px);color:var(--steel4);text-transform:uppercase;background:var(--steel1)}
+.sheet dt:lang(ja){font:12px/24px var(--ja-px)}
+.sheet dd{background:var(--void);color:var(--ice);font-size:18px}
+.sheet dd:lang(ja){font-size:15px}
+.sheet dd.gold{color:var(--gold);font-family:var(--px);font-size:16px;line-height:24px;text-transform:uppercase}
+.sheet dd.gold [lang=ja]{font-family:var(--ja-px);font-size:24px}
+@media (max-width:520px){.sheet dl{grid-template-columns:1fr}.sheet dt{border-bottom:0;padding-bottom:4px}}
+
+/* footer */
+.foot{padding:48px 0 64px;background:var(--black);color:var(--steel4);font-size:17px}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
+.foot p{margin:0}
+.foot .brand span{font-size:16px}
+.foot .brand span:lang(ja){font-family:var(--ja-px);font-size:24px}
+
+/* viewer */
+dialog.viewer{padding:0;border:0;background:transparent;color:var(--ice);max-width:100vw;max-height:100dvh;width:100vw;height:100dvh;margin:0}
+dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
+.v-in{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;padding:56px 12px 16px}
+.v-in img{border:2px solid var(--steel2);background:var(--black);max-width:100%}
+.v-in img.big{image-rendering:auto}
+.v-bar{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;width:min(964px,100%)}
+.v-bar p{margin:0 auto 0 0;font:8px/16px var(--px);text-transform:uppercase;color:var(--steel4);max-width:none}
+.v-bar p:lang(ja){font:12px/18px var(--ja-px)}
+.v-btn{display:inline-grid;place-items:center;font:16px/1 var(--px);color:var(--ice);background:var(--night);border:2px solid var(--black);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black);min-width:48px;min-height:44px;padding:8px 12px;cursor:pointer}
+.v-btn:hover{color:var(--gold)}
+.v-close{position:fixed;top:10px;right:12px}
+.v-bar a{font:8px/16px var(--px);text-transform:uppercase}
+
+@media (prefers-reduced-motion:no-preference){
+  .logo.go{animation:slam .7s cubic-bezier(.55,0,1,.45) both}
+  .logo.go::after{animation:shine 1.2s steps(20) .75s 2 both}
+}
+@keyframes slam{0%{transform:translateY(-60px);opacity:0}70%{transform:translateY(0);opacity:1}76%{transform:translate(6px,4px)}82%{transform:translate(-5px,-2px)}88%{transform:translate(3px,2px)}94%{transform:translate(-1px,0)}100%{transform:none}}
+@keyframes shine{0%{opacity:1;background-position:120% 0}99%{opacity:1;background-position:-20% 0}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="HELIOBANE, back to top"><img class="px" src="public/art/ship.png" width="32" height="32" alt=""><span>HELIOBANE</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#trailer"><span class="l-en">Trailer</span><span class="l-ja" lang="ja">トレーラー</span></a>
+      <a href="#magpie"><span class="l-en">Magpie</span><span class="l-ja" lang="ja">マグパイ号</span></a>
+      <a href="#heralds"><span class="l-en">Heralds</span><span class="l-ja" lang="ja">ヘラルド</span></a>
+      <a href="#worlds"><span class="l-en">Worlds</span><span class="l-ja" lang="ja">ワールド</span></a>
+      <a href="#screens"><span class="l-en">Screens</span><span class="l-ja" lang="ja">画面写真</span></a>
+      <a href="#story"><span class="l-en">Story</span><span class="l-ja" lang="ja">物語</span></a>
+      <a href="#facts"><span class="l-en">Facts</span><span class="l-ja" lang="ja">概要</span></a>
+    </nav>
+    <div class="langs" role="group" aria-label="Language / 言語">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-label="HELIOBANE">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1 id="title" class="logo" data-anim><img class="px" src="public/art/logo.png" width="256" height="64" alt="HELIOBANE"></h1>
+      <div class="hero-card">
+        <p class="subtitle pix"><span class="l-en">HB-0&nbsp;&nbsp;The sun-killer</span><span class="l-ja" lang="ja">HB-0　太陽殺し</span></p>
+      <p class="pitch l-en">An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship inward to the heart of a star, then chase what gets away: three worlds, fifteen stages.</p>
+      <p class="pitch l-ja" lang="ja">アミーガ風の縦スクロールシューティング。太陽殺しのガンシップで星の心臓へ。そして、逃げたものを追え。3つのワールド、15のステージ。</p>
+      <div class="ctas">
+        <a class="btn cta-trailer" href="#trailer"><span class="tri" aria-hidden="true"></span><span class="l-en">Watch the trailer</span><span class="l-ja" lang="ja">トレーラーを見る</span></a>
+        <a class="btn soon"><span class="l-en">Free demo coming to <b>Steam</b></span><span class="l-ja" lang="ja">無料体験版、<b>Steam</b>で近日公開</span></a>
+      </div>
+      <p class="status pix"><span class="dot" aria-hidden="true"></span><span class="l-en">In development at Gand</span><span class="l-ja" lang="ja">Gandで開発中</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="copper cycle" aria-hidden="true">
+
+<section id="trailer" aria-labelledby="trailer-h">
+  <div class="wrap">
+    <h2 id="trailer-h" class="sr-only">Trailer</h2>
+    <figure class="tv panel">
+      <video id="trailer-video" controls playsinline preload="none" width="1920" height="1080" poster="public/trailer-poster.jpg" aria-label="HELIOBANE trailer">
+        <source src="public/trailer.mp4" type="video/mp4">
+      </video>
+      <div class="still"><img class="px" src="public/art/trailer-still.png" width="320" height="180" alt="The HELIOBANE title screen: the chrome logo over a gunship rising from a burning star, above Oda Venn's words, We built her to kill a star. We never thought we'd have to." data-alt-ja="HELIOBANEのタイトル画面。燃える星から上昇するガンシップの上にクロームのロゴ、その下にオダ・ヴェンの言葉。">
+        <span class="pending pix"><span class="l-en">Trailer incoming</span><span class="l-ja" lang="ja">トレーラー準備中</span></span></div>
+    </figure>
+  </div>
+</section>
+
+<section id="pillars" aria-labelledby="pillars-h">
+  <div class="wrap">
+    <h2 id="pillars-h" class="sr-only">What HELIOBANE is</h2>
+    <div class="pillars">
+      <div class="pillar p1">
+        <div class="art">
+          <figure class="chipfig">
+            <div class="chips" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <figcaption class="chips-cap"><span class="l-en">The whole palette. Every sprite in the game is drawn from these 32 colours.</span><span class="l-ja" lang="ja">これが全パレット。ゲーム中のスプライトはすべてこの32色で描かれている。</span></figcaption>
+          </figure>
+        </div>
+        <h3 class="pix"><span class="l-en">Feels like 1993, plays like 2026</span><span class="l-ja" lang="ja">見た目は1993年、手ざわりは2026年</span></h3>
+        <p class="l-en">320×256 pixels, 32 colours, tracker music and bit-crushed digitised speech, the way an Amiga did it. Underneath: 60 frames a second with no slowdown, a 4×4 pixel hitbox, instant restarts, remappable keys and full gamepad support.</p>
+        <p class="l-ja" lang="ja">320×256ドット、32色、トラッカー音楽、ビットを削ったデジタイズ音声。アミーガのやり方そのままだ。中身は毎秒60フレームで処理落ちなし、当たり判定は4×4ドット、即リスタート、キー割り当て変更とゲームパッドに完全対応。</p>
+      </div>
+      <div class="pillar p2 panel">
+        <div class="art">
+          <div class="rig" role="img" aria-label="The Heliobane gunship with an Option Drone on its left and an Orbiter on its right" data-alt-ja="オプションドローンとオービターを従えたヘリオベイン">
+            <span class="shot s1" aria-hidden="true"></span>
+            <span class="shot s2" aria-hidden="true"></span>
+            <img class="px ship" src="public/art/ship.png" width="32" height="32" alt="">
+            <img class="px flame" src="public/art/player_flame.png" width="8" height="12" alt="">
+            <img class="px pod-l" src="public/art/pod_drone.png" width="16" height="16" alt="">
+            <img class="px pod-r" src="public/art/pod_orbiter.png" width="12" height="12" alt="">
+          </div>
+        </div>
+        <h3 class="pix"><span class="l-en">Build your gunship</span><span class="l-ja" lang="ja">自分の機体を組め</span></h3>
+        <p class="l-en">Two front guns on a rack you swap between mid-fight, a rear gun and two sidekick pods, each upgradeable to level 5. What you buy between stages decides how the next one goes.</p>
+        <p class="l-ja" lang="ja">戦闘中に切り替えられる前方武器2丁、後方武器1つ、サイドポッド2基。どれもレベル5まで強化できる。ステージの合間に何を買うかで、次のステージが変わる。</p>
+      </div>
+      <div class="pillar p3 panel">
+        <div class="art herald-art">
+          <img class="px" src="public/art/boss_quarrymaw.png" width="160" height="96" alt="The Quarry Maw, a mining platform grown over with black glass and turned into a mouth." data-alt-ja="クォーリー・モウ。黒いガラスに覆われ、口に変えられた採掘プラットフォーム。">
+        </div>
+        <h3 class="pix"><span class="l-en">Spectacle</span><span class="l-ja" lang="ja">スペクタクル</span></h3>
+        <p class="l-en">Every stage ends in a Herald that fills the screen and changes between phases. Explosions are big, the screen shakes, and when a Herald dies, Aurum rains down.</p>
+        <p class="l-ja" lang="ja">どのステージも最後は画面を埋めるヘラルド戦。フェーズごとに姿を変える。爆発は大きく、画面は揺れ、ヘラルドが倒れればオーラムが降りそそぐ。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="magpie" aria-labelledby="magpie-h">
+  <div class="wrap split">
+    <figure class="shot2 panel">
+      <img class="px" src="public/shots/1x/magpie.png" width="320" height="256" loading="lazy" alt="The Magpie shop: Old Mott's portrait and his line 'Two guns, kiddo. Use your thumbs.', the loadout menu from front gun to launch, and the Pulse Cannon marked as a beam weapon." data-alt-ja="マグパイ号のショップ。オールド・モットの顔とせりふ、前方武器から出撃までのメニュー、ビーム武器と表示されたパルスキャノン。">
+      <figcaption><span class="l-en">The Magpie, between stages</span><span class="l-ja" lang="ja">ステージの合間のマグパイ号</span></figcaption>
+    </figure>
+    <div>
+      <div class="sec-head"><h2 id="magpie-h" class="pix"><span class="l-en">The Magpie</span><span class="l-ja" lang="ja">マグパイ号</span></h2></div>
+      <div class="mott">
+        <img class="px" src="public/art/portrait_mott.png" width="48" height="48" alt="Old Mott: goggles on his forehead, grey beard, grin." data-alt-ja="オールド・モット。額にゴーグル、灰色のひげ、にやけ顔。">
+        <blockquote><span class="l-en">“Welcome to the Magpie, kiddo!”</span><span class="l-ja" lang="ja">「マグパイ号へようこそ、嬢ちゃん！」</span><cite><span class="l-en">Old Mott</span><span class="l-ja" lang="ja">オールド・モット</span></cite></blockquote>
+      </div>
+      <p class="l-en">Old Mott flies a patched-up salvage tug and turns up between stages whether you want him to or not. He buys Aurum, the gold-glass residue the Umbrine leaves behind, and he sells guns he definitely didn't steal from the Concord armoury.</p>
+      <p class="l-ja" lang="ja">オールド・モットはつぎはぎのサルベージ曳船で、ステージの合間に現れる。呼ばなくても来る。アンブラインが残す金ガラス、オーラムを買い取り、コンコードの兵器庫から盗んだわけでは断じてない銃を売る。</p>
+      <p class="l-en">Buy, upgrade, sell back at half what you paid, repair armour, stock up on flares. Five front guns, three rear guns and three pods, in three damage types:</p>
+      <p class="l-ja" lang="ja">購入、強化、売却（払った額の半分で引き取り）、装甲修理、フレア補充。前方武器5種、後方武器3種、ポッド3種。ダメージタイプは3つ。</p>
+      <div class="types">
+        <div class="type k"><h3 class="pix"><i aria-hidden="true"></i><span class="l-en">Kinetic</span><span class="l-ja" lang="ja">実弾</span></h3>
+          <ul class="l-en"><li>Scatter Vulcan</li><li>Tail Gun</li><li>Side Sweep</li><li>Orbiter</li></ul>
+          <ul class="l-ja" lang="ja"><li>スキャッターバルカン</li><li>テイルガン</li><li>サイドスイープ</li><li>オービター</li></ul></div>
+        <div class="type b"><h3 class="pix"><i aria-hidden="true"></i><span class="l-en">Beam</span><span class="l-ja" lang="ja">ビーム</span></h3>
+          <ul class="l-en"><li>Pulse Cannon</li><li>Lance Laser</li><li>Helix Wave</li></ul>
+          <ul class="l-ja" lang="ja"><li>パルスキャノン</li><li>ランスレーザー</li><li>ヘリックスウェーブ</li></ul></div>
+        <div class="type x"><h3 class="pix"><i aria-hidden="true"></i><span class="l-en">Blast</span><span class="l-ja" lang="ja">ブラスト</span></h3>
+          <ul class="l-en"><li>Seeker Swarm</li><li>Drift Mines</li><li>Rocket Pod</li></ul>
+          <ul class="l-ja" lang="ja"><li>シーカースウォーム</li><li>ドリフトマイン</li><li>ロケットポッド</li></ul></div>
+      </div>
+      <p class="l-en">The type matters because the Umbrine grows its war-forms out of different stuff. Glass shrugs off bullets and cracks under beams. Sun-fed flesh drinks beams and fires faster for it. Concord plating barely notices anything but blast.</p>
+      <p class="l-ja" lang="ja">タイプが大事なのは、アンブラインの戦闘体がそれぞれ別の素材から育つからだ。ガラスは実弾をはじき、ビームで割れる。サンフェッドの肉はビームを吸って連射が速くなる。コンコードの装甲板にはブラスト以外ほとんど効かない。</p>
+      <p class="fine l-en">The Option Drone copies whatever gun is in hand.</p>
+      <p class="fine l-ja" lang="ja">オプションドローンは手に持った武器をまねて撃つ。</p>
+    </div>
+  </div>
+</section>
+
+<section id="breaker" aria-labelledby="breaker-h">
+  <div class="wrap split">
+    <div>
+      <div class="sec-head"><h2 id="breaker-h" class="pix"><span class="l-en">Graze. Heat. Breaker.</span><span class="l-ja" lang="ja">グレイズ、ヒート、ブレイカー</span></h2></div>
+      <p class="l-en">Let an enemy bullet pass within 10 pixels of your cockpit without touching it and you gain a point of heat. Kill something with the damage type it's weak to and you gain three. At 50 heat you can fire the Breaker: a white-gold column from your nose to the top of the screen.</p>
+      <p class="l-ja" lang="ja">敵弾をコクピットから10ドット以内でかすめるとヒートが1上がる。弱点のタイプで敵を倒せば3上がる。ヒートが50たまればブレイカーを撃てる。機首から画面の上端まで伸びる白金色の光の柱だ。</p>
+      <p class="l-en">It barely does damage. What it does is Breach everything it touches for six seconds: hull plating comes off, sealed cores open, and whatever a thing is made of, it counts as flesh until the timer runs out. It won't clear bullets. That's what flares are for.</p>
+      <p class="l-ja" lang="ja">威力はほとんどない。そのかわり、触れたものすべてを6秒間ブリーチ状態にする。装甲ははがれ、封じられたコアは開き、何でできていようと時間切れまではただの肉だ。弾は消せない。それはフレアの仕事。</p>
+    </div>
+    <figure class="demo panel" id="demo">
+      <div class="field" role="img" aria-label="Diagram: bullets graze past the ship, the heat bar climbs past the gold mark at 50, and the Breaker fires a white-gold column up the screen." data-alt-ja="図解：敵弾が機体をかすめ、ヒートゲージが50の金色の目盛りを越え、ブレイカーが白金色の光柱を撃つ。">
+        <img class="px orb g1" src="public/art/orb.png" width="8" height="8" alt=""><img class="px orb g2" src="public/art/orb.png" width="8" height="8" alt=""><img class="px orb g3" src="public/art/orb.png" width="8" height="8" alt="">
+        <span class="beam" aria-hidden="true"></span>
+        <img class="px ship" src="public/art/ship.png" width="32" height="32" alt="">
+      </div>
+      <div class="meter" aria-hidden="true">
+        <span class="lab pix">Heat</span>
+        <span class="track"><span class="fill"></span><span class="mark"></span></span>
+        <span class="ready pix">Breaker ready</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="heralds" aria-labelledby="heralds-h">
+  <div class="wrap heralds">
+    <figure class="shot2 panel">
+      <img class="px" src="public/shots/1x/hungering-heart.png" width="320" height="256" loading="lazy" alt="The Hungering Heart fills the top of the screen, a black-glass cathedral around a sun-bright eye, spraying gold bullets at the Heliobane." data-alt-ja="画面上部を埋めるハンガリング・ハート。太陽のように輝く目を囲む黒ガラスの聖堂が、ヘリオベインに金色の弾をばらまく。">
+      <figcaption><span class="l-en">World 1, stage 5: the Hungering Heart</span><span class="l-ja" lang="ja">ワールド1・ステージ5：ハンガリング・ハート</span></figcaption>
+    </figure>
+    <div>
+      <div class="sec-head">
+        <h2 id="heralds-h" class="pix"><span class="l-en">Heralds</span><span class="l-ja" lang="ja">ヘラルド</span></h2>
+        <p class="l-en">The Umbrine grows a Herald to shepherd every world it takes. Each has two or three phases and several weak points, and many wear an armoured shell you have to grind through first.</p>
+        <p class="l-ja" lang="ja">アンブラインは奪った世界ごとにヘラルドを育てて番をさせる。フェーズは2〜3段階、弱点は複数。まず装甲の殻を削らなければならない相手も多い。</p>
+      </div>
+      <ol class="hlist">
+        <li><span class="n" aria-hidden="true">1</span><h3><span class="l-en">The Quarry Maw</span><span class="l-ja" lang="ja">クォーリー・モウ</span></h3>
+          <p class="l-en">A mining platform turned into a mouth. Mandibles, then a drill charge, then the core.</p><p class="l-ja" lang="ja">口に変えられた採掘プラットフォーム。大あご、ドリル突進、そしてコア。</p></li>
+        <li><span class="n" aria-hidden="true">2</span><h3><span class="l-en">Leviathan Choir</span><span class="l-ja" lang="ja">リヴァイアサン・クワイア</span></h3>
+          <p class="l-en">A sea-serpent of stitched drones that sings as it dies.</p><p class="l-ja" lang="ja">ドローンを縫い合わせた海蛇。死にながら歌う。</p></li>
+        <li><span class="n" aria-hidden="true">3</span><h3><span class="l-en">Admiral Husk</span><span class="l-ja" lang="ja">ハスク提督</span></h3>
+          <p class="l-en">The flagship's bridge, still broadcasting orders in the admiral's voice.</p><p class="l-ja" lang="ja">旗艦のブリッジ。いまも提督の声で命令を流し続けている。</p></li>
+        <li><span class="n" aria-hidden="true">4</span><h3><span class="l-en">The Siphon Engine</span><span class="l-ja" lang="ja">サイフォン・エンジン</span></h3>
+          <p class="l-en">The SOLACE drill itself, now a living organ pumping sunlight.</p><p class="l-ja" lang="ja">ソレイス計画のドリルそのもの。いまは太陽光を汲み上げる生きた臓器だ。</p></li>
+        <li><span class="n" aria-hidden="true">5</span><h3><span class="l-en">The Hungering Heart</span><span class="l-ja" lang="ja">ハンガリング・ハート</span></h3>
+          <p class="l-en">The hive-queen at the core: a cathedral of black glass around a sun-bright eye.</p><p class="l-ja" lang="ja">中心に棲む女王。太陽のように輝く目を囲む、黒ガラスの聖堂。</p></li>
+      </ol>
+      <p class="more l-en">Ten more wait in the Wake and in Umbra.</p>
+      <p class="more l-ja" lang="ja">ザ・ウェイクとアンブラには、さらに10体が待っている。</p>
+    </div>
+  </div>
+</section>
+
+<hr class="copper gold" aria-hidden="true">
+
+<section id="worlds" aria-labelledby="worlds-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="worlds-h" class="pix"><span class="l-en">Three worlds, fifteen stages</span><span class="l-ja" lang="ja">3つのワールド、15のステージ</span></h2>
+      <p class="l-en">Inward to Aurel's core, then outward after what escapes it, then down to where it all started.</p>
+      <p class="l-ja" lang="ja">オーレルの中心へ。そこから逃げたものを追って外へ。そして、すべての始まりの場所へ。</p>
+    </div>
+    <div class="worlds">
+      <article class="world w1">
+        <hr class="copper" aria-hidden="true">
+        <h3><span class="l-en">Aurel</span><span class="l-ja" lang="ja">オーレル</span></h3>
+        <p class="sub pix"><span class="l-en">Inward, to the heart of a star</span><span class="l-ja" lang="ja">星の中心、その心臓へ</span></p>
+        <ol class="l-en st0"><li>Tharsis Belt</li><li>Verdigris</li><li>The Hollow Fleet</li><li>Cinder Crown</li><li>Aurel's Corona</li></ol>
+        <ol class="l-ja st0" lang="ja"><li>タルシス・ベルト</li><li>ヴァーディグリス</li><li>ホロウ・フリート</li><li>シンダー・クラウン</li><li>オーレル・コロナ</li></ol>
+        <p class="l-en">Rust asteroids and mining scaffolds, a green ocean moon, a dead armada, a forge world cracked open, and then the inside of the star.</p>
+        <p class="l-ja" lang="ja">錆びた小惑星と採掘足場、緑の海の月、死んだ艦隊、ひび割れた鍛冶の惑星。そして星の内側。</p>
+      </article>
+      <article class="world w2">
+        <hr class="copper" aria-hidden="true">
+        <h3><span class="l-en">The Wake</span><span class="l-ja" lang="ja">ザ・ウェイク</span></h3>
+        <p class="sub pix"><span class="l-en">Outward, after the Seed</span><span class="l-ja" lang="ja">外へ、シードを追って</span></p>
+        <ol class="l-en st5"><li>Ashfall Drift</li><li>Halvard's Rings</li><li>The Stormglass</li><li>Cold Harbour</li><li>The Heliopause</li></ol>
+        <ol class="l-ja st5" lang="ja"><li>アッシュフォール・ドリフト</li><li>ハルヴァード・リング</li><li>ストームグラス</li><li>コールド・ハーバー</li><li>ヘリオポーズ</li></ol>
+        <p class="l-en">Cold and dark. You find enemies by their rims, flares double as lamps, storm winds push you sideways, and the Heliopause runs at three times the speed.</p>
+        <p class="l-ja" lang="ja">冷たく、暗い。敵は縁の光で見つける。フレアは明かりにもなる。嵐の風が機体を押し流し、ヘリオポーズは3倍の速さで流れる。</p>
+      </article>
+      <article class="world w3">
+        <hr class="copper" aria-hidden="true">
+        <h3><span class="l-en">Umbra</span><span class="l-ja" lang="ja">アンブラ</span></h3>
+        <p class="sub pix"><span class="l-en">Where the dark was born</span><span class="l-ja" lang="ja">やみが生まれた場所</span></p>
+        <ol class="l-en st10"><li>Dead Light</li><li>The Vein</li><li>Ossuary of Stars</li><li>Choirnest</li><li>The First Mouth</li></ol>
+        <ol class="l-ja st10" lang="ja"><li>デッド・ライト</li><li>ザ・ヴェイン</li><li>星の納骨堂</li><li>クワイアネスト</li><li>ファースト・マウス</li></ol>
+        <p class="l-en">A dead star eaten hollow. Walls that drink beams and grow, an artery that pulses to the music, and a graveyard of worlds with two roads through it.</p>
+        <p class="l-ja" lang="ja">喰いつくされて空洞になった死んだ星。ビームを飲んで育つ壁、音楽に合わせて脈打つ動脈、二本の道が通る惑星の墓場。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="screens" aria-labelledby="screens-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="screens-h" class="pix"><span class="l-en">Screenshots</span><span class="l-ja" lang="ja">画面写真</span></h2>
+      <p class="l-en">Shown at the game's native 320×256. Open one to see it three times larger.</p>
+      <p class="l-ja" lang="ja">ゲーム本来の320×256ドットで表示。クリックすると3倍で見られる。</p>
+    </div>
+    <div class="grid" id="gallery">
+      <a href="public/shots/tharsis-belt.png" data-shot="tharsis-belt"><img class="px" src="public/shots/1x/tharsis-belt.png" width="320" height="256" loading="lazy" alt="Stage 1, Tharsis Belt: the Heliobane fires up through rust asteroids and an umberflesh-grown mining scaffold." data-alt-ja="ステージ1、タルシス・ベルト。錆びた小惑星とアンブラインに覆われた採掘足場へ撃ち上げるヘリオベイン。"><span class="cap"><span class="l-en">Stage 1: Tharsis Belt</span><span class="l-ja" lang="ja">ステージ1：タルシス・ベルト</span></span></a>
+      <a href="public/shots/quarry-maw.png" data-shot="quarry-maw"><img class="px" src="public/shots/1x/quarry-maw.png" width="320" height="256" loading="lazy" alt="The Quarry Maw, the stage 1 Herald, opens its mandibles at the top of the screen." data-alt-ja="ステージ1のヘラルド、クォーリー・モウが画面上部で大あごを開く。"><span class="cap"><span class="l-en">Herald: The Quarry Maw</span><span class="l-ja" lang="ja">ヘラルド：クォーリー・モウ</span></span></a>
+      <a href="public/shots/leviathan-choir.png" data-shot="leviathan-choir"><img class="px" src="public/shots/1x/leviathan-choir.png" width="320" height="256" loading="lazy" alt="Leviathan Choir, the stage 2 Herald, coils its stitched-drone body across a green ocean moon." data-alt-ja="ステージ2のヘラルド、リヴァイアサン・クワイア。縫い合わされたドローンの体が緑の海の上でとぐろを巻く。"><span class="cap"><span class="l-en">Herald: Leviathan Choir</span><span class="l-ja" lang="ja">ヘラルド：リヴァイアサン・クワイア</span></span></a>
+      <a href="public/shots/admiral-husk.png" data-shot="admiral-husk"><img class="px" src="public/shots/1x/admiral-husk.png" width="320" height="256" loading="lazy" alt="Admiral Husk, the worn Concord flagship, sweeps its bridge laser across the screen." data-alt-ja="アンブラインにまとわれたコンコード旗艦、ハスク提督がブリッジのレーザーで画面をなぎ払う。"><span class="cap"><span class="l-en">Herald: Admiral Husk</span><span class="l-ja" lang="ja">ヘラルド：ハスク提督</span></span></a>
+      <a href="public/shots/cinder-crown.png" data-shot="cinder-crown"><img class="px" src="public/shots/1x/cinder-crown.png" width="320" height="256" loading="lazy" alt="Stage 4, Cinder Crown: lava rivers through cracked black rock and foundry turrets." data-alt-ja="ステージ4、シンダー・クラウン。ひび割れた黒い岩を流れる溶岩の川と鋳造所の砲台。"><span class="cap"><span class="l-en">Stage 4: Cinder Crown</span><span class="l-ja" lang="ja">ステージ4：シンダー・クラウン</span></span></a>
+      <a href="public/shots/aurels-corona.png" data-shot="aurels-corona"><img class="px" src="public/shots/1x/aurels-corona.png" width="320" height="256" loading="lazy" alt="Stage 5, Aurel's Corona: black glass spires and gold bullets inside the star." data-alt-ja="ステージ5、オーレル・コロナ。星の内側、黒ガラスの尖塔と金色の弾。"><span class="cap"><span class="l-en">Stage 5: Aurel's Corona</span><span class="l-ja" lang="ja">ステージ5：オーレル・コロナ</span></span></a>
+      <a href="public/shots/ashfall-drift.png" data-shot="ashfall-drift"><img class="px" src="public/shots/1x/ashfall-drift.png" width="320" height="256" loading="lazy" alt="Stage 6, Ashfall Drift: ash clouds and cooling glass lit violet from below." data-alt-ja="ステージ6、アッシュフォール・ドリフト。下から紫に照らされる灰の雲と冷えていくガラス。"><span class="cap"><span class="l-en">Stage 6: Ashfall Drift</span><span class="l-ja" lang="ja">ステージ6：アッシュフォール・ドリフト</span></span></a>
+      <a href="public/shots/halvards-rings.png" data-shot="halvards-rings"><img class="px" src="public/shots/1x/halvards-rings.png" width="320" height="256" loading="lazy" alt="Stage 7, Halvard's Rings: the Ice Shepherd mid-boss among ring ice." data-alt-ja="ステージ7、ハルヴァード・リング。リングの氷の中の中ボス、アイス・シェパード。"><span class="cap"><span class="l-en">Stage 7: Halvard's Rings</span><span class="l-ja" lang="ja">ステージ7：ハルヴァード・リング</span></span></a>
+      <a href="public/shots/stormglass.png" data-shot="stormglass"><img class="px" src="public/shots/1x/stormglass.png" width="320" height="256" loading="lazy" alt="Stage 8, The Stormglass: the Thunderhead mid-boss throws lightning through the night-side storm." data-alt-ja="ステージ8、ストームグラス。夜側の嵐の中で中ボスのサンダーヘッドが雷を放つ。"><span class="cap"><span class="l-en">Stage 8: The Stormglass</span><span class="l-ja" lang="ja">ステージ8：ストームグラス</span></span></a>
+      <a href="public/shots/the-vein.png" data-shot="the-vein"><img class="px" src="public/shots/1x/the-vein.png" width="320" height="256" loading="lazy" alt="Stage 12, The Vein: the Artery Leech mid-boss inside one of the dead star's arteries." data-alt-ja="ステージ12、ザ・ヴェイン。死んだ星の動脈の中の中ボス、アーテリー・リーチ。"><span class="cap"><span class="l-en">Stage 12: The Vein</span><span class="l-ja" lang="ja">ステージ12：ザ・ヴェイン</span></span></a>
+      <a href="public/shots/choirnest.png" data-shot="choirnest"><img class="px" src="public/shots/1x/choirnest.png" width="320" height="256" loading="lazy" alt="Stage 14, Choirnest: the Broodkeeper mid-boss over a hall of glass eggs." data-alt-ja="ステージ14、クワイアネスト。ガラスの卵が並ぶ広間の上の中ボス、ブルードキーパー。"><span class="cap"><span class="l-en">Stage 14: Choirnest</span><span class="l-ja" lang="ja">ステージ14：クワイアネスト</span></span></a>
+      <a href="public/shots/first-mouth.png" data-shot="first-mouth"><img class="px" src="public/shots/1x/first-mouth.png" width="320" height="256" loading="lazy" alt="Stage 15, The First Mouth: the Heliobane fires the Breaker, a white-gold column, up into the Heart-that-Was mid-boss." data-alt-ja="ステージ15、ファースト・マウス。ヘリオベインが白金色の光柱ブレイカーを中ボスのハート・ザット・ワズに撃ち込む。"><span class="cap"><span class="l-en">Stage 15: The First Mouth</span><span class="l-ja" lang="ja">ステージ15：ファースト・マウス</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section id="story" aria-labelledby="story-h">
+  <div class="wrap story">
+    <figure class="shot2 panel">
+      <img class="px" src="public/art/scene_wren.png" width="320" height="256" loading="lazy" alt="Painting from the intro: Wren in the Heliobane's cockpit, headset on, cyan instruments glowing." data-alt-ja="イントロの一枚絵。ヘリオベインのコクピットでヘッドセットをつけたレン。シアンの計器が光る。">
+      <figcaption><span class="l-en">From the intro: Wren in the cockpit</span><span class="l-ja" lang="ja">イントロより：コクピットのレン</span></figcaption>
+    </figure>
+    <div>
+      <div class="sec-head"><h2 id="story-h" class="pix"><span class="l-en">The sun-killer</span><span class="l-ja" lang="ja">太陽殺し</span></h2></div>
+      <p class="l-en">Aurel is an old orange star with five inhabited planets and a thousand years of mining, trade and small wars behind them. Nobody looked at the sun. Then Project SOLACE drilled a siphon into it, and something in the star's belly tasted refined energy for the first time.</p>
+      <p class="l-ja" lang="ja">オーレルは年老いた橙色の星。五つの有人惑星があり、千年分の採掘と交易と小さな戦争の歴史がある。誰も太陽を見上げなかった。やがてソレイス計画がその心臓にサイフォンを掘り込み、星の腹の中の何かが、精製されたエネルギーを初めて味わった。</p>
+      <p class="l-en">The Umbrine is a crystalline, half-organic hive that eats fusion. It doesn't conquer; it grows. In ninety days it took the Tharsis mining belt, the ocean moon Verdigris and the entire Concord battle fleet, which it didn't destroy but wore, like a hermit crab wears a shell.</p>
+      <p class="l-ja" lang="ja">アンブラインは核融合を喰らう、結晶質で半ば有機的な群体だ。征服はしない。増殖する。90日でタルシスの採掘帯、海の月ヴァーディグリス、そしてコンコードの全艦隊を奪った。艦隊は壊さず、ヤドカリが殻をかぶるように身にまとった。</p>
+      <p class="l-en">At Solmarch Yards one ship had spent eleven years under a tarp: HB-0, a gunship hardened to fly inside a star's corona and deliver a single weapon, the Solar Lance. Chief Engineer Oda Venn fuelled her, loaded the Lance and held the dock doors open long enough for her to launch.</p>
+      <p class="l-ja" lang="ja">ソルマーチ造船所に、11年間シートをかぶったままの船があった。HB-0。恒星のコロナの中を飛び、ただ一つの兵器、ソーラーランスを届けるためのガンシップ。技師長オダ・ヴェンは燃料を入れ、ランスを積み、船が飛び立つまでドックの扉を押さえ続けた。</p>
+      <div class="pilot">
+        <img class="px" src="public/art/portrait_wren.png" width="48" height="48" alt="Portrait of Wren in her flight headset." data-alt-ja="フライトヘッドセットをつけたレンの顔。">
+        <div>
+          <p class="l-en">Her pilot is Ilse Varr, callsign Wren: a salvage runner from the Tharsis belt with two smuggling convictions and the best reflexes in the system. She is sarcastic, frightened, and very, very good.</p>
+          <p class="l-ja" lang="ja">パイロットはイルゼ・ヴァール、コールサインはレン。タルシス出身のサルベージ屋で、密輸の前科が二つ、反射神経は星系一。皮肉屋で、怖がりで、そして恐ろしく腕がいい。</p>
+        </div>
+      </div>
+      <blockquote>
+        <p class="l-en">“We built her to kill a star. We never thought we'd have to.”</p>
+        <p class="l-ja" lang="ja">「星を殺すために造った。本当に使う日が来るなんてね。」</p>
+        <footer><span class="l-en">Oda Venn, Solmarch Yards, final log</span><span class="l-ja" lang="ja">オダ・ヴェン、ソルマーチ造船所</span></footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<hr class="copper steel" aria-hidden="true">
+
+<section id="facts" aria-labelledby="facts-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 id="facts-h" class="pix"><span class="l-en">Fact sheet</span><span class="l-ja" lang="ja">ファクトシート</span></h2></div>
+    <div class="sheet panel">
+      <dl>
+        <dt><span class="l-en">Title</span><span class="l-ja" lang="ja">タイトル</span></dt><dd class="gold">HELIOBANE</dd>
+        <dt><span class="l-en">Developer</span><span class="l-ja" lang="ja">開発</span></dt><dd>Gand</dd>
+        <dt><span class="l-en">Genre</span><span class="l-ja" lang="ja">ジャンル</span></dt><dd><span class="l-en">Vertical-scrolling shoot 'em up</span><span class="l-ja" lang="ja">縦スクロールシューティング</span></dd>
+        <dt><span class="l-en">Lineage</span><span class="l-ja" lang="ja">系譜</span></dt><dd>Tyrian 2000, Xenon 2 Megablast, Project-X, Apidya, Battle Squadron</dd>
+        <dt><span class="l-en">Engine</span><span class="l-ja" lang="ja">エンジン</span></dt><dd>Godot 4.7</dd>
+        <dt><span class="l-en">Display</span><span class="l-ja" lang="ja">画面</span></dt><dd><span class="l-en">320×256, 32 colours, 60 fps, integer-scaled</span><span class="l-ja" lang="ja">320×256ドット・32色・60fps・整数倍拡大</span></dd>
+        <dt><span class="l-en">Controls</span><span class="l-ja" lang="ja">操作</span></dt><dd><span class="l-en">Keyboard or gamepad, fully remappable</span><span class="l-ja" lang="ja">キーボード、ゲームパッド（割り当て変更可）</span></dd>
+        <dt><span class="l-en">Campaign</span><span class="l-ja" lang="ja">構成</span></dt><dd><span class="l-en">3 worlds, 15 stages, 15 Heralds, 3 difficulty levels</span><span class="l-ja" lang="ja">3ワールド・15ステージ・ヘラルド15体・難易度3段階</span></dd>
+        <dt><span class="l-en">Players</span><span class="l-ja" lang="ja">プレイ人数</span></dt><dd>1</dd>
+        <dt><span class="l-en">Languages</span><span class="l-ja" lang="ja">言語</span></dt><dd><span class="l-en">English, Türkçe, 日本語 (text and intro narration)</span><span class="l-ja" lang="ja">英語・トルコ語・日本語（テキストとイントロのナレーション）</span></dd>
+        <dt><span class="l-en">Status</span><span class="l-ja" lang="ja">状況</span></dt><dd class="gold"><span class="l-en">In development</span><span class="l-ja" lang="ja">開発中</span></dd>
+        <dt><span class="l-en">Demo</span><span class="l-ja" lang="ja">体験版</span></dt><dd><span class="l-en">Free demo coming to Steam</span><span class="l-ja" lang="ja">無料体験版をSteamで近日公開</span></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="https://gand.games/"><img class="px" src="public/art/ship.png" width="32" height="32" alt=""><span><span class="l-en">More from Gand Games</span><span class="l-ja" lang="ja">ガンド・ゲームズの作品一覧</span></span></a>
+    <p>© 2026 <a href="https://gand.games/">Gand Games</a> · <a href="mailto:contact@gand.tr?subject=HELIOBANE"><span class="l-en">Press and enquiries</span><span class="l-ja" lang="ja">お問い合わせ</span></a></p>
+  </div>
+</footer>
+
+<dialog class="viewer" id="viewer" aria-labelledby="v-cap">
+  <div class="v-in">
+    <button type="button" class="v-btn v-close" data-v="close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M0 0h2v1h1v1h2V1h1V0h2v2H7v1H6v2h1v1h1v2H6V7H5V6H3v1H2v1H0V6h1V5h1V3H1V2H0z"/></svg></button>
+    <img id="v-img" class="px" src="data:," alt="" width="960" height="768">
+    <div class="v-bar">
+      <p id="v-cap"></p>
+      <a id="v-orig" href="#" target="_blank" rel="noopener"><span class="l-en">Full size</span><span class="l-ja" lang="ja">原寸</span></a>
+      <button type="button" class="v-btn" data-v="prev" aria-label="Previous screenshot"><svg width="16" height="16" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M5 0h2v8H5V7H4V6H3V5H2V3h1V2h1V1h1z"/></svg></button>
+      <button type="button" class="v-btn" data-v="next" aria-label="Next screenshot"><svg width="16" height="16" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M1 0h2v1h1v1h1v1h1v2H5v1H4v1H3v1H1z"/></svg></button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var root = document.documentElement;
+
+  /* ── language ── */
+  var TITLES = {
+    en: "HELIOBANE · an Amiga-style vertical shoot 'em up by Gand",
+    ja: "HELIOBANE（ヘリオベイン）· Gandのアミーガ風縦スクロールシューティング"
+  };
+  var altEn = [];
+  document.querySelectorAll('[data-alt-ja]').forEach(function(el){
+    altEn.push([el, el.getAttribute(el.tagName === 'IMG' ? 'alt' : 'aria-label')]);
+  });
+  function setLang(l, save){
+    l = l === 'ja' ? 'ja' : 'en';
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l);
+    document.title = TITLES[l];
+    altEn.forEach(function(p){
+      var el = p[0], attr = el.tagName === 'IMG' ? 'alt' : 'aria-label';
+      el.setAttribute(attr, l === 'ja' ? el.getAttribute('data-alt-ja') : p[1]);
+    });
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === l));
+    });
+    if (save) { try { localStorage.setItem('hb-lang', l); } catch(e){} }
+  }
+  var want = null;
+  var q = /[?&]lang=(en|ja)\b/.exec(location.search);
+  if (q) want = q[1];
+  if (!want) { try { want = localStorage.getItem('hb-lang'); } catch(e){} }
+  if (!want && /^ja\b/i.test(navigator.language || '')) want = 'ja';
+  setLang(want || 'en', false);
+  document.querySelectorAll('[data-set-lang]').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-set-lang'), true); });
+  });
+
+  /* ── logo slam (CSS does nothing under reduced motion) ── */
+  var logo = document.querySelector('.logo[data-anim]');
+  if (logo) logo.classList.add('go');
+
+  /* ── Breaker demo runs only while on screen ── */
+  var demo = document.getElementById('demo');
+  if (demo && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ demo.classList.toggle('run', e.isIntersecting); });
+    }).observe(demo);
+  }
+
+  /* ── trailer: until public/trailer.mp4 exists, show the poster only ── */
+  var video = document.getElementById('trailer-video');
+  function noTrailer(){
+    root.classList.add('no-trailer');
+    video.removeAttribute('controls');
+    video.setAttribute('aria-label', 'HELIOBANE trailer, coming soon');
+  }
+  if (video && window.fetch) {
+    fetch('public/trailer.mp4', { method: 'HEAD' }).then(function(r){
+      var type = r.headers.get('content-type') || '';
+      if (!r.ok || type.indexOf('video') !== 0) noTrailer();
+    }).catch(noTrailer);
+  }
+
+  /* ── screenshot viewer ── */
+  var dlg = document.getElementById('viewer');
+  if (!dlg || typeof dlg.showModal !== 'function') return;
+  var links = Array.prototype.slice.call(document.querySelectorAll('#gallery a[data-shot]'));
+  var img = document.getElementById('v-img'), cap = document.getElementById('v-cap'), orig = document.getElementById('v-orig');
+  var idx = 0, opener = null;
+
+  /* Whole-pixel scaling only: x3 capture at x3, the 1x capture blown up x2,
+     and a smooth fit below that (a phone cannot show 640 px across). */
+  function fit(){
+    var w = window.innerWidth - 28, h = window.innerHeight - 150;
+    var k = Math.floor(Math.min(w / 320, h / 256));
+    var a = links[idx], name = a.getAttribute('data-shot');
+    if (k >= 3) { img.src = 'public/shots/' + name + '.png'; img.className = 'px'; img.style.width = '960px'; }
+    else if (k === 2) { img.src = 'public/shots/1x/' + name + '.png'; img.className = 'px'; img.style.width = '640px'; }
+    else { img.src = 'public/shots/' + name + '.png'; img.className = 'big'; img.style.width = Math.min(w, h * 1.25) + 'px'; }
+  }
+  function show(i){
+    idx = (i + links.length) % links.length;
+    var a = links[idx], thumb = a.querySelector('img');
+    fit();
+    img.alt = thumb.alt;
+    var c = a.querySelector('.cap');
+    cap.textContent = (c.querySelector(root.getAttribute('data-lang') === 'ja' ? '.l-ja' : '.l-en') || c).textContent + '   ' + (idx + 1) + '/' + links.length;
+    orig.href = a.href;
+  }
+  links.forEach(function(a, i){
+    a.addEventListener('click', function(ev){
+      if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button > 0) return;
+      ev.preventDefault(); opener = a; show(i); dlg.showModal();
+    });
+  });
+  dlg.addEventListener('click', function(ev){
+    var b = ev.target.closest('[data-v]');
+    if (b) { var v = b.getAttribute('data-v'); if (v === 'close') dlg.close(); else show(idx + (v === 'next' ? 1 : -1)); return; }
+    if (ev.target === dlg || ev.target.classList.contains('v-in')) dlg.close();
+  });
+  dlg.addEventListener('keydown', function(ev){
+    if (ev.key === 'ArrowRight') { ev.preventDefault(); show(idx + 1); }
+    else if (ev.key === 'ArrowLeft') { ev.preventDefault(); show(idx - 1); }
+    else if (ev.key === 'Escape') { ev.preventDefault(); dlg.close(); }
+  });
+  dlg.addEventListener('close', function(){ if (opener) opener.focus(); });
+  window.addEventListener('resize', function(){ if (dlg.open) fit(); });
+})();
+</script>
+</body>
+</html>

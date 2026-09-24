@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "heliobane-site", "runtimeExecutable": "python3", "runtimeArgs": ["-m", "http.server", "8141", "--bind", "127.0.0.1"], "port": 8141 }
+  ]
+}
