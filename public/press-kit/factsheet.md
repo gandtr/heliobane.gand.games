@@ -7,7 +7,7 @@
 | Publisher | Gand (self-published) |
 | Genre | Vertical-scrolling shoot 'em up |
 | Platforms | Windows and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
-| Store | Steam, app 5328670: https://store.steampowered.com/app/5328670/ |
+| Store | Steam page coming soon |
 | Demo | Free, Steam app 5328700: the opening stages of World 1 |
 | Release date | Not announced |
 | Price | Not announced |
@@ -69,7 +69,7 @@ software-career sim. No ads, no tracking, no exit strategy.
 ## Links
 
 - Game: https://heliobane.gand.games
-- Steam: https://store.steampowered.com/app/5328670/
+- Steam: page coming soon
 - Studio: https://gand.tr · https://gand.games
 - Bluesky: https://bsky.app/profile/gand-tr.bsky.social
 - Mastodon: https://mastodon.social/@gandtr

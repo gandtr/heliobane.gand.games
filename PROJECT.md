@@ -73,10 +73,12 @@ descriptions, the Oda quote), `docs/worlds.md` and `data/worlds.json` (three wor
 five stages, World 2 and 3 stage tech), `docs/intro.md` (intro narration languages),
 and `i18n/{en,ja}.json` (names and Japanese wording).
 
-Not announced anywhere, so not on the page: release date, price, platforms, Steam
-link, review quotes. The Steam button is a placeholder `<a>` with no `href`
-("Free demo coming to Steam", per the coordinator: a free demo of stages 1–3 is
-being prepared; no link or date yet).
+Not announced anywhere, so not on the page: release date, price, Steam link,
+review quotes. Platforms (Windows, Linux, SteamOS / Steam Deck) come from the press
+kit fact sheet and appear only in the JSON-LD. The Steam button is a non-interactive
+`<span class="btn soon" aria-disabled="true">` ("Free demo coming to Steam", per the
+coordinator: a free demo of stages 1–3 is being prepared; no link or date yet). There
+are no hreflang alternates: the page is one bilingual URL.
 
 ## Screenshots
 
