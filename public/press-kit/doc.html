@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELIOBANE Press Kit</title>
+<meta name="description" content="Press kit for HELIOBANE, an Amiga-style vertical shoot 'em up by Gand. Fact sheet, screenshots, key art, logos, trailer. HELIOBANE プレスキット。">
+<link rel="canonical" href="https://heliobane.gand.games/public/press-kit/doc.html">
+<meta property="og:title" content="HELIOBANE Press Kit">
+<meta property="og:description" content="Fly the sun-killer gunship against a hive that eats stars. Fact sheet, screenshots, key art, logos and trailer.">
+<meta property="og:image" content="social/og_1200x630.png">
+<link rel="icon" href="icons/heliobane_icon_64.png">
+<style>
+  @font-face { font-family: "Public Pixel"; src: url("fonts/PublicPixel.ttf") format("truetype"); font-display: swap; }
+  /* Palette: assets/palette.hex of the game */
+  :root {
+    --void: #000000; --ink: #0b0b1a; --panel: #1a1c2c; --panel2: #2b2f4a; --line: #3e4a6b;
+    --steel: #5b6ea0; --steel-l: #8aa4d6; --pale: #cfe0ff; --white: #ffffff;
+    --bronze: #a8641a; --amber: #e09a2a; --gold: #ffd24a; --cream: #fff3a8; --cyan: #20e0ff; --orange: #ff6a1a;
+    --pix: "Public Pixel", ui-monospace, monospace;
+    --body: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ink); }
+  body { background: var(--ink); color: var(--pale); font: 16px/1.7 var(--body); }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px); }
+  a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid var(--line); }
+  a:hover, a:focus-visible { color: var(--gold); border-bottom-color: var(--gold); outline: none; }
+  img.px, .shots img { image-rendering: pixelated; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 20px 80px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    font: 10px/1.6 var(--pix); color: var(--steel-l); letter-spacing: .04em; }
+  .lang button { font: 10px var(--pix); background: var(--panel); color: var(--steel-l); border: 2px solid var(--line);
+    padding: 8px 10px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+  header { text-align: center; margin: 40px 0 28px; }
+  header .logo { width: min(968px, 100%); height: auto; }
+  header .sub { font: 12px/1.8 var(--pix); color: var(--cyan); margin-top: 14px; letter-spacing: .08em; }
+  header .quote { font-style: italic; color: var(--steel-l); margin: 18px auto 0; }
+  .hero { border: 2px solid var(--line); background: var(--void); }
+  .hero img { display: block; width: 100%; height: auto; }
+  section { margin-top: 56px; }
+  h2 { font: 14px/1.6 var(--pix); color: var(--gold); letter-spacing: .06em; margin-bottom: 18px;
+    padding-bottom: 10px; border-bottom: 2px solid var(--panel2); }
+  h2 .n { color: var(--bronze); margin-right: 12px; }
+  h3 { font: 11px/1.6 var(--pix); color: var(--amber); margin: 22px 0 10px; }
+  p { max-width: 72ch; margin-bottom: 14px; }
+  .cols { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: start; }
+  table.facts { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--panel); }
+  table.facts th, table.facts td { border: 1px solid var(--panel2); padding: 9px 12px; text-align: left; vertical-align: top; }
+  table.facts th { color: var(--steel-l); font-weight: 500; width: 36%; }
+  ul.feat { list-style: none; }
+  ul.feat li { position: relative; padding-left: 22px; margin-bottom: 9px; max-width: 72ch; }
+  ul.feat li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; background: var(--gold);
+    box-shadow: 2px 2px 0 var(--bronze); }
+  video { width: 100%; display: block; background: var(--void); border: 2px solid var(--line); }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .shots figure { background: var(--panel); border: 2px solid var(--panel2); }
+  .shots img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; }
+  .shots figcaption { font-size: 13px; color: var(--steel-l); padding: 7px 10px; }
+  .dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .dl a.card { display: block; border: 2px solid var(--panel2); background: var(--panel); padding: 14px; color: var(--pale); }
+  .dl a.card:hover, .dl a.card:focus-visible { border-color: var(--gold); }
+  .dl .t { font: 10px/1.6 var(--pix); color: var(--gold); display: block; margin-bottom: 6px; }
+  .dl .d { font-size: 14px; color: var(--steel-l); }
+  .zip { display: inline-block; margin-top: 8px; font: 11px/1.6 var(--pix); padding: 14px 18px; background: var(--gold);
+    color: var(--ink); border: 0; box-shadow: 4px 4px 0 var(--bronze); }
+  .zip:hover, .zip:focus-visible { background: var(--cream); color: var(--ink); }
+  .art { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+  .art img { width: 100%; height: auto; display: block; border: 2px solid var(--panel2); }
+  footer { margin-top: 72px; padding-top: 18px; border-top: 2px solid var(--panel2); font-size: 13px; color: var(--steel); }
+  [lang="ja"] p, [lang="ja"] li, [lang="ja"] td { line-height: 1.9; }
+  .only-ja { display: none; }
+  html[data-lang="ja"] .only-en { display: none; }
+  html[data-lang="ja"] .only-ja { display: revert; }
+  @media (max-width: 760px) {
+    .cols, .art { grid-template-columns: 1fr; }
+    body { font-size: 15px; }
+  }
+  @media print { body::after { display: none; } .lang { display: none; } }
+</style>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search).get("lang");
+    var nav = (navigator.language || "").slice(0, 2);
+    document.documentElement.dataset.lang = q === "ja" || q === "en" ? q : (nav === "ja" ? "ja" : "en");
+  })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <span>GAND · ISTANBUL &amp; TOKYO · PRESS KIT</span>
+    <span class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="en">ENGLISH</button>
+      <button type="button" data-set="ja">日本語</button>
+    </span>
+  </div>
+
+  <header>
+    <img class="logo px" src="logo/heliobane_logo_4x.png" width="968" height="256" alt="HELIOBANE">
+    <div class="sub">HB-0 · THE SUN-KILLER</div>
+    <p class="quote only-en">"We built her to kill a star. We never thought we'd have to." · Oda Venn, Solmarch Yards</p>
+    <p class="quote only-ja" lang="ja">「星を殺すために造った。本当に使う日が来るなんてね。」 オダ・ヴェン、ソルマーチ造船所</p>
+  </header>
+
+  <div class="hero"><img class="px" src="key-art/key_art.png" width="1920" height="1080" alt="HELIOBANE key art: the HB-0 gunship climbing toward a burning sun with a golden eye"></div>
+
+  <!-- ===================== ENGLISH ===================== -->
+  <div class="only-en">
+    <section>
+      <h2><span class="n">01</span>FACT SHEET</h2>
+      <div class="cols">
+        <table class="facts">
+          <tr><th>Developer</th><td>Gand, Istanbul &amp; Tokyo (est. 2025)</td></tr>
+          <tr><th>Publisher</th><td>Gand (self-published)</td></tr>
+          <tr><th>Genre</th><td>Vertical-scrolling shoot 'em up</td></tr>
+          <tr><th>Platforms</th><td>Windows, Linux, SteamOS / Steam Deck</td></tr>
+          <tr><th>Store</th><td><a href="https://store.steampowered.com/app/5328670/">Steam (app 5328670)</a></td></tr>
+          <tr><th>Demo</th><td>Free: the opening stages of World 1</td></tr>
+          <tr><th>Release date</th><td>Not announced</td></tr>
+          <tr><th>Price</th><td>Not announced</td></tr>
+          <tr><th>Languages</th><td>English, Türkçe, 日本語 (text and voice)</td></tr>
+          <tr><th>Engine</th><td>Godot 4.7</td></tr>
+          <tr><th>Website</th><td><a href="https://heliobane.gand.games">heliobane.gand.games</a></td></tr>
+          <tr><th>Press contact</th><td><a href="mailto:contact@gand.tr">contact@gand.tr</a></td></tr>
+        </table>
+        <div>
+          <p>HELIOBANE is a vertical shoot 'em up in the tradition of the Amiga's Tyrian and Xenon 2. Wren, a salvage runner with the best reflexes in the system, flies HB-0 Heliobane, a prototype built to survive inside a star, against the Umbrine: a crystalline hive that woke up inside the sun Aurel and has already eaten two worlds and the whole Concord battle fleet.</p>
+          <p>Her guns were never meant for a war, so she strips better ones off the dead and buys the rest from Old Mott, a trader who turns up between stages in a salvage tug called the Magpie and calls her kiddo. Three worlds, fifteen stages, fifteen screen-filling Heralds.</p>
+          <p>It looks and sounds like 1993 (320×256 pixels, 32 colours, a tracker soundtrack, 8-bit digitised speech) and plays like a shooter made now: a locked 60 fps, a 4-pixel hitbox, remappable controls, full gamepad support.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>FEATURES</h2>
+      <ul class="feat">
+        <li>15 stages across 3 worlds (Aurel, The Wake, Umbra), 15 Heralds and 15 mid-bosses</li>
+        <li>11 weapons with 5 levels each: two front guns on a rack you swap mid-fight, a rear gun, two sidekick pods</li>
+        <li>Kinetic, beam and blast damage against glass, sun-fed and plated enemies</li>
+        <li>Grazing bullets builds heat; the Breaker spends it to strip every defence it touches for six seconds</li>
+        <li>The Magpie: a shop between stages, run by a trader with opinions; everything sells back at half price</li>
+        <li>A death costs one weapon a single level, never the whole build</li>
+        <li>Later stages bring darkness, storm winds, reverse and triple-speed scrolling, corridors and a branching route</li>
+        <li>English, Turkish and Japanese, with voice-over in all three</li>
+        <li>Easy, Normal and Hard; optional scanline and CRT filters; integer scaling only</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>TRAILER</h2>
+      <video controls preload="none" poster="video/poster.jpg">
+        <source src="video/heliobane-trailer.mp4" type="video/mp4">
+        <source src="../trailer.mp4" type="video/mp4">
+      </video>
+      <p style="margin-top:10px"><a href="video/heliobane-trailer.mp4" download>Download the trailer</a> (83 s, 1920×1080, 60 fps, H.264, 62 MB) · <a href="video/heliobane-trailer.en.srt" download>English captions (.srt)</a></p>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>HISTORY</h2>
+      <p>HELIOBANE started on 24 September 2026 from a one-paragraph brief by Arda Karaduman: a retro shoot 'em up like the Amiga classics, Tyrian 2000 and Xenon 2 named outright. The name, the lore and the design document were written that morning.</p>
+      <p>AI was used to generate some of the game's assets: artwork, voice lines, sound effects, in-game text and translations. Artwork was edited and fitted to the game's 32-colour palette and style. The soundtrack was made with a custom tracker built for agentic work, by an AI trained on a curated collection of public-domain tracker (MOD) music. The Steam page and a free demo are in preparation.</p>
+    </section>
+  </div>
+
+  <!-- ===================== 日本語 ===================== -->
+  <div class="only-ja" lang="ja">
+    <section>
+      <h2><span class="n">01</span>ファクトシート</h2>
+      <div class="cols">
+        <table class="facts">
+          <tr><th>開発</th><td>Gand（イスタンブール・東京、2025年設立）</td></tr>
+          <tr><th>販売</th><td>Gand（セルフパブリッシング）</td></tr>
+          <tr><th>ジャンル</th><td>縦スクロールシューティング</td></tr>
+          <tr><th>プラットフォーム</th><td>Windows、Linux、SteamOS／Steam Deck</td></tr>
+          <tr><th>ストア</th><td><a href="https://store.steampowered.com/app/5328670/">Steam（アプリ 5328670）</a></td></tr>
+          <tr><th>体験版</th><td>無料：ワールド1の序盤ステージ</td></tr>
+          <tr><th>発売日</th><td>未発表</td></tr>
+          <tr><th>価格</th><td>未発表</td></tr>
+          <tr><th>対応言語</th><td>日本語、英語、トルコ語（テキスト・音声とも）</td></tr>
+          <tr><th>エンジン</th><td>Godot 4.7</td></tr>
+          <tr><th>公式サイト</th><td><a href="https://heliobane.gand.games">heliobane.gand.games</a></td></tr>
+          <tr><th>取材窓口</th><td><a href="mailto:contact@gand.tr">contact@gand.tr</a></td></tr>
+        </table>
+        <div>
+          <p>HELIOBANE（ヘリオベイン）は、アミガの『Tyrian』や『Xenon 2』の流れをくむ縦スクロールシューティング。星系一の反射神経を持つサルベージ屋のレンが、恒星の中でも耐えられるよう造られた試作戦闘艇 HB-0 ヘリオベインを駆り、太陽オーレルの奥で目覚めた結晶の群体アンブラインに挑む。アンブラインはすでに二つの世界とコンコード艦隊のすべてを呑み込んだ。</p>
+          <p>ヘリオベインの武装は戦争を想定していない。だからレンは倒した敵から銃を剥ぎ取り、足りない分は、ステージの合間にサルベージ船「マグパイ号」で現れて彼女を「嬢ちゃん」と呼ぶ商人、オールド・モットから買う。3つのワールド、15のステージ、画面を埋め尽くす15体のヘラルド。</p>
+          <p>見た目と音は1993年そのもの（320×256ドット、32色、トラッカー音楽、8ビットのデジタイズボイス）。遊び心地は今のシューティングで、60fps固定、4ドットの当たり判定、キー配置の変更、ゲームパッド完全対応。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>特徴</h2>
+      <ul class="feat">
+        <li>3つのワールド（オーレル、ザ・ウェイク、アンブラ）に全15ステージ、ヘラルド15体と中ボス15体</li>
+        <li>全11種・各5段階の武器。戦闘中に持ち替えられる前方武器2つ、後方武器、左右のポッド</li>
+        <li>実弾・ビーム・ブラストの属性と、ガラス・サンフェッド・装甲板の敵</li>
+        <li>グレイズでヒートを溜め、ブレイカーで触れたものの防御を6秒間すべてはがす</li>
+        <li>ステージの合間のショップ「マグパイ号」と口の悪い店主。売却は買値の半額</li>
+        <li>ミスで失うのは武器1つの1レベルだけ。育てた装備は崩れない</li>
+        <li>後半は暗闇、嵐の風、逆スクロールと3倍速スクロール、回廊、分岐ルート</li>
+        <li>日本語・英語・トルコ語に対応、音声も3言語すべて収録</li>
+        <li>イージー・ノーマル・ハード、スキャンライン／CRT フィルター（任意）、整数倍スケーリング</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>トレーラー</h2>
+      <video controls preload="none" poster="video/poster.jpg">
+        <source src="video/heliobane-trailer.mp4" type="video/mp4">
+        <source src="../trailer.mp4" type="video/mp4">
+      </video>
+      <p style="margin-top:10px"><a href="video/heliobane-trailer.mp4" download>トレーラーをダウンロード</a>（83秒、1920×1080、60fps、H.264、62 MB。画面内の文字と音声は英語）</p>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>開発の経緯</h2>
+      <p>HELIOBANE は2026年9月24日、Arda Karaduman が書いた一段落の企画メモから始まりました。アミガの名作のようなレトロシューティングを、と『Tyrian 2000』と『Xenon 2』を名指しで挙げたものです。タイトル、世界設定、企画書はその日の朝に書かれました。</p>
+      <p>ゲームのアセットの一部（アートワーク、ボイス、効果音、ゲーム内テキスト、翻訳）は AI で生成しました。アートワークには手を加えて、32色のパレットとゲームの画風に合わせています。音楽は、エージェントによる制作向けに作られた独自のトラッカーを使い、厳選したパブリックドメインのトラッカー（MOD）音楽で学習した AI が制作しました。Steam ストアページと無料体験版を準備中です。</p>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="n">05</span><span class="only-en">SCREENSHOTS</span><span class="only-ja" lang="ja">スクリーンショット</span></h2>
+    <p class="only-en">Real in-game captures at the game's own 320×256; click for the 1280×1024 (×4) file. The <code>steam-screenshots/</code> folder has 1920×1080 versions.</p>
+    <p class="only-ja" lang="ja">すべて実際のゲーム画面（320×256）。クリックで 1280×1024（4倍）の画像を開きます。1920×1080 版は <code>steam-screenshots/</code> にあります。</p>
+    <div class="shots">
+      <figure><a href="screenshots/01_admiral_husk.png"><img src="screenshots/native/01_admiral_husk.png" width="320" height="256" alt="Admiral Husk, stage 3 Herald" loading="lazy"></a><figcaption>Admiral Husk · The Hollow Fleet</figcaption></figure>
+      <figure><a href="screenshots/02_breaker.png"><img src="screenshots/native/02_breaker.png" width="320" height="256" alt="The Breaker column" loading="lazy"></a><figcaption>The Breaker · The Hollow Fleet</figcaption></figure>
+      <figure><a href="screenshots/03_quarry_maw.png"><img src="screenshots/native/03_quarry_maw.png" width="320" height="256" alt="The Quarry Maw, stage 1 Herald" loading="lazy"></a><figcaption>The Quarry Maw · Tharsis Belt</figcaption></figure>
+      <figure><a href="screenshots/04_hungering_heart.png"><img src="screenshots/native/04_hungering_heart.png" width="320" height="256" alt="The Hungering Heart" loading="lazy"></a><figcaption>The Hungering Heart · Aurel's Corona</figcaption></figure>
+      <figure><a href="screenshots/05_the_magpie.png"><img src="screenshots/native/05_the_magpie.png" width="320" height="256" alt="The Magpie shop" loading="lazy"></a><figcaption>The Magpie · Old Mott's shop</figcaption></figure>
+      <figure><a href="screenshots/06_storm_choir.png"><img src="screenshots/native/06_storm_choir.png" width="320" height="256" alt="The Storm Choir" loading="lazy"></a><figcaption>The Storm Choir · The Stormglass</figcaption></figure>
+      <figure><a href="screenshots/07_the_valve.png"><img src="screenshots/native/07_the_valve.png" width="320" height="256" alt="The Valve" loading="lazy"></a><figcaption>The Valve · The Vein</figcaption></figure>
+      <figure><a href="screenshots/08_leviathan_choir.png"><img src="screenshots/native/08_leviathan_choir.png" width="320" height="256" alt="Leviathan Choir" loading="lazy"></a><figcaption>Leviathan Choir · Verdigris</figcaption></figure>
+      <figure><a href="screenshots/09_stalwart.png"><img src="screenshots/native/09_stalwart.png" width="320" height="256" alt="The Stalwart" loading="lazy"></a><figcaption>The Stalwart · Cold Harbour</figcaption></figure>
+      <figure><a href="screenshots/10_the_orrery.png"><img src="screenshots/native/10_the_orrery.png" width="320" height="256" alt="The Orrery" loading="lazy"></a><figcaption>The Orrery · Ossuary of Stars</figcaption></figure>
+      <figure><a href="screenshots/11_halvards_rings.png"><img src="screenshots/native/11_halvards_rings.png" width="320" height="256" alt="Halvard's Rings" loading="lazy"></a><figcaption>Ice Shepherd · Halvard's Rings</figcaption></figure>
+      <figure><a href="screenshots/12_the_cantor.png"><img src="screenshots/native/12_the_cantor.png" width="320" height="256" alt="The Cantor" loading="lazy"></a><figcaption>The Cantor · Choirnest</figcaption></figure>
+      <figure><a href="screenshots/ja_the_magpie.png"><img src="screenshots/native/ja_the_magpie.png" width="320" height="256" alt="The Magpie in Japanese" loading="lazy"></a><figcaption>マグパイ号 · 日本語版</figcaption></figure>
+      <figure><a href="screenshots/tr_the_magpie.png"><img src="screenshots/native/tr_the_magpie.png" width="320" height="256" alt="The Magpie in Turkish" loading="lazy"></a><figcaption>Magpie · Türkçe</figcaption></figure>
+    </div>
+    <p style="margin-top:14px" class="only-en">The zip below holds all 26 captures in <code>screenshots/</code>, including the First Mouth (the final Herald), a flare, the title screen and Japanese/Turkish versions.</p>
+    <p style="margin-top:14px" class="only-ja" lang="ja">下の ZIP の <code>screenshots/</code> にはほかに、最終ヘラルド「ファースト・マウス」、フレア、タイトル画面、日本語・トルコ語版など全26枚があります。</p>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span><span class="only-en">ART &amp; LOGOS</span><span class="only-ja" lang="ja">アートとロゴ</span></h2>
+    <div class="art">
+      <a href="key-art/key_art_4k.png" style="border:0"><img class="px" src="key-art/key_art.png" width="1920" height="1080" alt="Key art" loading="lazy"></a>
+      <a href="key-art/key_art_vertical.png" style="border:0"><img class="px" src="key-art/key_art_vertical.png" width="1200" height="1800" alt="Vertical key art from the intro's launch painting" loading="lazy"></a>
+    </div>
+    <div class="dl" style="margin-top:16px">
+      <a class="card" href="key-art/key_art_4k.png"><span class="t">KEY-ART</span><span class="d only-en">1920×1080, 3840×2160, no-logo and vertical versions</span><span class="d only-ja" lang="ja">1920×1080、3840×2160、ロゴなし、縦長版</span></a>
+      <a class="card" href="logo/heliobane_logo_8x.png"><span class="t">LOGO</span><span class="d only-en">Transparent PNG at ×1, ×4, ×8; on dark; on stars (all in the zip)</span><span class="d only-ja" lang="ja">透過 PNG（等倍・4倍・8倍）、暗色背景版、星空背景版</span></a>
+      <a class="card" href="icons/heliobane_icon_512.png"><span class="t">ICONS</span><span class="d only-en">App icon 32–512 px, .ico, community icon</span><span class="d only-ja" lang="ja">アプリアイコン 32〜512px、.ico、コミュニティアイコン</span></a>
+      <a class="card" href="social/og_1200x630.png"><span class="t">SOCIAL</span><span class="d only-en">1200×630 link card, 1080×1080 square</span><span class="d only-ja" lang="ja">1200×630 リンクカード、1080×1080 正方形</span></a>
+      <a class="card" href="steam/main_capsule.png"><span class="t">STEAM</span><span class="d only-en">Store and library capsules, hero, logo, demo set</span><span class="d only-ja" lang="ja">ストア・ライブラリ用カプセル、ヒーロー、ロゴ、体験版用</span></a>
+      <a class="card" href="video/heliobane-trailer.mp4"><span class="t">VIDEO</span><span class="d only-en">Trailer, poster, captions</span><span class="d only-ja" lang="ja">トレーラー、ポスター、字幕</span></a>
+    </div>
+    <p style="margin-top:16px" class="only-en">Pixel art is scaled by whole numbers only. If you resize, use nearest-neighbour, or start from the ×1 files.</p>
+    <p style="margin-top:16px" class="only-ja" lang="ja">ドット絵は整数倍でのみ拡大しています。サイズを変える場合はニアレストネイバー法で、または等倍ファイルからどうぞ。</p>
+    <p><a class="zip" href="heliobane-press-kit_2026-09-25.zip" download><span class="only-en">DOWNLOAD EVERYTHING (.ZIP)</span><span class="only-ja" lang="ja">すべてダウンロード（ZIP）</span></a></p>
+  </section>
+
+  <section>
+    <h2><span class="n">07</span><span class="only-en">ABOUT GAND &amp; CONTACT</span><span class="only-ja" lang="ja">GAND について・連絡先</span></h2>
+    <p class="only-en">Gand is an independent studio that builds and runs its own software and games from Istanbul and Tokyo. Its other game on Steam is COMMIT!!!, a software-career sim. No ads. No tracking. No exit strategy.</p>
+    <p class="only-ja" lang="ja">Gand は、イスタンブールと東京を拠点に自社のソフトウェアとゲームを作り、運営している独立系スタジオです。Steam ではソフトウェア開発者人生シミュレーション『COMMIT!!!』も配信中。広告なし、トラッキングなし、イグジットなし。</p>
+    <table class="facts" style="max-width:640px">
+      <tr><th>Email</th><td><a href="mailto:contact@gand.tr">contact@gand.tr</a></td></tr>
+      <tr><th>Game</th><td><a href="https://heliobane.gand.games">heliobane.gand.games</a></td></tr>
+      <tr><th>Studio</th><td><a href="https://gand.tr">gand.tr</a> · <a href="https://gand.games">gand.games</a></td></tr>
+      <tr><th>Bluesky</th><td><a href="https://bsky.app/profile/gand-tr.bsky.social">@gand-tr.bsky.social</a></td></tr>
+      <tr><th>Mastodon</th><td><a href="https://mastodon.social/@gandtr" rel="me">@gandtr@mastodon.social</a></td></tr>
+      <tr><th>YouTube</th><td><a href="https://www.youtube.com/@Gand-tr">@Gand-tr</a></td></tr>
+      <tr><th>GitHub</th><td><a href="https://github.com/gandtr">github.com/gandtr</a></td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <div class="only-en">HELIOBANE © 2026 Gand. Everything in this kit may be used for coverage, previews, reviews and storefront listings.</div>
+    <div class="only-ja" lang="ja">HELIOBANE © 2026 Gand. このキットの素材は、記事、プレビュー、レビュー、ストア掲載に自由にお使いいただけます。</div>
+  </footer>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btns = document.querySelectorAll(".lang button");
+    function set(l) {
+      root.dataset.lang = l;
+      root.lang = l;
+      btns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === l)); });
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () { set(b.dataset.set); }); });
+    set(root.dataset.lang || "en");
+  })();
+</script>
+</body>
+</html>

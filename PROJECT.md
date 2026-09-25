@@ -143,3 +143,11 @@ html-validate@9 clean; every `public/` reference resolves; checked in a browser 
 1440, 1280, 390/375 and 360 px (no horizontal scroll), EN and JA, the viewer with
 mouse, arrow keys and Escape (focus returns to the thumbnail), and the trailer both
 missing and present (a temporary MP4).
+
+## Press kit
+
+`public/press-kit/` is a copy of `../heliobane-press-kit/press-kit/` (source of truth; see its
+`PUBLISH.md`). Re-sync with
+`rsync -a --delete ../heliobane-press-kit/press-kit/ public/press-kit/` after running that repo's
+tool-name grep. Linked from the fact sheet and the footer. Public text never names AI tools,
+models or vendors.
