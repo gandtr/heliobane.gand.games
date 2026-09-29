@@ -6,13 +6,13 @@
 | Developer | Gand, an independent studio in Istanbul and Tokyo (est. 2025) |
 | Publisher | Gand (self-published) |
 | Genre | Vertical-scrolling shoot 'em up |
-| Platforms | Windows and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
-| Store | Steam page coming soon |
-| Demo | Free, Steam app 5328700: the opening stages of World 1 |
-| Release date | Not announced |
+| Platforms | Windows, macOS and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
+| Store | Steam, app 5328670: https://store.steampowered.com/app/5328670/ |
+| Demo | Free, October 2026, Steam app 5328700: the opening stages of World 1: https://store.steampowered.com/app/5328700/ |
+| Release date | November 2026 |
 | Price | Not announced |
 | Engine | Godot 4.7 (GDScript), GL Compatibility renderer |
-| Languages | English, Turkish, Japanese: interface, voice-over and subtitles in all three |
+| Languages | English, Turkish, Japanese, Simplified Chinese, Korean, Russian, Brazilian Portuguese and Spanish: interface, voice-over and subtitles in all eight |
 | Input | Keyboard (remappable) and full gamepad support |
 | Players | Single-player |
 | Website | https://heliobane.gand.games |
@@ -58,7 +58,7 @@ AI was used to generate some of the game's assets: artwork, voice lines,
 sound effects, in-game text and translations. Artwork was edited and fitted
 to the game's 32-colour palette and style. The soundtrack was made with a custom tracker built for
 agentic work, by an AI trained on a curated collection of public-domain
-tracker (MOD) music. The Steam page and a free demo are in preparation.
+tracker (MOD) music. The Steam page is live; a free demo follows in October 2026.
 
 ## About Gand
 
@@ -69,7 +69,7 @@ software-career sim. No ads, no tracking, no exit strategy.
 ## Links
 
 - Game: https://heliobane.gand.games
-- Steam: page coming soon
+- Steam: https://store.steampowered.com/app/5328670/ (free demo: https://store.steampowered.com/app/5328700/)
 - Studio: https://gand.tr · https://gand.games
 - Bluesky: https://bsky.app/profile/gand-tr.bsky.social
 - Mastodon: https://mastodon.social/@gandtr

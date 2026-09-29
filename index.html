@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HELIOBANE · an Amiga-style vertical shoot 'em up by Gand</title>
-<meta name="description" content="Fly the sun-killer gunship inward to the heart of a star, then chase what gets away across three worlds and fifteen stages. An Amiga-style vertical shoot 'em up in 32 colours, in development at Gand. Free demo on Steam.">
+<meta name="description" content="Fly the sun-killer gunship inward to the heart of a star, then chase what gets away across three worlds and fifteen stages. An Amiga-style vertical shoot 'em up in 32 colours by Gand, coming to Steam in November 2026. Free demo in October.">
 <link rel="canonical" href="https://heliobane.gand.games/">
 <meta name="theme-color" content="#0b0b1a">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HELIOBANE">
 <meta property="og:title" content="HELIOBANE · HB-0, the sun-killer">
-<meta property="og:description" content="An Amiga-style vertical shoot 'em up. Fly the sun-killer inward to the heart of a star, then chase what gets away. Three worlds, fifteen stages. In development at Gand.">
+<meta property="og:description" content="An Amiga-style vertical shoot 'em up. Fly the sun-killer inward to the heart of a star, then chase what gets away. Three worlds, fifteen stages. Coming to Steam in November 2026.">
 <meta property="og:url" content="https://heliobane.gand.games/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://heliobane.gand.games/public/og.png">
@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" href="public/apple-touch-icon.png">
 <link rel="preload" href="public/fonts/PublicPixel.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"VideoGame","name":"HELIOBANE","url":"https://heliobane.gand.games/","description":"An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship Heliobane inward to the heart of a star, then chase what gets away across three worlds and fifteen stages.","image":"https://heliobane.gand.games/public/og.png","genre":["Shoot 'em up","Action","Arcade"],"playMode":"SinglePlayer","gamePlatform":["PC","Mac","Steam Deck"],"operatingSystem":"Windows, macOS, Linux, SteamOS","applicationCategory":"Game","inLanguage":["en","tr","ja","zh-Hans","ko","ru","pt-BR","es"],"author":{"@type":"Organization","name":"Gand","url":"https://gand.tr/"},"publisher":{"@type":"Organization","name":"Gand Games","url":"https://gand.games/"},"trailer":{"@type":"VideoObject","name":"HELIOBANE trailer","description":"Fly into the sun. Kill what lives there. The HELIOBANE trailer.","thumbnailUrl":"https://heliobane.gand.games/public/trailer-poster.jpg","contentUrl":"https://heliobane.gand.games/public/trailer.mp4","uploadDate":"2026-09-25","duration":"PT83S","inLanguage":"en"}}
+{"@context":"https://schema.org","@type":"VideoGame","name":"HELIOBANE","url":"https://heliobane.gand.games/","sameAs":["https://store.steampowered.com/app/5328670/"],"description":"An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship Heliobane inward to the heart of a star, then chase what gets away across three worlds and fifteen stages.","image":"https://heliobane.gand.games/public/og.png","genre":["Shoot 'em up","Action","Arcade"],"playMode":"SinglePlayer","gamePlatform":["PC","Mac","Steam Deck"],"operatingSystem":"Windows, macOS, Linux, SteamOS","applicationCategory":"Game","inLanguage":["en","tr","ja","zh-Hans","ko","ru","pt-BR","es"],"author":{"@type":"Organization","name":"Gand","url":"https://gand.tr/"},"publisher":{"@type":"Organization","name":"Gand Games","url":"https://gand.games/"},"trailer":{"@type":"VideoObject","name":"HELIOBANE trailer","description":"Fly into the sun. Kill what lives there. The HELIOBANE trailer.","thumbnailUrl":"https://heliobane.gand.games/public/trailer-poster.jpg","contentUrl":"https://heliobane.gand.games/public/trailer.mp4","uploadDate":"2026-09-25","duration":"PT83S","inLanguage":"en"}}
 </script>
 <style>
 /* HELIOBANE · the game's own 32-colour master palette (assets/palette.hex) */
@@ -145,6 +145,10 @@ h3.pix:lang(ja){font-size:24px}
 .btn .tri{width:0;height:0;border-left:10px solid currentColor;border-top:7px solid transparent;border-bottom:7px solid transparent}
 .btn.soon{color:var(--steel4);background:var(--night);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black);cursor:default}
 .btn.soon b{color:var(--ice);font-weight:400}
+.btn.ghost{color:var(--pale);background:var(--night);box-shadow:inset 2px 2px 0 var(--steel2),inset -2px -2px 0 var(--black)}
+.btn.ghost:hover{color:var(--void);background:var(--gold)}
+.btn.ghost b{color:var(--ice);font-weight:400}
+.btn.ghost:hover b{color:inherit}
 .status{margin:18px 0 0;color:var(--steel4);font-size:16px;line-height:24px}
 .status:lang(ja){font-size:12px}
 .status .dot{display:inline-block;width:8px;height:8px;background:var(--sea3);margin-right:10px;vertical-align:2px}
@@ -447,10 +451,11 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
       <p class="pitch l-en">An Amiga-style vertical shoot 'em up. Fly the sun-killer gunship inward to the heart of a star, then chase what gets away: three worlds, fifteen stages.</p>
       <p class="pitch l-ja" lang="ja">アミーガ風の縦スクロールシューティング。太陽殺しのガンシップで星の心臓へ。そして、逃げたものを追え。3つのワールド、15のステージ。</p>
       <div class="ctas">
-        <a class="btn cta-trailer" href="#trailer"><span class="tri" aria-hidden="true"></span><span class="l-en">Watch the trailer</span><span class="l-ja" lang="ja">トレーラーを見る</span></a>
-        <a class="btn cta-demo" href="https://store.steampowered.com/app/5328700/"><span class="l-en">Free demo on <b>Steam</b></span><span class="l-ja" lang="ja">無料体験版を<b>Steam</b>で</span></a>
+        <a class="btn cta-wishlist" href="https://store.steampowered.com/app/5328670/?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span class="l-en">Wishlist on Steam</span><span class="l-ja" lang="ja">ウィッシュリストへ</span></a>
+        <a class="btn ghost cta-demo" href="https://store.steampowered.com/app/5328700/?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span class="l-en">Free demo on <b>Steam</b></span><span class="l-ja" lang="ja">無料体験版を<b>Steam</b>で</span></a>
+        <a class="btn ghost cta-trailer" href="#trailer"><span class="tri" aria-hidden="true"></span><span class="l-en">Watch the trailer</span><span class="l-ja" lang="ja">トレーラーを見る</span></a>
       </div>
-      <p class="status pix"><span class="dot" aria-hidden="true"></span><span class="l-en">In development at Gand</span><span class="l-ja" lang="ja">Gandで開発中</span></p>
+      <p class="status pix"><span class="dot" aria-hidden="true"></span><span class="l-en">Coming to Steam, November 2026</span><span class="l-ja" lang="ja">2026年11月 Steamで発売予定</span></p>
       </div>
     </div>
   </div>
@@ -720,8 +725,9 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
         <dt><span class="l-en">Campaign</span><span class="l-ja" lang="ja">構成</span></dt><dd><span class="l-en">3 worlds, 15 stages, 15 Heralds, 3 difficulty levels</span><span class="l-ja" lang="ja">3ワールド・15ステージ・ヘラルド15体・難易度3段階</span></dd>
         <dt><span class="l-en">Players</span><span class="l-ja" lang="ja">プレイ人数</span></dt><dd>1</dd>
         <dt><span class="l-en">Languages</span><span class="l-ja" lang="ja">言語</span></dt><dd><span class="l-en">English, Turkish, Japanese, Simplified Chinese, Korean, Russian, Brazilian Portuguese, Spanish (text and voice)</span><span class="l-ja" lang="ja">英語・トルコ語・日本語・簡体字中国語・韓国語・ロシア語・ブラジルポルトガル語・スペイン語（テキストと音声）</span></dd>
-        <dt><span class="l-en">Status</span><span class="l-ja" lang="ja">状況</span></dt><dd class="gold"><span class="l-en">In development</span><span class="l-ja" lang="ja">開発中</span></dd>
-        <dt><span class="l-en">Demo</span><span class="l-ja" lang="ja">体験版</span></dt><dd><a href="https://store.steampowered.com/app/5328700/"><span class="l-en">Free on Steam</span><span class="l-ja" lang="ja">Steamで無料配信</span></a></dd>
+        <dt><span class="l-en">Status</span><span class="l-ja" lang="ja">状況</span></dt><dd class="gold"><span class="l-en">Coming November 2026</span><span class="l-ja" lang="ja">2026年11月発売予定</span></dd>
+        <dt><span class="l-en">Store</span><span class="l-ja" lang="ja">ストア</span></dt><dd><a href="https://store.steampowered.com/app/5328670/?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span class="l-en">Wishlist on Steam</span><span class="l-ja" lang="ja">Steamでウィッシュリスト</span></a></dd>
+        <dt><span class="l-en">Demo</span><span class="l-ja" lang="ja">体験版</span></dt><dd><a href="https://store.steampowered.com/app/5328700/?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span class="l-en">Free on Steam, October 2026</span><span class="l-ja" lang="ja">2026年10月 Steamで無料配信</span></a></dd>
         <dt><span class="l-en">Press kit</span><span class="l-ja" lang="ja">プレスキット</span></dt><dd><a href="public/press-kit/doc.html"><span class="l-en">Logos, key art, screenshots, trailer</span><span class="l-ja" lang="ja">ロゴ・キーアート・画面写真・トレーラー</span></a></dd>
       </dl>
     </div>
