@@ -3,7 +3,7 @@
 HELIOBANE is an Amiga-style vertical shoot 'em up by **Gand**. Everything in
 this kit may be used for coverage, previews, reviews and storefronts. Credit
 line: **"HELIOBANE, a game by Gand (https://heliobane.gand.games)"**.
-Press contact: contact@gand.tr.
+Press contact: contact@gand.games.
 
 The press page is `doc.html` (English and Japanese in one file). The whole kit
 is also one archive: `heliobane-press-kit_2026-09-30.zip`.

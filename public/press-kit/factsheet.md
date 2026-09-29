@@ -16,7 +16,7 @@
 | Input | Keyboard (remappable) and full gamepad support |
 | Players | Single-player |
 | Website | https://heliobane.gand.games |
-| Press contact | contact@gand.tr |
+| Press contact | contact@gand.games |
 
 ## One line
 
@@ -75,7 +75,7 @@ software-career sim. No ads, no tracking, no exit strategy.
 - Mastodon: https://mastodon.social/@gandtr
 - YouTube: https://www.youtube.com/@Gand-tr
 - GitHub: https://github.com/gandtr
-- Email: contact@gand.tr
+- Email: contact@gand.games
 
 ## Credit line
 
