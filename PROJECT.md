@@ -61,13 +61,13 @@ glyphs the page uses):
 
 ```sh
 python3 -c "s=open('index.html').read();print(''.join(sorted(set(c for c in s if ord(c)>0x2FFF)))+'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .,:;!?()-/&+・·、。「」（）！？：　〜×')" > /tmp/ja.txt
-pyftsubset ~/projects/games/heliobane/art/src/fonts/ja/PixelMplus12-Regular.ttf \
+pyftsubset ~/projects/games/heliobane/heliobane/art/src/fonts/ja/PixelMplus12-Regular.ttf \
   --text-file=/tmp/ja.txt --flavor=woff2 --output-file=public/fonts/PixelMplus12-ja.woff2
 ```
 
 ## Content sources (do not invent)
 
-All facts come from the game repository `~/projects/games/heliobane` at commit
+All facts come from the game repository `~/projects/games/heliobane/heliobane` at commit
 `667d2af`: `README.md`, `docs/GDD.md` (pitch, pillars, weapons, damage types,
 materials, heat/graze/Breaker, Heralds, difficulty, lineage, resolution),
 `docs/LORE.md` (Aurel, the Umbrine, Oda Venn, Wren, Old Mott, world and Herald
@@ -88,7 +88,7 @@ Captured on 2026-09-25 from an isolated snapshot, never from the working tree (o
 agents edit that repository; keep it read-only):
 
 ```sh
-git -C ~/projects/games/heliobane archive 667d2af | tar -x -C <snap>
+git -C ~/projects/games/heliobane/heliobane archive 667d2af | tar -x -C <snap>
 godot --headless --path <snap> --import
 cd <snap>
 KIT="--weapon=pulse --level=4 --front2=lance:3 --rear=tail --pod_l=drone --pod_r=orbiter"
