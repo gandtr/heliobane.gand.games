@@ -19,7 +19,8 @@ privacy/index.html          Privacy policy (all platforms; the store listings li
 .htmlvalidate.json          html-validate:recommended (run: npx --yes html-validate@9 index.html)
 .claude/launch.json         local preview on :8141
 public/
-  og.png                    1200x630 social card (400x210 composed at 1x, scaled x3 nearest)
+  og-heliobane-v2.png       1200x630 social card, unchanged from press-kit/social/og_1200x630.png
+  og.png                    Previous social card, retained for cached links
   favicon.ico, favicon-64.png, apple-touch-icon.png   from the ship sprite (player_ship frame 2)
   trailer-poster.jpg        1920x1080 poster (trailer's clean title frame)
   trailer.mp4               83 s web encode of the trailer (see Trailer)
@@ -117,9 +118,23 @@ wrapper: no window, no sound, no GPU. Each capture is 960x768 (x3 of 320x256).
 | title (poster, still) | `--screen=title --at=3` |
 
 The game renders at the window size, so some layers sit on third-pixels in the 960x768
-capture. The 1x files take the centre pixel of every 3x3 block. `og.png`,
-`trailer-poster.jpg` and `art/trailer-still.png` are nearest-neighbour integer scales
-of 1x material.
+capture. The 1x files take the centre pixel of every 3x3 block. The original
+`og.png`, `trailer-poster.jpg` and `art/trailer-still.png` are nearest-neighbour
+integer scales of 1x material.
+
+## Social preview
+
+The homepage's Open Graph, Twitter large-image card and VideoGame image use
+`public/og-heliobane-v2.png`: the existing press-kit sun-eye and gunship artwork,
+copied without cropping or resampling from `public/press-kit/social/og_1200x630.png`.
+It is a 1200x630 PNG, 81,546 bytes, with a fully opaque alpha channel. The logo and
+eye remain inside a centred 2:1 crop if a sharing client trims the edges.
+
+The versioned URL gives this artwork a distinct image cache key; the old `og.png`
+is retained for cached links. The page metadata still has to be re-crawled before
+sharing clients can discover the new URL. Open Graph includes the actual image
+size and MIME type; Twitter has explicit title, description and descriptive alt
+text. All image URLs are absolute HTTPS URLs.
 
 ## Trailer
 
