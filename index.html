@@ -116,6 +116,8 @@ h3.pix:lang(ja){font-size:24px}
 .langs button[aria-pressed=true]{background:var(--steel2);color:var(--white)}
 .langs button:hover{color:var(--gold)}
 @media (max-width:1180px){.nav{display:none}.langs{margin-left:auto}}
+/* Keep the brand and language controls visible even on 320px screens. */
+@media (max-width:360px){.bar .wrap{gap:8px}.bar .brand img{display:none}}
 
 /* ── hero ────────────────────────────────────────────── */
 /* The intro painting at whole-pixel scale (x3, x2 below 1180px). Where the
@@ -284,7 +286,7 @@ figure{margin:0}
 .x h3{color:var(--fire)} .x h3 i{background:var(--fire)}
 .fine{font-size:16px;color:var(--steel4)}
 .fine:lang(ja){font-size:14px}
-@media (max-width:1180px){.split{grid-template-columns:1fr}.shot2{width:auto;max-width:660px}}
+@media (max-width:1180px){.split{grid-template-columns:minmax(0,1fr)}.shot2{width:auto;max-width:660px}}
 @media (max-width:700px){.shot2{width:340px;max-width:100%}.shot2 img{width:320px}}
 @media (max-width:520px){.types{grid-template-columns:1fr}.type + .type{border-left:0;border-top:2px solid var(--black)}}
 
@@ -320,7 +322,7 @@ figure{margin:0}
 @keyframes ready{0%{opacity:.15}45%{opacity:1}72%{opacity:.15}}
 @keyframes beam{0%,70%{transform:scaleY(0)}72%{transform:scaleY(1)}86%{transform:scaleY(1);opacity:1}88%,100%{transform:scaleY(1);opacity:0}}
 @keyframes fall{0%{transform:translateY(calc(-16px*var(--k)))}100%{transform:translateY(calc(264px*var(--k)))}}
-@media (max-width:1180px){#breaker .split{grid-template-columns:1fr}}
+@media (max-width:1180px){#breaker .split{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.demo{--k:1}}
 
 /* heralds */
@@ -334,7 +336,7 @@ figure{margin:0}
 .hlist p{margin:0;font-size:17px;color:var(--ice)}
 .hlist p:lang(ja){font-size:15px}
 .more{margin-top:20px;color:var(--steel4)}
-@media (max-width:1180px){.heralds{grid-template-columns:1fr}}
+@media (max-width:1180px){.heralds{grid-template-columns:minmax(0,1fr)}}
 
 /* worlds */
 .worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -364,6 +366,12 @@ figure{margin:0}
 .grid a:hover img,.grid a:focus-visible img{outline:2px solid var(--gold);outline-offset:2px}
 .grid .cap{display:block;margin-top:8px}
 .grid a:hover .cap{color:var(--gold)}
+/* Preserve native pixels where they fit; shrink gracefully on smaller phones. */
+@media (max-width:360px){
+  .grid{grid-template-columns:minmax(0,320px)}
+  .grid a{width:100%}
+  .grid img{width:100%;height:auto}
+}
 
 /* story */
 .story{display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
@@ -375,7 +383,7 @@ figure{margin:0}
 .story blockquote footer:lang(ja){font:12px/18px var(--ja-px)}
 .pilot{display:flex;gap:16px;align-items:flex-start;margin-top:8px}
 .pilot img{width:96px;height:96px;flex:none;border:2px solid var(--black);box-shadow:0 0 0 2px var(--steel2)}
-@media (max-width:1180px){.story{grid-template-columns:1fr}}
+@media (max-width:1180px){.story{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:700px){.story .shot2 img{width:320px}}
 @media (max-width:420px){.pilot{flex-direction:column}}
 
@@ -396,6 +404,9 @@ figure{margin:0}
 .foot{padding:48px 0 64px;background:var(--black);color:var(--steel4);font-size:17px}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
 .foot p{margin:0}
+.foot .brand{max-width:100%}
+.foot .brand img{flex:none}
+.foot .brand > span{min-width:0}
 .foot .brand span{font-size:16px}
 .foot .brand span:lang(ja){font-family:var(--ja-px);font-size:24px}
 
