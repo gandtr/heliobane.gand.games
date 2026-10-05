@@ -15,7 +15,8 @@ development at Gand, published under [Gand Games](https://gand.games/).
 index.html                  The whole site: markup, one <style>, one vanilla-JS IIFE
 CNAME, robots.txt, sitemap.xml, .nojekyll
 privacy/index.html          Privacy policy (all platforms; the store listings link here). English only.
-                            Facts from heliobane-mobile: no network use but store billing, local saves.
+                            Mobile facts from heliobane-mobile; Epic sign-in and achievement handling
+                            from heliobane-integration f08e6ce (Basic Profile only, account-specific local retry queue).
 .htmlvalidate.json          html-validate:recommended (run: npx --yes html-validate@9 index.html)
 .claude/launch.json         local preview on :8141
 public/
