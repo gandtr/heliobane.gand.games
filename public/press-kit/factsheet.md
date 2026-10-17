@@ -9,7 +9,7 @@
 | Platforms | Windows, macOS and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
 | Store | Steam, app 5328670: https://store.steampowered.com/app/5328670/ |
 | Demo | Free, October 2026, Steam app 5328700: the opening stages of World 1: https://store.steampowered.com/app/5328700/ |
-| Release date | November 2026 |
+| Release date | October 2026 |
 | Price | Not announced |
 | Engine | Godot 4.7 (GDScript), GL Compatibility renderer |
 | Languages | English, Turkish, Japanese, Simplified Chinese, Korean, Russian, Brazilian Portuguese and Spanish: interface, voice-over and subtitles in all eight |
