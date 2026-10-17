@@ -74,6 +74,7 @@ software-career sim. No ads, no tracking, no exit strategy.
 - Bluesky: https://bsky.app/profile/gand-tr.bsky.social
 - Mastodon: https://mastodon.social/@gandtr
 - YouTube: https://www.youtube.com/@Gand-tr
+- Facebook: https://www.facebook.com/gand.games
 - GitHub: https://github.com/gandtr
 - Email: contact@gand.games
 
