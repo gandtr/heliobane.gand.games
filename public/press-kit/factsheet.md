@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Title | HELIOBANE |
-| Developer | Gand, an independent studio in Istanbul and Tokyo (est. 2025) |
+| Developer | Gand, an independent studio in Tokyo (est. 2026) |
 | Publisher | Gand (self-published) |
 | Genre | Vertical-scrolling shoot 'em up |
 | Platforms | Windows, macOS and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
@@ -63,7 +63,7 @@ tracker (MOD) music. The Steam page is live; a free demo follows in October 2026
 ## About Gand
 
 Gand is an independent studio that builds and runs its own software and games
-from Istanbul and Tokyo. Its other game on Steam is COMMIT!!!, a
+from Tokyo. Its other game on Steam is COMMIT!!!, a
 software-career sim. No ads, no tracking, no exit strategy.
 
 ## Links
