@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HELIOBANE (Amiga) Press Kit</title>
+<meta name="description" content="Press kit for HELIOBANE on the Amiga: the whole vertical shoot 'em up rebuilt for AGA Amigas (A1200, A4000). Free on itch.io. Fact sheet, builds, requirements, screenshots. HELIOBANE アミガ版プレスキット。">
+<link rel="canonical" href="https://heliobane.gand.games/public/press-kit/amiga.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HELIOBANE">
+<meta property="og:url" content="https://heliobane.gand.games/public/press-kit/amiga.html">
+<meta property="og:title" content="HELIOBANE (Amiga) Press Kit">
+<meta property="og:description" content="The whole of HELIOBANE rebuilt for the Amiga 1200: fifteen stages, three worlds, AGA, Kickstart 3.0+. Free on itch.io, with emulator packages for Windows, macOS and Linux.">
+<meta property="og:image" content="https://heliobane.gand.games/public/press-kit/amiga/x3/08_title_high_scores.png">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="768">
+<meta property="og:image:alt" content="HELIOBANE title screen and high-score table on the Amiga">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icons/heliobane_icon_64.png">
+<style>
+  @font-face { font-family: "Public Pixel"; src: url("fonts/PublicPixel.ttf") format("truetype"); font-display: swap; }
+  /* Palette: assets/palette.hex of the game */
+  :root {
+    --void: #000000; --ink: #0b0b1a; --panel: #1a1c2c; --panel2: #2b2f4a; --line: #3e4a6b;
+    --steel: #5b6ea0; --steel-l: #8aa4d6; --pale: #cfe0ff; --white: #ffffff;
+    --bronze: #a8641a; --amber: #e09a2a; --gold: #ffd24a; --cream: #fff3a8; --cyan: #20e0ff; --orange: #ff6a1a;
+    --pix: "Public Pixel", ui-monospace, monospace;
+    --body: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--ink); }
+  body { background: var(--ink); color: var(--pale); font: 16px/1.7 var(--body); }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px); }
+  a { color: var(--cyan); text-decoration: none; border-bottom: 1px solid var(--line); }
+  a:hover, a:focus-visible { color: var(--gold); border-bottom-color: var(--gold); outline: none; }
+  img.px, .shots img { image-rendering: pixelated; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 32px 20px 80px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    font: 10px/1.6 var(--pix); color: var(--steel-l); letter-spacing: .04em; }
+  .lang button { font: 10px var(--pix); background: var(--panel); color: var(--steel-l); border: 2px solid var(--line);
+    padding: 8px 10px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+  header { text-align: center; margin: 40px 0 28px; }
+  header .logo { width: min(968px, 100%); height: auto; }
+  header .sub { font: 12px/1.8 var(--pix); color: var(--cyan); margin-top: 14px; letter-spacing: .08em; }
+  header .quote { font-style: italic; color: var(--steel-l); margin: 18px auto 0; }
+  .hero { border: 2px solid var(--line); background: var(--void); }
+  .hero img { display: block; width: 100%; height: auto; }
+  section { margin-top: 56px; }
+  h2 { font: 14px/1.6 var(--pix); color: var(--gold); letter-spacing: .06em; margin-bottom: 18px;
+    padding-bottom: 10px; border-bottom: 2px solid var(--panel2); }
+  h2 .n { color: var(--bronze); margin-right: 12px; }
+  h3 { font: 11px/1.6 var(--pix); color: var(--amber); margin: 22px 0 10px; }
+  p { max-width: 72ch; margin-bottom: 14px; }
+  .cols { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: start; }
+  table.facts { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--panel); }
+  table.facts th, table.facts td { border: 1px solid var(--panel2); padding: 9px 12px; text-align: left; vertical-align: top; }
+  table.facts th { color: var(--steel-l); font-weight: 500; width: 36%; }
+  ul.feat { list-style: none; }
+  ul.feat li { position: relative; padding-left: 22px; margin-bottom: 9px; max-width: 72ch; }
+  ul.feat li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; background: var(--gold);
+    box-shadow: 2px 2px 0 var(--bronze); }
+  video { width: 100%; display: block; background: var(--void); border: 2px solid var(--line); }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .shots figure { background: var(--panel); border: 2px solid var(--panel2); }
+  .shots img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; }
+  .shots figcaption { font-size: 13px; color: var(--steel-l); padding: 7px 10px; }
+  .dl { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+  .dl a.card { display: block; border: 2px solid var(--panel2); background: var(--panel); padding: 14px; color: var(--pale); }
+  .dl a.card:hover, .dl a.card:focus-visible { border-color: var(--gold); }
+  .dl .t { font: 10px/1.6 var(--pix); color: var(--gold); display: block; margin-bottom: 6px; }
+  .dl .d { font-size: 14px; color: var(--steel-l); }
+  .zip { display: inline-block; margin-top: 8px; font: 11px/1.6 var(--pix); padding: 14px 18px; background: var(--gold);
+    color: var(--ink); border: 0; box-shadow: 4px 4px 0 var(--bronze); }
+  .zip:hover, .zip:focus-visible { background: var(--cream); color: var(--ink); }
+  .art { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; align-items: start; }
+  .art img { width: 100%; height: auto; display: block; border: 2px solid var(--panel2); }
+  footer { margin-top: 72px; padding-top: 18px; border-top: 2px solid var(--panel2); font-size: 13px; color: var(--steel); }
+  [lang="ja"] p, [lang="ja"] li, [lang="ja"] td { line-height: 1.9; }
+  .only-ja { display: none; }
+  html[data-lang="ja"] .only-en { display: none; }
+  html[data-lang="ja"] .only-ja { display: revert; }
+  @media (max-width: 760px) {
+    .cols, .art { grid-template-columns: 1fr; }
+    body { font-size: 15px; }
+  }
+  @media print { body::after { display: none; } .lang { display: none; } }
+  /* amiga.html additions */
+  .shots.amiga img { aspect-ratio: 5 / 4; }
+  table.facts.wide th { width: 30%; }
+  code { font-size: .92em; color: var(--cream); }
+  .keys td:first-child { color: var(--gold); }
+</style>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search).get("lang");
+    var nav = (navigator.language || "").slice(0, 2);
+    document.documentElement.dataset.lang = q === "ja" || q === "en" ? q : (nav === "ja" ? "ja" : "en");
+  })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="bar">
+    <span>GAND · TOKYO · AMIGA PRESS KIT · <a href="doc.html">PC PRESS KIT</a></span>
+    <span class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="en">ENGLISH</button>
+      <button type="button" data-set="ja">日本語</button>
+    </span>
+  </div>
+
+  <header>
+    <img class="logo px" src="logo/heliobane_logo_4x.png" width="968" height="256" alt="HELIOBANE">
+    <div class="sub">FOR THE AMIGA · AGA · A1200 / A4000</div>
+    <p class="quote only-en">The whole of Heliobane, rebuilt for the Amiga 1200. Free on itch.io.</p>
+    <p class="quote only-ja" lang="ja">HELIOBANE のすべてを、アミガ1200向けに作り直しました。itch.io で無料配信中。</p>
+  </header>
+
+  <div class="hero"><img class="px" src="amiga/x3/01_leviathan_choir.png" width="960" height="768" alt="HELIOBANE on the Amiga: Leviathan Choir, the stage 2 Herald" style="max-width:640px;margin:0 auto"></div>
+
+  <!-- ===================== ENGLISH ===================== -->
+  <div class="only-en">
+    <section>
+      <h2><span class="n">01</span>FACT SHEET</h2>
+      <div class="cols">
+        <table class="facts wide">
+          <tr><th>Title</th><td>HELIOBANE (Amiga), version 2.0.0</td></tr>
+          <tr><th>Developer</th><td>Arda (coze), Gand, Tokyo</td></tr>
+          <tr><th>Genre</th><td>Vertical-scrolling shoot 'em up</td></tr>
+          <tr><th>Platform</th><td>Commodore Amiga with AGA (A1200, A4000). Also playable on Windows, macOS and Linux through the bundled emulator</td></tr>
+          <tr><th>Chipset</th><td>AGA</td></tr>
+          <tr><th>CPU / RAM</th><td><b>Fast RAM build:</b> 68030 or better with fast RAM (A1200 or A4000)<br><b>Stock build (NoFast):</b> 68EC020, 2 MB chip RAM (stock A1200)</td></tr>
+          <tr><th>Kickstart</th><td>3.0 or later, with its Workbench (3.1 recommended)</td></tr>
+          <tr><th>Video mode</th><td>PAL screen</td></tr>
+          <tr><th>Install</th><td>Hard disk or CF card, from the game's drawer as .lha or .zip. No floppies, no hard-disk image</td></tr>
+          <tr><th>Controls</th><td>Joystick or CD32 pad in port 2 (a CD32 pad needs lowlevel.library from Workbench 3.1)</td></tr>
+          <tr><th>Release</th><td>3 October 2026 on itch.io; 2.0.0 (all three worlds) on 20 October 2026</td></tr>
+          <tr><th>Price</th><td>Free (name your own price on itch.io)</td></tr>
+          <tr><th>Real hardware</th><td>Tested by players on an A4000/030 with Kickstart 3.0 and on a 68060 Amiga</td></tr>
+          <tr><th>Download</th><td><a href="https://coze.itch.io/heliobane-amiga">coze.itch.io/heliobane-amiga</a></td></tr>
+          <tr><th>PC version</th><td><a href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">Steam</a> · <a href="https://store.epicgames.com/p/heliobane-ad6470">Epic Games Store</a>, out 30 October 2026</td></tr>
+          <tr><th>Press contact</th><td><a href="mailto:contact@gand.games">contact@gand.games</a></td></tr>
+        </table>
+        <div>
+          <p>HELIOBANE for the Amiga is the whole of Heliobane, rebuilt for the Amiga 1200: fifteen stages in three worlds, from the star Aurel out past its heliopause to the dead star Ninth Light. Every stage ends with a Herald that fills the screen.</p>
+          <p>Wren, a salvage runner, flies the prototype gunship HB-0 Heliobane against the Umbrine, a crystalline hive that lives inside the sun. Between stages Old Mott sells guns from his salvage tug, the Magpie.</p>
+          <p>It runs on a real AGA Amiga from hard disk or CF, and the Windows, macOS and Linux downloads bring their own emulator and replacement Kickstart, so anyone can play it without an Amiga or ROMs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>FEATURES</h2>
+      <ul class="feat">
+        <li>The whole game: 15 stages in 3 worlds, each ending with a screen-filling Herald, and the ending</li>
+        <li>The Magpie's shop between stages, campaign saves and a high-score table</li>
+        <li>Weapon levels up to 7: Mott sells level 6 from World 2 and level 7 from World 3</li>
+        <li>Secrets and a few nice surprises in the fast-RAM build</li>
+        <li>Joystick or CD32 pad on a real Amiga; keyboard or any gamepad (it plays as a CD32 pad) in the emulator packages</li>
+        <li>Two builds for real Amigas, one for a stock A1200 and one for fast RAM, each as .lha or .zip</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>BUILDS</h2>
+      <table class="facts wide">
+        <tr><th>Heliobane (fast RAM)</th><td>A1200 or A4000 with a 68030 or better and fast RAM. This build has the secrets and a few nice surprises.</td></tr>
+        <tr><th>Heliobane-NoFast (stock A1200)</th><td>68EC020, 2 MB chip RAM. The secrets didn't fit in its RAM.</td></tr>
+        <tr><th>Both</th><td>AGA Amiga, Kickstart 3.0 or later with its Workbench (3.1 recommended), PAL screen. Install to hard disk or CF, e.g. <code>lha x Heliobane-Amiga-2.0.0-nofast.lha Work:</code></td></tr>
+      </table>
+      <h3>DOWNLOADS ON ITCH.IO</h3>
+      <ul class="feat">
+        <li>Amiga LHA, A1200/A4000 with fast RAM (9.1 MB) · Amiga LHA, stock A1200 (6.9 MB)</li>
+        <li>Amiga, A1200/A4000 with fast RAM (.zip, 8.8 MB) · Amiga, stock A1200 (.zip, 6.7 MB)</li>
+        <li>Windows (61 MB), macOS (27 MB) and Linux (22 MB) packages with the emulator, version 2.0.0</li>
+        <li>Emulator sources (GPL/LGPL, 24 MB)</li>
+      </ul>
+      <h3>CONTROLS</h3>
+      <table class="facts keys" style="max-width:640px">
+        <tr><td>Move</td><td>Arrows / WASD · d-pad or left stick</td></tr>
+        <tr><td>Fire / confirm</td><td>Space · A</td></tr>
+        <tr><td>Flare / back</td><td>X · B</td></tr>
+        <tr><td>Breaker</td><td>V · X button</td></tr>
+        <tr><td>Swap guns</td><td>C · Y</td></tr>
+        <tr><td>Focus (hold)</td><td>Left Shift · right shoulder</td></tr>
+        <tr><td>Pause</td><td>Esc / P · Start</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>EMULATOR PACKAGES</h2>
+      <p>The Windows, macOS and Linux downloads come with the FS-UAE emulator and AROS's free replacement Kickstart, so no Amiga ROMs or Workbench are needed. They emulate an A1200 with a 68030 at 50 MHz and 8 MB of fast RAM, cycle-exact. The macOS app is universal, signed and notarized. Saves and high scores carry over from 1.0.0.</p>
+      <p>FS-UAE 3.2.35 is under the GPL v2 and the AROS ROM under the AROS Public License 1.1; their sources are a separate download on itch.io. In WinUAE or FS-UAE the .zip also mounts beside your own Workbench, but it can't save there.</p>
+    </section>
+  </div>
+
+  <!-- ===================== 日本語 ===================== -->
+  <div class="only-ja" lang="ja">
+    <section>
+      <h2><span class="n">01</span>ファクトシート</h2>
+      <div class="cols">
+        <table class="facts wide">
+          <tr><th>タイトル</th><td>HELIOBANE（アミガ版）バージョン 2.0.0</td></tr>
+          <tr><th>開発</th><td>Arda（coze）、Gand（東京）</td></tr>
+          <tr><th>ジャンル</th><td>縦スクロールシューティング</td></tr>
+          <tr><th>プラットフォーム</th><td>Commodore Amiga（AGA：A1200、A4000）。同梱のエミュレーターで Windows・macOS・Linux でも遊べます</td></tr>
+          <tr><th>チップセット</th><td>AGA</td></tr>
+          <tr><th>CPU／RAM</th><td><b>Fast RAM 版：</b>68030 以上と Fast RAM（A1200 または A4000）<br><b>標準版（NoFast）：</b>68EC020、チップ RAM 2 MB（標準の A1200）</td></tr>
+          <tr><th>Kickstart</th><td>3.0 以降と対応する Workbench（3.1 推奨）</td></tr>
+          <tr><th>画面モード</th><td>PAL</td></tr>
+          <tr><th>インストール</th><td>ハードディスクまたは CF カードへ（.lha または .zip のドロワー）。フロッピー・HDイメージなし</td></tr>
+          <tr><th>操作</th><td>ポート2にジョイスティックまたは CD32 パッド（CD32 パッドには Workbench 3.1 の lowlevel.library が必要）</td></tr>
+          <tr><th>配信</th><td>2026年10月3日 itch.io で配信開始。全3ワールドの 2.0.0 は2026年10月20日</td></tr>
+          <tr><th>価格</th><td>無料（itch.io で任意の金額を支払えます）</td></tr>
+          <tr><th>実機</th><td>プレイヤーが A4000/030（Kickstart 3.0）と 68060 搭載のアミガで動作を確認</td></tr>
+          <tr><th>ダウンロード</th><td><a href="https://coze.itch.io/heliobane-amiga">coze.itch.io/heliobane-amiga</a></td></tr>
+          <tr><th>PC版</th><td><a href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">Steam</a> · <a href="https://store.epicgames.com/p/heliobane-ad6470">Epic Games Store</a>、2026年10月30日発売</td></tr>
+          <tr><th>取材窓口</th><td><a href="mailto:contact@gand.games">contact@gand.games</a></td></tr>
+        </table>
+        <div>
+          <p>HELIOBANE アミガ版は、HELIOBANE のすべてをアミガ1200向けに作り直したもの。恒星オーレルからヘリオポーズの外、死んだ星ナインス・ライトまで、3つのワールドに15のステージ。どのステージの最後にも、画面を埋め尽くすヘラルドが待っています。</p>
+          <p>サルベージ屋のレンが試作戦闘艇 HB-0 ヘリオベインを駆り、太陽の中に棲む結晶の群体アンブラインに挑みます。ステージの合間には、オールド・モットがサルベージ船「マグパイ号」で銃を売りに来ます。</p>
+          <p>本物の AGA アミガでハードディスクや CF から動き、Windows・macOS・Linux 版にはエミュレーターと代替 Kickstart が入っているので、アミガや ROM がなくても遊べます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>特徴</h2>
+      <ul class="feat">
+        <li>ゲームのすべて：3つのワールドに15ステージ、それぞれに巨大なヘラルド、そしてエンディング</li>
+        <li>ステージの合間のショップ「マグパイ号」、キャンペーンのセーブ、ハイスコア表</li>
+        <li>武器はレベル7まで。ワールド2からレベル6、ワールド3からレベル7をモットが販売</li>
+        <li>Fast RAM 版には隠し要素といくつかのサプライズ</li>
+        <li>実機ではジョイスティックまたは CD32 パッド。エミュレーター版ではキーボードか、CD32 パッドとして動くゲームパッド</li>
+        <li>実機向けは標準 A1200 用と Fast RAM 用の2種類、それぞれ .lha と .zip</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span>ビルド</h2>
+      <table class="facts wide">
+        <tr><th>Heliobane（Fast RAM）</th><td>68030 以上と Fast RAM を積んだ A1200 または A4000。隠し要素といくつかのサプライズ入り。</td></tr>
+        <tr><th>Heliobane-NoFast（標準 A1200）</th><td>68EC020、チップ RAM 2 MB。隠し要素はメモリーに収まりませんでした。</td></tr>
+        <tr><th>共通</th><td>AGA アミガ、Kickstart 3.0 以降と対応する Workbench（3.1 推奨）、PAL 画面。ハードディスクか CF にインストール（例：<code>lha x Heliobane-Amiga-2.0.0-nofast.lha Work:</code>）</td></tr>
+      </table>
+      <h3>ITCH.IO のダウンロード</h3>
+      <ul class="feat">
+        <li>Amiga LHA、Fast RAM 付き A1200/A4000 用（9.1 MB）· Amiga LHA、標準 A1200 用（6.9 MB）</li>
+        <li>Amiga .zip、Fast RAM 付き A1200/A4000 用（8.8 MB）· Amiga .zip、標準 A1200 用（6.7 MB）</li>
+        <li>エミュレーター同梱の Windows（61 MB）、macOS（27 MB）、Linux（22 MB）版、バージョン 2.0.0</li>
+        <li>エミュレーターのソース（GPL/LGPL、24 MB）</li>
+      </ul>
+      <h3>操作</h3>
+      <table class="facts keys" style="max-width:640px">
+        <tr><td>移動</td><td>矢印キー／WASD · 十字キーまたは左スティック</td></tr>
+        <tr><td>ショット／決定</td><td>Space · A</td></tr>
+        <tr><td>フレア／戻る</td><td>X · B</td></tr>
+        <tr><td>ブレイカー</td><td>V · X ボタン</td></tr>
+        <tr><td>武器切り替え</td><td>C · Y</td></tr>
+        <tr><td>フォーカス（長押し）</td><td>左 Shift · 右ショルダー</td></tr>
+        <tr><td>ポーズ</td><td>Esc／P · Start</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>エミュレーター版</h2>
+      <p>Windows・macOS・Linux 版には FS-UAE エミュレーターと AROS の無料代替 Kickstart が入っているので、アミガの ROM や Workbench は不要です。68030（50 MHz）と Fast RAM 8 MB を積んだ A1200 をサイクル精度でエミュレートします。macOS 版はユニバーサル、署名・公証済み。1.0.0 のセーブとハイスコアはそのまま引き継げます。</p>
+      <p>FS-UAE 3.2.35 は GPL v2、AROS ROM は AROS Public License 1.1 で、ソースは itch.io で別途ダウンロードできます。WinUAE や FS-UAE では .zip を手持ちの Workbench の横にマウントすることもできますが、その場合はセーブできません。</p>
+    </section>
+  </div>
+
+  <section>
+    <h2><span class="n">05</span><span class="only-en">SCREENSHOTS</span><span class="only-ja" lang="ja">スクリーンショット</span></h2>
+    <p class="only-en">The Amiga version's screenshots from its itch.io page. The game draws at 320×256; shown here at ×2 (640×512). The zip has them at ×1, ×2 and ×3.</p>
+    <p class="only-ja" lang="ja">itch.io ページに掲載のアミガ版スクリーンショット。ゲームは 320×256 で描画し、ここでは2倍（640×512）で表示しています。ZIP には等倍・2倍・3倍が入っています。</p>
+    <div class="shots amiga">
+      <figure><a href="amiga/01_leviathan_choir.png"><img src="amiga/01_leviathan_choir.png" width="640" height="512" alt="HELIOBANE on the Amiga: Leviathan Choir, stage 2 Herald" loading="lazy"></a><figcaption><span class="only-en">Leviathan Choir · Verdigris</span><span class="only-ja" lang="ja">リヴァイアサン・クワイア · ヴェルディグリス</span></figcaption></figure>
+      <figure><a href="amiga/02_cinder_crown.png"><img src="amiga/02_cinder_crown.png" width="640" height="512" alt="HELIOBANE on the Amiga: Stage 4, Cinder Crown" loading="lazy"></a><figcaption><span class="only-en">Cinder Crown · stage 4</span><span class="only-ja" lang="ja">シンダー・クラウン · ステージ4</span></figcaption></figure>
+      <figure><a href="amiga/03_ashfall_drift.png"><img src="amiga/03_ashfall_drift.png" width="640" height="512" alt="HELIOBANE on the Amiga: Stage 6, Ashfall Drift" loading="lazy"></a><figcaption><span class="only-en">Ashfall Drift · stage 6</span><span class="only-ja" lang="ja">アッシュフォール・ドリフト · ステージ6</span></figcaption></figure>
+      <figure><a href="amiga/04_cold_harbour.png"><img src="amiga/04_cold_harbour.png" width="640" height="512" alt="HELIOBANE on the Amiga: Stage 9, Cold Harbour" loading="lazy"></a><figcaption><span class="only-en">Cold Harbour · stage 9</span><span class="only-ja" lang="ja">コールド・ハーバー · ステージ9</span></figcaption></figure>
+      <figure><a href="amiga/05_the_vein.png"><img src="amiga/05_the_vein.png" width="640" height="512" alt="HELIOBANE on the Amiga: Stage 12, The Vein" loading="lazy"></a><figcaption><span class="only-en">The Vein · stage 12</span><span class="only-ja" lang="ja">ザ・ヴェイン · ステージ12</span></figcaption></figure>
+      <figure><a href="amiga/06_choirnest.png"><img src="amiga/06_choirnest.png" width="640" height="512" alt="HELIOBANE on the Amiga: Stage 14, Choirnest" loading="lazy"></a><figcaption><span class="only-en">Choirnest · stage 14</span><span class="only-ja" lang="ja">クワイアネスト · ステージ14</span></figcaption></figure>
+      <figure><a href="amiga/07_the_magpie.png"><img src="amiga/07_the_magpie.png" width="640" height="512" alt="HELIOBANE on the Amiga: Old Mott's shop, the Magpie" loading="lazy"></a><figcaption><span class="only-en">The Magpie · Old Mott's shop</span><span class="only-ja" lang="ja">マグパイ号 · オールド・モットの店</span></figcaption></figure>
+      <figure><a href="amiga/08_title_high_scores.png"><img src="amiga/08_title_high_scores.png" width="640" height="512" alt="HELIOBANE on the Amiga: Title screen with the high-score table" loading="lazy"></a><figcaption><span class="only-en">Title and high scores</span><span class="only-ja" lang="ja">タイトルとハイスコア</span></figcaption></figure>
+    </div>
+    <p style="margin-top:16px"><a class="zip" href="heliobane-amiga-screenshots.zip" download><span class="only-en">DOWNLOAD SCREENSHOTS (.ZIP, 1 MB)</span><span class="only-ja" lang="ja">スクリーンショットをダウンロード（ZIP、1 MB）</span></a></p>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span><span class="only-en">AMIGA FOOTAGE</span><span class="only-ja" lang="ja">アミガ版の映像</span></h2>
+    <p class="only-en">Videos featured on the game's itch.io page, made by their channels.</p>
+    <p class="only-ja" lang="ja">itch.io ページで紹介している、各チャンネルによる動画です。</p>
+    <div class="dl">
+      <a class="card" href="https://www.youtube.com/watch?v=J4vk1BLjn9k"><span class="t">YOUTUBE</span><span class="d">Heliobane longplay on Amiga 4000/030<br>NIKS - Retro Computer Channel</span></a>
+      <a class="card" href="https://www.youtube.com/watch?v=fyrDnMGP97Q"><span class="t">YOUTUBE</span><span class="d">Haliobane on Amiga 4000/030@25<br>NIKS - Retro Computer Channel</span></a>
+      <a class="card" href="https://www.youtube.com/watch?v=dPRxr2BqNGM"><span class="t">YOUTUBE</span><span class="d">Commodore Amiga -=Heliobane=-<br>Saberman RetroNews</span></a>
+      <a class="card" href="https://www.youtube.com/watch?v=ttKXz0bAYOc"><span class="t">YOUTUBE</span><span class="d">RetroVision - Plug &amp; Play #166 (show of 9 October 2026)<br>Radio PARALAX</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">07</span><span class="only-en">PC AND PHONES</span><span class="only-ja" lang="ja">PC・スマートフォン版</span></h2>
+    <p class="only-en">HELIOBANE comes out on <a href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">Steam</a> and the <a href="https://store.epicgames.com/p/heliobane-ad6470">Epic Games Store</a> on 30 October 2026. The <a href="https://store.steampowered.com/app/5328700/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">demo</a> is in Steam Next Fest until 26 October. It is out now on <a href="https://play.google.com/store/apps/details?id=games.gand.heliobane">Google Play</a>. For the PC version's fact sheet, trailer and art, see the <a href="doc.html">main press kit</a>.</p>
+    <p class="only-ja" lang="ja">HELIOBANE は2026年10月30日に <a href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">Steam</a> と <a href="https://store.epicgames.com/p/heliobane-ad6470">Epic Games Store</a> で発売。<a href="https://store.steampowered.com/app/5328700/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">体験版</a>は10月26日まで Steam Next Fest に参加中。<a href="https://play.google.com/store/apps/details?id=games.gand.heliobane">Google Play</a> では配信中です。PC版のファクトシート、トレーラー、アートは<a href="doc.html">メインのプレスキット</a>をご覧ください。</p>
+  </section>
+
+  <section>
+    <h2><span class="n">08</span><span class="only-en">AI DISCLOSURE</span><span class="only-ja" lang="ja">AI の使用について</span></h2>
+    <p class="only-en">AI was used to generate the game's assets: artwork, voice lines, sound effects, in-game text and translations.</p>
+    <p class="only-ja" lang="ja">ゲームのアセット（アートワーク、ボイス、効果音、ゲーム内テキスト、翻訳）の生成に AI を使用しています。</p>
+  </section>
+
+  <section>
+    <h2><span class="n">09</span><span class="only-en">CONTACT</span><span class="only-ja" lang="ja">連絡先</span></h2>
+    <table class="facts" style="max-width:640px">
+      <tr><th><span class="only-en">Email</span><span class="only-ja" lang="ja">メール</span></th><td><a href="mailto:contact@gand.games">contact@gand.games</a></td></tr>
+      <tr><th><span class="only-en">Developer</span><span class="only-ja" lang="ja">開発</span></th><td>Arda (coze), Gand</td></tr>
+      <tr><th>itch.io</th><td><a href="https://coze.itch.io/heliobane-amiga">HELIOBANE (Amiga)</a></td></tr>
+      <tr><th>Steam</th><td><a href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">HELIOBANE</a> · <a href="https://store.steampowered.com/app/5328700/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane">HELIOBANE Demo</a></td></tr>
+      <tr><th>Epic</th><td><a href="https://store.epicgames.com/p/heliobane-ad6470">HELIOBANE</a></td></tr>
+      <tr><th><span class="only-en">Game</span><span class="only-ja" lang="ja">公式サイト</span></th><td><a href="https://heliobane.gand.games">heliobane.gand.games</a></td></tr>
+      <tr><th><span class="only-en">Studio</span><span class="only-ja" lang="ja">スタジオ</span></th><td><a href="https://gand.tr">gand.tr</a> · <a href="https://gand.games">gand.games</a></td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <div class="only-en">HELIOBANE © 2026 Gand. Everything on this page may be used for coverage, previews, reviews and listings. <a href="doc.html">Main press kit</a></div>
+    <div class="only-ja" lang="ja">HELIOBANE © 2026 Gand. このページの素材は、記事、プレビュー、レビュー、掲載に自由にお使いいただけます。<a href="doc.html">メインのプレスキット</a></div>
+  </footer>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btns = document.querySelectorAll(".lang button");
+    function set(l) {
+      root.dataset.lang = l;
+      root.lang = l;
+      btns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === l)); });
+    }
+    btns.forEach(function (b) { b.addEventListener("click", function () { set(b.dataset.set); }); });
+    set(root.dataset.lang || "en");
+  })();
+</script>
+</body>
+</html>
