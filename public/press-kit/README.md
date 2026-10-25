@@ -6,7 +6,7 @@ line: **"HELIOBANE, a game by Gand (https://heliobane.gand.games)"**.
 Press contact: contact@gand.games.
 
 The press page is `doc.html` (English and Japanese in one file). The whole kit
-is also one archive: `heliobane-press-kit_2026-09-30.zip`.
+is also one archive: `heliobane-press-kit_2026-10-25.zip`.
 
 ## Folders
 
