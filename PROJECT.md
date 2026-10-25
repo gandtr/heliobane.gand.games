@@ -32,6 +32,8 @@ public/
                             portraits (mott, wren), sprites (ship, flame, pods, Quarry Maw, enemy orb),
                             field.png (240x512 slice of stage1_far), trailer-still.png (320x180)
   fonts/                    Public Pixel (CC0), Fira Sans Condensed (OFL), PixelMplus12 subset (M+ licence)
+  stores/                   official store logos and badges for the hero's release row (Steam, Epic Games Store,
+                            Google Play EN/JA, itch.io); provenance and hashes in stores/SOURCE.md
 ```
 
 ## Design notes
