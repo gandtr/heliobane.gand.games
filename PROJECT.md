@@ -88,15 +88,17 @@ are no hreflang alternates: the page is one bilingual URL.
 
 ## Screenshots
 
-Captured on 2026-09-25 from an isolated snapshot, never from the working tree (other
-agents edit that repository; keep it read-only):
+Re-captured on 2026-10-25 from PC main a01bdaa (the vivid pass on, as the game ships; the first
+set, 2026-09-25 from 667d2af, predated it), from an isolated snapshot, never from the working
+tree (other agents edit that repository; keep it read-only). An empty user-data folder keeps the
+capturing machine's saved options (language, vivid, shake) out of the pictures:
 
 ```sh
-git -C ~/projects/games/heliobane/heliobane archive 667d2af | tar -x -C <snap>
+git -C ~/projects/games/heliobane/heliobane archive main | tar -x -C <snap>
 godot --headless --path <snap> --import
 cd <snap>
 KIT="--weapon=pulse --level=4 --front2=lance:3 --rear=tail --pod_l=drone --pod_r=orbiter"
-tools/offscreen.sh -- --shot=/abs/<name>.png <args>
+XDG_DATA_HOME=<empty dir> tools/offscreen.sh -- --shot=/abs/<name>.png --lang=en <args>
 ```
 
 `tools/offscreen.sh` is the game's headless cage + Mesa llvmpipe + Dummy audio
@@ -114,10 +116,10 @@ wrapper: no window, no sound, no GPU. Each capture is 960x768 (x3 of 320x256).
 | ashfall-drift | `--stage=6 --at=75 --seed=1 --godmode $KIT` |
 | halvards-rings | `--stage=7 --at=130 --seed=1 --godmode $KIT` |
 | stormglass | `--stage=8 --at=130 --seed=1 --godmode $KIT` |
-| the-vein | `--stage=12 --at=130 --seed=1 --godmode $KIT` |
+| the-vein | `--stage=12 --at=129 --seed=1 --godmode $KIT` (130 lands on a block's white hit flash) |
 | choirnest | `--stage=14 --at=130 --seed=1 --godmode $KIT` |
 | first-mouth | `--stage=15 --at=130 --seed=1 --godmode $KIT` |
-| magpie | `--screen=shop --at=3` |
+| magpie | `--screen=shop --at=3` (1x only; the shop has no vivid pass, so the 2026-10-25 capture equals the first) |
 | title (poster, still) | `--screen=title --at=3` |
 
 The game renders at the window size, so some layers sit on third-pixels in the 960x768
