@@ -24,7 +24,7 @@ public/
   og.png                    Previous social card, retained for cached links
   favicon.ico, favicon-64.png, apple-touch-icon.png   from the ship sprite (player_ship frame 2)
   trailer-poster.jpg        1920x1080 poster (trailer's clean title frame)
-  trailer.mp4               83 s web encode of the trailer (see Trailer)
+  trailer.mp4               91 s web encode of the trailer (see Trailer)
   trailer.en.vtt            English captions for the narration
   shots/<name>.png          960x768 captures (the game's own x3 output) for the viewer / full size
   shots/1x/<name>.png       320x256, centre-sampled from the captures; shown at x1/x2 with pixelated scaling
@@ -143,8 +143,9 @@ text. All image URLs are absolute HTTPS URLs.
 
 ## Trailer
 
-Source: `../heliobane-trailer/` (commit 52ab391; master `output/heliobane-trailer.mp4`,
-poster `review/poster.jpg`, captions `output/heliobane-trailer.srt`). The site copies are
+Source: `../heliobane-trailer/` (commit 83740b6, the rc10 cut of 2026-10-27, game snapshot 1214a34; master
+`output/heliobane-trailer.mp4`, poster `review/poster.jpg`, captions `output/heliobane-trailer.srt`;
+the first cut, 83 s, was commit 52ab391). The site copies are
 re-encoded for the web:
 
 ```sh

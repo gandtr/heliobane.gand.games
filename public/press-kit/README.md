@@ -6,7 +6,7 @@ line: **"HELIOBANE, a game by Gand (https://heliobane.gand.games)"**.
 Press contact: contact@gand.games.
 
 The press page is `doc.html` (English and Japanese in one file). The whole kit
-is also one archive: `heliobane-press-kit_2026-10-25.zip`.
+is also one archive: `heliobane-press-kit_2026-10-27.zip`.
 
 ## Folders
 
@@ -21,7 +21,7 @@ is also one archive: `heliobane-press-kit_2026-10-25.zip`.
 | `steam/` | Steam capsules, library images, icons and event images; `steam/demo/` for the demo. Sizes in `steam/ASSETS.md` |
 | `icons/` | app icon 32–512 px, `.ico`, 184 px community icon |
 | `social/` | `og_1200x630.png` link card, `square_1080.png` |
-| `video/` | the trailer (83 s, 1920×1080, 60 fps, H.264), English captions, poster, thumbnail |
+| `video/` | the trailer (91 s, 1920×1080, 60 fps, H.264), captions in the game's eight languages (`.srt`, plus English `.vtt`), poster, thumbnail |
 | `fonts/` | Public Pixel (CC0), the game's pixel font, used by `doc.html` |
 
 ## About the images
