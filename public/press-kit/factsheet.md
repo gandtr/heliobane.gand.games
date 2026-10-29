@@ -15,6 +15,7 @@
 | Languages | English, Turkish, Japanese, Simplified Chinese, Korean, Russian, Brazilian Portuguese and Spanish: interface, voice-over and subtitles in all eight |
 | Input | Keyboard (remappable) and full gamepad support |
 | Players | Single-player |
+| Other versions | Amiga (AGA, all 15 stages, name your own price): https://coze.itch.io/heliobane-amiga · Sharp X68000 (World 1, 5 stages, free; Japanese text and voice): https://coze.itch.io/heliobane-x68000 |
 | Website | https://heliobane.gand.games |
 | Press contact | contact@gand.games |
 
