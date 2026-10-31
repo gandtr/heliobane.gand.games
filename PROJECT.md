@@ -18,7 +18,7 @@ privacy/index.html          Privacy policy (all platforms; the store listings li
                             Sections follow Epic's brand review: what is captured, how it is used, who it
                             is shared with, how long it is kept and how to delete it. Facts checked against
                             heliobane 712383d (saves, Steam, Epic: Basic Profile only, account-specific local
-                            retry queue, epic-cache) and heliobane-mobile caf64be (billing, Play Games, Game Center).
+                            retry queue, epic-cache) and heliobane-mobile caf64be (Google Play billing, Play Games; no App Store mentions on Arda's word).
 .htmlvalidate.json          html-validate:recommended (run: npx --yes html-validate@9 index.html)
 .claude/launch.json         local preview on :8141
 public/
