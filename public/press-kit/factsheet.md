@@ -38,7 +38,7 @@ Magpie. Three worlds, fifteen stages, fifteen screen-filling Heralds.
 ## Features
 
 - 15 stages across 3 worlds (Aurel, The Wake, Umbra), 15 Heralds and 15 mid-bosses
-- 11 weapons with 7 levels each: two front guns on a rack you swap mid-fight, a rear gun, two sidekick pods; plus 3 secret guns and 3 salvage guns
+- 11 weapons with up to 7 levels each: two front guns on a rack you swap mid-fight, a rear gun, two sidekick pods; plus 3 secret guns and 3 salvage guns
 - Kinetic, beam and blast damage against glass, sun-fed and plated enemies
 - Grazing bullets builds heat; the Breaker spends it to strip every defence it touches for six seconds
 - The Magpie: a shop between stages; everything sells back at half price
