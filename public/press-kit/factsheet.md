@@ -9,7 +9,7 @@
 | Platforms | Windows, macOS and Linux (64-bit), SteamOS / Steam Deck (native Linux build) |
 | Store | Steam, app 5328670: https://store.steampowered.com/app/5328670/ |
 | Demo | Free, Steam app 5328700: the opening stages of World 1: https://store.steampowered.com/app/5328700/ |
-| Release date | October 28, 2026 (out now on Steam) |
+| Release date | October 28, 2026 on Steam, November 2, 2026 on the Epic Games Store (out now on both) |
 | Price | See the Steam page: https://store.steampowered.com/app/5328670/ |
 | Engine | Godot 4.7 (GDScript), GL Compatibility renderer |
 | Languages | English, Turkish, Japanese, Simplified Chinese, Korean, Russian, Brazilian Portuguese and Spanish: interface, voice-over and subtitles in all eight |
@@ -59,7 +59,7 @@ AI was used to generate some of the game's assets: artwork, voice lines,
 sound effects, in-game text and translations. Artwork was edited and fitted
 to the game's 32-colour palette and style. The soundtrack was made with a custom tracker built for
 agentic work, by an AI trained on a curated collection of public-domain
-tracker (MOD) music. HELIOBANE came out on Steam on October 28, 2026, and a free demo is on Steam.
+tracker (MOD) music. HELIOBANE came out on Steam on October 28, 2026 and on the Epic Games Store on November 2, 2026, and a free demo is on Steam.
 
 ## About Gand
 
