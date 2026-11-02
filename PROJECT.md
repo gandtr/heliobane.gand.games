@@ -32,6 +32,7 @@ public/
   trailer.en.vtt            English captions for the narration
   shots/<name>.png          960x768 captures (the game's own x3 output) for the viewer / full size
   shots/1x/<name>.png       320x256, centre-sampled from the captures; shown at x1/x2 with pixelated scaling
+  art/oda-needs-you.png     320x256, Oda Venn pointing at the viewer, for #support (see Support section)
   art/                      game art copied unchanged: logo, intro paintings (aurel, wren),
                             portraits (mott, wren), sprites (ship, flame, pods, Quarry Maw, enemy orb),
                             field.png (240x512 slice of stage1_far), trailer-still.png (320x180)
@@ -82,6 +83,7 @@ new module from its first row and fades the old one out over a second
 | `.world.w1` / `.world.w3` | stage4 / stage11 | Stage 4 · Cinder Crown / Stage 11 · Dead Light |
 | `#screens` | stage12 | Stage 12 · The Vein |
 | `#story` | intro | Intro |
+| `#support` | title | Title |
 | `#facts`, footer | ending | Ending |
 
 On desktop the three world cards sit side by side, so the middle one (The Wake) plays; on a
@@ -97,6 +99,24 @@ files are cozy-tracker's `player/` at branch `claude/cozy-score` (main ea200ae p
 `vendor/chiptune3/{chiptune3.js,chiptune3.worklet.js,libopenmpt.worklet.js,LICENSE}` keeping
 that layout (the worklet imports `../../adaptive-sections.js`). New Japanese track names need the
 pixel-font re-subset below.
+
+## Support section
+
+`#support`, "Oda Venn needs you", sits between the story and the fact sheet: Oda's appeal, two
+columns of store links (Support: Steam, Epic Games Store, Google Play, the full game by in-app
+purchase; Free: the Steam and Epic demos, Google Play's first three stages, and the Amiga and
+X68000 builds on itch.io), then a note asking players to report problems to
+`contact@gand.games` (subject "HELIOBANE support"). Copy from Arda (2026-11-02), with the
+canonical spellings HB-0 and Oda Venn. Epic demo: `store.epicgames.com/p/heliobane-heliobane-demo-c2ee19`.
+
+`public/art/oda-needs-you.png` is new art, made for this page, not copied from the game: a local
+generation with heliobane-comic's workflow (`tools/generate.py`, its cast-sheet wording for Oda
+Venn and the Heliobane, the "heliobane" style, 784x624, seed 7101, 18 steps; scene: Oda in the
+Solmarch Yards hangar in front of the gunship's nose, looking at the viewer, right arm out and
+index finger pointing out of the picture, a recruitment-poster pose), then the comic's one
+post-process (`tools/pixel.py` `pixelate(img, 320, 256, exclude=("green",))`: Bayer dither onto
+the 32-colour palette, greens left out so the hull stays blue-steel). Every pixel is on the
+palette.
 
 ## Languages
 

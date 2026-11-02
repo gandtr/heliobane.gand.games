@@ -417,6 +417,22 @@ figure{margin:0}
 @media (max-width:700px){.story .shot2 img{width:320px}}
 @media (max-width:420px){.pilot{flex-direction:column}}
 
+/* support: Oda's appeal, and where to buy or play for free */
+.stores2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}
+.stores2 h3{margin:0 0 12px;font:16px/24px var(--px);color:var(--gold);text-transform:uppercase}
+.stores2 h3:lang(ja){font:24px/24px var(--ja-px)}
+.stores2 ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.stores2 .btn{width:100%;flex-direction:column;align-items:flex-start;gap:4px}
+.stores2 .btn span:lang(ja){font:24px/1 var(--ja-px)}
+.stores2 .btn b{font:12px/16px var(--px);font-weight:400}
+.stores2 .btn b:lang(ja){font:12px/16px var(--ja-px)}
+.stores2 .btn:not(.ghost) b{color:var(--umber1)}
+@media (max-width:560px){.stores2{grid-template-columns:minmax(0,1fr)}}
+.help{margin-top:40px}
+.help p{color:var(--steel4)}
+.help .btn{margin-top:20px}
+.help .btn span:lang(ja){font:24px/1 var(--ja-px)}
+
 /* facts: the game's sidebar, as a fact sheet */
 #facts{background:var(--void)}
 .sheet{max-width:880px;padding:12px}
@@ -756,6 +772,49 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
         <p class="l-ja" lang="ja">「星を殺すために造った。本当に使う日が来るなんてね。」</p>
         <footer><span class="l-en">Oda Venn, Solmarch Yards, final log</span><span class="l-ja" lang="ja">オダ・ヴェン、ソルマーチ造船所</span></footer>
       </blockquote>
+    </div>
+  </div>
+</section>
+
+<hr class="copper gold" aria-hidden="true">
+
+<section id="support" aria-labelledby="support-h" data-music="title">
+  <div class="wrap split">
+    <figure class="shot2 panel">
+      <img class="px" src="public/art/oda-needs-you.png" width="320" height="256" loading="lazy" alt="Oda Venn, soot on her face, points straight out of the picture at you." data-alt-ja="すすけた顔のオダ・ヴェンが、こちらをまっすぐ指さしている。">
+      <figcaption><span class="l-en">Oda Venn, Solmarch Yards</span><span class="l-ja" lang="ja">オダ・ヴェン、ソルマーチ造船所</span></figcaption>
+    </figure>
+    <div>
+      <div class="sec-head">
+        <h2 id="support-h" class="pix"><span class="l-en">Oda Venn needs you</span><span class="l-ja" lang="ja">オダ・ヴェンには君が必要だ</span></h2>
+        <p class="l-en">HB-0 needs your support to complete its mission. If you liked our game, please buy it and review it on Steam, the Epic Games Store and Google Play. Oda Venn thanks you!</p>
+        <p class="l-ja" lang="ja">HB-0が任務をやり遂げるには、君の支援が必要だ。このゲームを気に入ってもらえたら、Steam、Epic Games Store、Google Playで購入して、レビューを書いてほしい。オダ・ヴェンより、ありがとう！</p>
+      </div>
+      <div class="stores2">
+        <div>
+          <h3><span class="l-en">Support</span><span class="l-ja" lang="ja">応援する</span></h3>
+          <ul>
+            <li><a class="btn" href="https://store.steampowered.com/app/5328670/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane"><span>Steam</span><b class="l-en">PC · buy and review</b><b class="l-ja" lang="ja">PC・購入とレビュー</b></a></li>
+            <li><a class="btn" href="https://store.epicgames.com/p/heliobane-ad6470"><span>Epic Games</span><b class="l-en">PC · buy and review</b><b class="l-ja" lang="ja">PC・購入とレビュー</b></a></li>
+            <li><a class="btn" href="https://play.google.com/store/apps/details?id=games.gand.heliobane"><span>Google Play</span><b class="l-en">Android · unlocks with an in-app purchase</b><b class="l-ja" lang="ja">Android・アプリ内購入で全編解放</b></a></li>
+          </ul>
+        </div>
+        <div>
+          <h3><span class="l-en">Free</span><span class="l-ja" lang="ja">無料</span></h3>
+          <ul>
+            <li><a class="btn ghost" href="https://store.steampowered.com/app/5328700/?utm_source=website&amp;utm_medium=web&amp;utm_campaign=gand&amp;utm_content=heliobane"><span><span class="l-en">Steam demo</span><span class="l-ja" lang="ja">Steam体験版</span></span><b class="l-en">PC</b><b class="l-ja" lang="ja">PC</b></a></li>
+            <li><a class="btn ghost" href="https://store.epicgames.com/p/heliobane-heliobane-demo-c2ee19"><span><span class="l-en">Epic demo</span><span class="l-ja" lang="ja">Epic体験版</span></span><b class="l-en">PC</b><b class="l-ja" lang="ja">PC</b></a></li>
+            <li><a class="btn ghost" href="https://play.google.com/store/apps/details?id=games.gand.heliobane"><span>Google Play</span><b class="l-en">Android · the first 3 stages</b><b class="l-ja" lang="ja">Android・最初の3ステージ</b></a></li>
+            <li><a class="btn ghost" href="https://coze.itch.io/heliobane-amiga?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span>itch.io</span><b class="l-en">Amiga</b><b class="l-ja" lang="ja">アミーガ</b></a></li>
+            <li><a class="btn ghost" href="https://coze.itch.io/heliobane-x68000?utm_source=heliobane.gand.games&amp;utm_medium=web&amp;utm_campaign=site"><span>itch.io</span><b class="l-en">X68000 · World 1</b><b class="l-ja" lang="ja">X68000・ワールド1</b></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="help">
+        <p class="l-en">If you find a problem in our game, please contact our support. The game is in active development: Oda will assign a crew to solve your problem as soon as possible. Thank you, your support is always appreciated!</p>
+        <p class="l-ja" lang="ja">ゲームで不具合を見つけたら、サポートまで連絡してほしい。このゲームはいまも開発が続いている。オダがすぐにクルーを割り当てて、できるだけ早く問題を解決する。ありがとう。君の応援にいつも感謝している！</p>
+        <a class="btn ghost" href="mailto:contact@gand.games?subject=HELIOBANE%20support"><span><span class="l-en">Contact support</span><span class="l-ja" lang="ja">サポートに連絡</span></span><b>contact@gand.games</b></a>
+      </div>
     </div>
   </div>
 </section>
