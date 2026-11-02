@@ -7,7 +7,9 @@ development at Gand, published under [Gand Games](https://gand.games/).
 - Hosting: GitHub Pages, `main` branch, repository root, same as the Aldith and
   Studs Up sites. `.nojekyll` is present.
 - DNS: CNAME `heliobane` → `gandtr.github.io` (not set up yet; the site owner manages DNS).
-- No framework, build step, external fonts or third-party scripts.
+- No framework, build step, external fonts or third-party-hosted scripts. The music player
+  (chiptune3 + libopenmpt, MIT / BSD) is vendored under `public/music/player/` and loads only
+  when a visitor turns the music on.
 
 ## Structure
 
@@ -34,6 +36,9 @@ public/
                             portraits (mott, wren), sprites (ship, flame, pods, Quarry Maw, enemy orb),
                             field.png (240x512 slice of stage1_far), trailer-still.png (320x180)
   fonts/                    Public Pixel (CC0), Fira Sans Condensed (OFL), PixelMplus12 subset (M+ licence)
+  music/<name>.it           the game's soundtrack modules, copied unchanged (see Music)
+  music/player/             cozy-tracker's web runtime: cozy-score.js, adaptive-sections.js and
+                            vendor/chiptune3/ (chiptune3 worklet + libopenmpt, LICENSE alongside)
   stores/                   official store logos and badges for the hero's release row (Steam, Epic Games Store,
                             Google Play EN/JA, itch.io); provenance and hashes in stores/SOURCE.md
 ```
@@ -52,6 +57,46 @@ public/
 - Motion (all off under `prefers-reduced-motion`): logo drop and two shine sweeps,
   the copper bar under the hero colour-cycles, and the Breaker demo runs only while
   on screen.
+
+## Music
+
+The page plays the game's own soundtrack as tracker modules, live, through libopenmpt in an
+AudioWorklet: no WAV or OGG renders. It is off until the visitor presses the note button in the
+bar (below 441 px, and from 1181 to 1259 px where the full nav fills the bar, the button sits at
+the bottom left beside the now-playing chip). Then the music follows the page: each `data-music`
+zone names a module, and the zone across the line 40% down the viewport plays (the innermost
+zone wins; side by side, the one nearest the middle; at the very bottom, the last zone). A zone
+has to hold for 600 ms, so a flick through the page does not cue every section on the way. The
+switch waits for the playing module's next bar line (a row that is a multiple of 16), starts the
+new module from its first row and fades the old one out over a second
+(`public/music/player/cozy-score.js`, cozy-tracker `player/cozy-score.js`).
+
+| Zone | Module | Now playing |
+|---|---|---|
+| `#top`, `#trailer` | title | Title |
+| `#pillars` | stage1 | Stage 1 · Tharsis Belt |
+| `#magpie` | shop | The Magpie |
+| `#breaker` | stage5 | Stage 5 · Aurel's Corona |
+| `#heralds` | boss | Herald · World 1 |
+| `#worlds`, `.world.w2` | stage6 | Stage 6 · Ashfall Drift |
+| `.world.w1` / `.world.w3` | stage4 / stage11 | Stage 4 · Cinder Crown / Stage 11 · Dead Light |
+| `#screens` | stage12 | Stage 12 · The Vein |
+| `#story` | intro | Intro |
+| `#facts`, footer | ending | Ending |
+
+On desktop the three world cards sit side by side, so the middle one (The Wake) plays; on a
+phone each card plays its own world. The music fades out while the trailer plays and comes back
+when it pauses or ends, and pauses while the tab is hidden. Nothing under `public/music/` is
+requested before the first press. Browsers without AudioWorklet or a secure context never show
+the button.
+
+Sources: the modules are the game's `assets/music/src/<name>.it` at heliobane a01bdaa (the
+files its OGGs were rendered from; cozy-tracker `songs/heliobane_<name>.gen.js`). The player
+files are cozy-tracker's `player/` at branch `claude/cozy-score` (main ea200ae plus
+`cozy-score.js`). To update: copy `cozy-score.js`, `adaptive-sections.js` and
+`vendor/chiptune3/{chiptune3.js,chiptune3.worklet.js,libopenmpt.worklet.js,LICENSE}` keeping
+that layout (the worklet imports `../../adaptive-sections.js`). New Japanese track names need the
+pixel-font re-subset below.
 
 ## Languages
 

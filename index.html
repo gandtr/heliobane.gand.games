@@ -116,6 +116,26 @@ h3.pix:lang(ja){font-size:24px}
 .langs button[aria-pressed=true]{background:var(--steel2);color:var(--white)}
 .langs button:hover{color:var(--gold)}
 @media (max-width:1180px){.nav{display:none}.langs{margin-left:auto}}
+/* Music toggle: a pixel note and four level bars fed by the module's channel VU. */
+/* 8 px from the language switch (the bar's gap is 20), so the nav stays on one line at full width. */
+.music{display:flex;align-items:center;gap:6px;flex:none;margin-right:-12px;color:var(--steel4);background:none;border:2px solid var(--steel2);padding:6px 8px;min-width:44px;min-height:40px;cursor:pointer}
+.music[hidden],.np[hidden]{display:none}
+.music svg{display:block}
+.music:hover{color:var(--gold)}
+.music[aria-pressed=true]{background:var(--steel2);color:var(--white)}
+.music:disabled{color:var(--steel2);cursor:default}
+.eq{display:flex;align-items:flex-end;gap:2px;height:12px}
+.eq i{display:block;width:2px;height:2px;background:currentColor}
+.music[aria-busy=true] .eq i{background:var(--steel3)}
+@media (max-width:1180px){.langs{margin-left:0}.music{margin-left:auto}}
+/* Now playing: shown while the music is on. */
+.np{position:fixed;left:var(--gut);bottom:var(--gut);z-index:19;margin:0;max-width:calc(100% - 2 * var(--gut));padding:8px 12px;background:var(--void);border:2px solid var(--steel2);color:var(--ice);font:600 17px/1.3 var(--body)}
+.np small{display:block;font:8px/1 var(--px);color:var(--steel4);text-transform:uppercase;margin-bottom:6px}
+.np small:lang(ja){font:12px/1 var(--ja-px)}
+.np b:lang(ja){font:500 15px/1.3 var(--ja-body)}
+/* No room in the bar (phones, and the full nav just above 1180 px): the toggle sits by the chip. */
+@media (max-width:440px),(min-width:1181px) and (max-width:1259px){.music{position:fixed;left:var(--gut);bottom:var(--gut);z-index:20;margin:0;background:var(--void)}.np{left:calc(var(--gut) + 68px);max-width:calc(100% - 2 * var(--gut) - 68px)}}
+@media (max-width:440px){.langs{margin-left:auto}}
 /* Keep the brand and language controls visible even on 320px screens. */
 @media (max-width:360px){.bar .wrap{gap:8px}.bar .brand img{display:none}}
 
@@ -459,6 +479,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
       <a href="#story"><span class="l-en">Story</span><span class="l-ja" lang="ja">物語</span></a>
       <a href="#facts"><span class="l-en">Facts</span><span class="l-ja" lang="ja">概要</span></a>
     </nav>
+    <button type="button" class="music" id="music" aria-pressed="false" aria-label="Music" data-alt-ja="音楽" hidden><svg width="16" height="16" viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M3 0h5v2H4v4H3zM7 2h1v4H7zM1 5h3v3H1zM5 4h3v3H5z"/></svg><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
     <div class="langs" role="group" aria-label="Language / 言語">
       <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-set-lang="ja" aria-pressed="false" lang="ja">日本語</button>
@@ -467,7 +488,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
 </header>
 
 <main id="main">
-<section class="hero" id="top" aria-label="HELIOBANE">
+<section class="hero" id="top" aria-label="HELIOBANE" data-music="title">
   <div class="wrap">
     <div class="hero-copy">
       <h1 id="title" class="logo" data-anim><img class="px" src="public/art/logo.png" width="256" height="64" alt="HELIOBANE"></h1>
@@ -494,7 +515,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
 
 <hr class="copper cycle" aria-hidden="true">
 
-<section id="trailer" aria-labelledby="trailer-h">
+<section id="trailer" aria-labelledby="trailer-h" data-music="title">
   <div class="wrap">
     <h2 id="trailer-h" class="sr-only">Trailer</h2>
     <figure class="tv panel">
@@ -508,7 +529,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="pillars" aria-labelledby="pillars-h">
+<section id="pillars" aria-labelledby="pillars-h" data-music="stage1">
   <div class="wrap">
     <h2 id="pillars-h" class="sr-only">What HELIOBANE is</h2>
     <div class="pillars">
@@ -555,7 +576,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="magpie" aria-labelledby="magpie-h">
+<section id="magpie" aria-labelledby="magpie-h" data-music="shop">
   <div class="wrap split">
     <figure class="shot2 panel">
       <img class="px" src="public/shots/1x/magpie.png" width="320" height="256" loading="lazy" alt="The Magpie shop: Old Mott's portrait and his line 'Two guns, kiddo. Use your thumbs.', the loadout menu from front gun to launch, and the Pulse Cannon marked as a beam weapon." data-alt-ja="マグパイ号のショップ。オールド・モットの顔とせりふ、前方武器から出撃までのメニュー、ビーム武器と表示されたパルスキャノン。">
@@ -590,7 +611,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="breaker" aria-labelledby="breaker-h">
+<section id="breaker" aria-labelledby="breaker-h" data-music="stage5">
   <div class="wrap split">
     <div>
       <div class="sec-head"><h2 id="breaker-h" class="pix"><span class="l-en">Graze. Heat. Breaker.</span><span class="l-ja" lang="ja">グレイズ、ヒート、ブレイカー</span></h2></div>
@@ -614,7 +635,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="heralds" aria-labelledby="heralds-h">
+<section id="heralds" aria-labelledby="heralds-h" data-music="boss">
   <div class="wrap heralds">
     <figure class="shot2 panel">
       <img class="px" src="public/shots/1x/hungering-heart.png" width="320" height="256" loading="lazy" alt="The Hungering Heart fills the top of the screen, a black-glass cathedral around a sun-bright eye, spraying gold bullets at the Heliobane." data-alt-ja="画面上部を埋めるハンガリング・ハート。太陽のように輝く目を囲む黒ガラスの聖堂が、ヘリオベインに金色の弾をばらまく。">
@@ -646,7 +667,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
 
 <hr class="copper gold" aria-hidden="true">
 
-<section id="worlds" aria-labelledby="worlds-h">
+<section id="worlds" aria-labelledby="worlds-h" data-music="stage6">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="worlds-h" class="pix"><span class="l-en">Three worlds, fifteen stages</span><span class="l-ja" lang="ja">3つのワールド、15のステージ</span></h2>
@@ -654,7 +675,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
       <p class="l-ja" lang="ja">オーレルの中心へ。そこから逃げたものを追って外へ。そして、すべての始まりの場所へ。</p>
     </div>
     <div class="worlds">
-      <article class="world w1">
+      <article class="world w1" data-music="stage4">
         <hr class="copper" aria-hidden="true">
         <h3><span class="l-en">Aurel</span><span class="l-ja" lang="ja">オーレル</span></h3>
         <p class="sub pix"><span class="l-en">Inward, to the heart of a star</span><span class="l-ja" lang="ja">星の中心、その心臓へ</span></p>
@@ -663,7 +684,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
         <p class="l-en">Rust asteroids and mining scaffolds, a green ocean moon, a dead armada, a forge world cracked open, and then the inside of the star.</p>
         <p class="l-ja" lang="ja">錆びた小惑星と採掘足場、緑の海の月、死んだ艦隊、ひび割れた鍛冶の惑星。そして星の内側。</p>
       </article>
-      <article class="world w2">
+      <article class="world w2" data-music="stage6">
         <hr class="copper" aria-hidden="true">
         <h3><span class="l-en">The Wake</span><span class="l-ja" lang="ja">ザ・ウェイク</span></h3>
         <p class="sub pix"><span class="l-en">Outward, after the Seed</span><span class="l-ja" lang="ja">外へ、シードを追って</span></p>
@@ -672,7 +693,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
         <p class="l-en">Cold and dark. You find enemies by their rims, flares double as lamps, storm winds push you sideways, and the Heliopause runs at three times the speed.</p>
         <p class="l-ja" lang="ja">冷たく、暗い。敵は縁の光で見つける。フレアは明かりにもなる。嵐の風が機体を押し流し、ヘリオポーズは3倍の速さで流れる。</p>
       </article>
-      <article class="world w3">
+      <article class="world w3" data-music="stage11">
         <hr class="copper" aria-hidden="true">
         <h3><span class="l-en">Umbra</span><span class="l-ja" lang="ja">アンブラ</span></h3>
         <p class="sub pix"><span class="l-en">Where the dark was born</span><span class="l-ja" lang="ja">やみが生まれた場所</span></p>
@@ -685,7 +706,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="screens" aria-labelledby="screens-h">
+<section id="screens" aria-labelledby="screens-h" data-music="stage12">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="screens-h" class="pix"><span class="l-en">Screenshots</span><span class="l-ja" lang="ja">画面写真</span></h2>
@@ -709,7 +730,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
   </div>
 </section>
 
-<section id="story" aria-labelledby="story-h">
+<section id="story" aria-labelledby="story-h" data-music="intro">
   <div class="wrap story">
     <figure class="shot2 panel">
       <img class="px" src="public/art/scene_wren.png" width="320" height="256" loading="lazy" alt="Painting from the intro: Wren in the Heliobane's cockpit, headset on, cyan instruments glowing." data-alt-ja="イントロの一枚絵。ヘリオベインのコクピットでヘッドセットをつけたレン。シアンの計器が光る。">
@@ -741,7 +762,7 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
 
 <hr class="copper steel" aria-hidden="true">
 
-<section id="facts" aria-labelledby="facts-h">
+<section id="facts" aria-labelledby="facts-h" data-music="ending">
   <div class="wrap">
     <div class="sec-head"><h2 id="facts-h" class="pix"><span class="l-en">Fact sheet</span><span class="l-ja" lang="ja">ファクトシート</span></h2></div>
     <div class="sheet panel">
@@ -768,13 +789,15 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
 </section>
 </main>
 
-<footer class="foot">
+<footer class="foot" data-music="ending">
   <div class="wrap">
     <a class="brand" href="https://gand.games/"><img class="px" src="public/art/ship.png" width="32" height="32" alt=""><span><span class="l-en">More from Gand Games</span><span class="l-ja" lang="ja">ガンド・ゲームズの作品一覧</span></span></a>
     <p>© 2026 <a href="https://gand.games/">Gand Games</a> · <a href="public/press-kit/doc.html"><span class="l-en">Press kit</span><span class="l-ja" lang="ja">プレスキット</span></a> · <a href="mailto:contact@gand.games?subject=HELIOBANE"><span class="l-en">Press and enquiries</span><span class="l-ja" lang="ja">お問い合わせ</span></a> · <a href="privacy/"><span class="l-en">Privacy</span><span class="l-ja" lang="ja">プライバシー</span></a></p>
     <p class="tm">©2026 Valve Corporation. Steam and the Steam logo are trademarks and/or registered trademarks of Valve Corporation in the U.S. and/or other countries. ©2026 Epic Games, Inc. All rights reserved. Epic, Epic Games, Epic Games Store, and their respective logos are trademarks or registered trademarks of Epic Games, Inc. in the U.S. Patent and Trademark Office and elsewhere. Google Play and the Google Play logo are trademarks of Google LLC.</p>
   </div>
 </footer>
+
+<p class="np" id="np" hidden><small><span class="l-en">Now playing</span><span class="l-ja" lang="ja">再生中</span></small><b id="np-t"></b></p>
 
 <dialog class="viewer" id="viewer" aria-labelledby="v-cap">
   <div class="v-in">
@@ -850,6 +873,129 @@ dialog.viewer::backdrop{background:rgb(0 0 0 / .92)}
       var type = r.headers.get('content-type') || '';
       if (!r.ok || type.indexOf('video') !== 0) noTrailer();
     }).catch(noTrailer);
+  }
+
+  /* ── music: the game's own tracker modules (public/music), played live by libopenmpt
+     (public/music/player). Each data-music zone names a module; the zone under the 40%
+     line plays, once the reader has stayed there for a moment, switching on a bar line. ── */
+  var musicBtn = document.getElementById('music');
+  if (musicBtn && window.AudioContext && window.isSecureContext && 'audioWorklet' in AudioContext.prototype) {
+    var TRACKS = {
+      title: ['Title', 'タイトル'],
+      stage1: ['Stage 1 · Tharsis Belt', 'ステージ1・タルシス・ベルト'],
+      shop: ['The Magpie', 'マグパイ号'],
+      stage4: ['Stage 4 · Cinder Crown', 'ステージ4・シンダー・クラウン'],
+      stage5: ["Stage 5 · Aurel's Corona", 'ステージ5・オーレル・コロナ'],
+      boss: ['Herald · World 1', 'ヘラルド・ワールド1'],
+      stage6: ['Stage 6 · Ashfall Drift', 'ステージ6・アッシュフォール・ドリフト'],
+      stage11: ['Stage 11 · Dead Light', 'ステージ11・デッド・ライト'],
+      stage12: ['Stage 12 · The Vein', 'ステージ12・ザ・ヴェイン'],
+      intro: ['Intro', 'イントロ'],
+      ending: ['Ending', 'エンディング']
+    };
+    var VOL = 0.7, DWELL = 600;
+    var zones = Array.prototype.slice.call(document.querySelectorAll('[data-music]'));
+    var np = document.getElementById('np'), npT = document.getElementById('np-t');
+    var bars = Array.prototype.slice.call(musicBtn.querySelectorAll('.eq i'));
+    var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctx = null, score = null, on = false, ducked = false, want = null, dwell = 0, raf = 0, vu = null;
+    musicBtn.hidden = false;
+
+    var depth = function(el){ var d = 0; while ((el = el.parentElement)) d++; return d; };
+    /* The innermost zone across the 40% line; side by side (the world cards), the one nearest the middle. */
+    var zoneTrack = function(){
+      if (innerHeight + scrollY >= root.scrollHeight - 2) return zones[zones.length - 1].getAttribute('data-music');
+      var y = innerHeight * 0.4, cx = innerWidth / 2, best = null, bd = -1, bx = 0;
+      zones.forEach(function(z){
+        var r = z.getBoundingClientRect();
+        if (r.top > y || r.bottom <= y || !r.width) return;
+        var d = depth(z), x = Math.abs((r.left + r.right) / 2 - cx);
+        if (d > bd || (d === bd && x < bx)) { best = z; bd = d; bx = x; }
+      });
+      return best && best.getAttribute('data-music');
+    };
+    var src = function(t){ return 'public/music/' + t + '.it'; };
+    var cue = function(t){ score.cue(src(t)).catch(function(e){ console.warn('music: ' + e.message); }); };
+    var follow = function(){
+      if (!score || !on) return;
+      var t = zoneTrack();
+      if (!t || t === want) return;
+      want = t;
+      clearTimeout(dwell);
+      dwell = setTimeout(function(){ cue(t); }, DWELL);
+    };
+    var label = function(url){
+      var t = /([a-z0-9]+)\.it$/.exec(url)[1], n = TRACKS[t] || [t, t];
+      var en = document.createElement('span'), ja = document.createElement('span');
+      en.className = 'l-en'; en.textContent = n[0];
+      ja.className = 'l-ja'; ja.lang = 'ja'; ja.textContent = n[1];
+      npT.replaceChildren(en, ja);
+    };
+    /* Four bars, each the loudest channel in its quarter of the module's channels. */
+    var draw = function(){
+      raf = 0;
+      if (!on) { bars.forEach(function(b){ b.style.height = ''; }); return; }
+      bars.forEach(function(b, i){
+        var level = ducked ? 0 : 0.5;
+        if (vu && !still && !ducked) {
+          var per = Math.ceil(vu.length / bars.length); level = 0;
+          for (var c = i * per; c < Math.min(vu.length, (i + 1) * per); c++) level = Math.max(level, (vu[c].left + vu[c].right) / 2);
+        }
+        b.style.height = (2 + 2 * Math.round(Math.min(1, level * 1.6) * 5)) + 'px';
+      });
+      if (!still && !document.hidden) raf = requestAnimationFrame(draw);
+    };
+    var quiet = function(){ vu = null; score.setVolume(0, 0.3); setTimeout(function(){ if (!on || ducked) score.pause(); }, 320); };
+    var loud = function(){ score.resume(); score.setVolume(VOL, 0.5); };
+    var setOn = function(v){
+      on = v;
+      musicBtn.setAttribute('aria-pressed', String(v));
+      np.hidden = !v || !npT.firstChild;
+      if (!raf) draw();
+    };
+
+    musicBtn.addEventListener('click', function(){
+      if (!ctx) {
+        /* The AudioContext opens inside the click; the player loads only now. */
+        ctx = new AudioContext();
+        musicBtn.setAttribute('aria-busy', 'true');
+        setOn(true);
+        import('./public/music/player/cozy-score.js').then(function(m){
+          score = new m.CozyScore({ context: ctx, volume: VOL });
+          score.onChange(function(url){ label(url); np.hidden = !on; });
+          score.onProgress(function(d){ vu = d.vu; });
+          want = zoneTrack() || 'title';
+          return score.cue(src(want));
+        }).then(function(){
+          musicBtn.removeAttribute('aria-busy');
+          if (!on || ducked) quiet();
+          follow();
+        }, function(e){
+          console.warn('music: ' + e.message);
+          musicBtn.removeAttribute('aria-busy');
+          setOn(false);
+          musicBtn.disabled = true;
+        });
+        return;
+      }
+      if (!score) { setOn(!on); return; }
+      if (on) { setOn(false); quiet(); }
+      else { setOn(true); if (!ducked && !document.hidden) loud(); follow(); }
+    });
+    var onScroll = function(){ if (on) requestAnimationFrame(follow); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    /* The trailer has its own sound: the music steps aside while it plays. */
+    if (video) {
+      video.addEventListener('play', function(){ ducked = true; if (score && on) quiet(); });
+      ['pause', 'ended'].forEach(function(ev){
+        video.addEventListener(ev, function(){ ducked = false; if (score && on && !document.hidden) loud(); });
+      });
+    }
+    document.addEventListener('visibilitychange', function(){
+      if (!score || !on || ducked) return;
+      if (document.hidden) score.pause(); else { score.resume(); if (!raf) draw(); }
+    });
   }
 
   /* ── screenshot viewer ── */
