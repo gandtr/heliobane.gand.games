@@ -24,7 +24,7 @@ privacy/index.html          Privacy policy (all platforms; the store listings li
 .htmlvalidate.json          html-validate:recommended (run: npx --yes html-validate@9 index.html)
 .claude/launch.json         local preview on :8141
 public/
-  og-heliobane-v2.png       1200x630 social card, unchanged from press-kit/social/og_1200x630.png
+  og-heliobane-v3.png       1200x630 social card, unchanged from press-kit/social/og_1200x630.png (v2: the previous card, kept for cached links)
   og.png                    Previous social card, retained for cached links
   favicon.ico, favicon-64.png, apple-touch-icon.png   from the ship sprite (player_ship frame 2)
   trailer-poster.jpg        1920x1080 poster (trailer's clean title frame)
@@ -197,13 +197,15 @@ integer scales of 1x material.
 ## Social preview
 
 The homepage's Open Graph, Twitter large-image card and VideoGame image use
-`public/og-heliobane-v2.png`: the existing press-kit sun-eye and gunship artwork,
-copied without cropping or resampling from `public/press-kit/social/og_1200x630.png`.
-It is a 1200x630 PNG, 81,546 bytes, with a fully opaque alpha channel. The logo and
-eye remain inside a centred 2:1 crop if a sharing client trims the edges.
+`public/og-heliobane-v3.png` (2026-11-03): the press kit's logo-centred card, copied without
+cropping or resampling from `public/press-kit/social/og_1200x630.png`: the logo centred over the
+sun-eye, HB-0 below firing the Breaker straight up into the logo's O (the press kit's Breaker art,
+press-kit commit 4c36e8f; the same composition as the Steam main capsule, the Epic landscape
+image, the Play feature graphic and the itch cover). It is a 1200x630 PNG, 65,192 bytes. The logo
+remains inside a centred 2:1 crop if a sharing client trims the edges.
 
-The versioned URL gives this artwork a distinct image cache key; the old `og.png`
-is retained for cached links. The page metadata still has to be re-crawled before
+The versioned URL gives this artwork a distinct image cache key; `og-heliobane-v2.png` (the
+previous card) and the older `og.png` are retained for cached links. The page metadata still has to be re-crawled before
 sharing clients can discover the new URL. Open Graph includes the actual image
 size and MIME type; Twitter has explicit title, description and descriptive alt
 text. All image URLs are absolute HTTPS URLs.

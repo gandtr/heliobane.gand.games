@@ -9,7 +9,7 @@ Sizes are Steamworks' current ones (Store Assets / Library Assets pages, 2026).
 |---|---|---|
 | `steam/header_capsule.png` | Store Assets → Header Capsule | 920×430 |
 | `steam/small_capsule.png` | Store Assets → Small Capsule | 462×174 |
-| `steam/main_capsule.png` | Store Assets → Main Capsule | 1232×706 |
+| `steam/main_capsule.png` | Store Assets → Main Capsule (also the link preview, see below) | 1232×706 |
 | `steam/vertical_capsule.png` | Store Assets → Vertical Capsule | 748×896 |
 | `steam/page_background.png` | Store Assets → Page Background | 1438×810 |
 | `steam/library_capsule.png` | Library Assets → Library Capsule | 600×900 |
@@ -41,7 +41,7 @@ text on the hero; the logo is the name).
 |---|---|---|
 | `steam/demo/header_capsule.png` | Header Capsule | 920×430 |
 | `steam/demo/small_capsule.png` | Small Capsule | 462×174 |
-| `steam/demo/main_capsule.png` | Main Capsule | 1232×706 |
+| `steam/demo/main_capsule.png` | Main Capsule (no badge: Steam adds its demo ribbon, see below) | 1232×706 |
 | `steam/demo/vertical_capsule.png` | Vertical Capsule | 748×896 |
 | `steam/demo/library_capsule.png` | Library Capsule | 600×900 |
 | `steam/demo/library_header.png` | Library Header | 920×430 |
@@ -53,6 +53,26 @@ Demo screenshots: `steam-screenshots/demo/01…08_*.png` (1920×1080), all from
 World 1 stages 1–3: Admiral Husk, the Breaker, the Quarry Maw, the Magpie,
 Leviathan Choir, the Tharsis Belt, the Hollow Fleet, a flare. If the demo
 grows to stages 1–5, add `steam-screenshots/04_hungering_heart.png`.
+
+## Link preview
+
+Steam's store page puts the Main Capsule, halved to `capsule_616x353.jpg`, in
+`og:image` and `twitter:image`. Bluesky, X, Facebook and LinkedIn show it
+centre-cropped to 1.91:1; Discord and Slack show it whole. So the main capsule
+is the one capsule drawn like the itch.io cover: the sun-eye painting cropped
+around the pupil (74% across, 58% down), the logo at 1.25× centred 17 px from
+the top of the 411×236 native canvas, and HB-0 (with a drone and an orbiter, at
+2×) at the bottom centre firing the Breaker straight up into the logo's O, the
+beam thinning out as it reaches the logo; then ×3 nearest-neighbour. The eye
+sits right of centre so the beam misses the pupil. The logo sits inside the
+centred 2:1 crop, so every link card keeps it whole (2026-11-03).
+
+The demo's main capsule is the same picture without FREE DEMO: Steam puts its
+own green demo ribbon in the top-left corner (on 2026-10-27 the demo page
+served the full game's art plus that ribbon, under its own URL), so a badge
+would say "demo" twice. Upload `steam/demo/main_capsule.png` to the demo store
+item's Main Capsule as well, then check the demo page's `og:image` (view source
+on store.steampowered.com/app/5328700) shows the new art.
 
 ## Steam screenshots (1920×1080)
 

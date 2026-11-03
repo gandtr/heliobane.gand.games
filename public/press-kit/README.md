@@ -6,7 +6,7 @@ line: **"HELIOBANE, a game by Gand (https://heliobane.gand.games)"**.
 Press contact: contact@gand.games.
 
 The press page is `doc.html` (English and Japanese in one file). The whole kit
-is also one archive: `heliobane-press-kit_2026-10-27.zip`.
+is also one archive: `heliobane-press-kit_2026-11-03.zip`.
 
 ## Folders
 
@@ -19,6 +19,7 @@ is also one archive: `heliobane-press-kit_2026-10-27.zip`.
 | `screenshots/` | 26 in-game captures at 1280×1024 (×4); `native/` has the 320×256 originals. `ja_*` and `tr_*` are the Japanese and Turkish versions |
 | `steam-screenshots/` | the same captures at 1920×1080, as on the Steam page; `demo/` for the demo |
 | `steam/` | Steam capsules, library images, icons and event images; `steam/demo/` for the demo. Sizes in `steam/ASSETS.md` |
+| `epic/` | Epic Games Store landscape offer images (the store's link preview); `epic/demo/` for the demo. Slots in `epic/README.md` |
 | `icons/` | app icon 32–512 px, `.ico`, 184 px community icon |
 | `social/` | `og_1200x630.png` link card, `square_1080.png` |
 | `video/` | the trailer (91 s, 1920×1080, 60 fps, H.264), captions in the game's eight languages (`.srt`, plus English `.vtt`), poster, thumbnail |
