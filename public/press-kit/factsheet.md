@@ -26,8 +26,8 @@ Amiga-style vertical shoot 'em up.
 
 ## Short description
 
-HELIOBANE is a vertical shoot 'em up in the tradition of the Amiga's Tyrian
-and Xenon 2. Wren, a salvage runner with the best reflexes in the system,
+HELIOBANE is a vertical shoot 'em up in the tradition of Tyrian and
+Xenon 2. Wren, a salvage runner with the best reflexes in the system,
 flies HB-0 Heliobane, a prototype built to survive inside a star, against the
 Umbrine: a crystalline hive that woke up inside the sun Aurel and has already
 eaten two worlds and the whole Concord battle fleet. Her guns were never
@@ -38,11 +38,11 @@ Magpie. Three worlds, fifteen stages, fifteen screen-filling Heralds.
 ## Features
 
 - 15 stages across 3 worlds (Aurel, The Wake, Umbra), 15 Heralds and 15 mid-bosses
-- 11 weapons with 5 levels each: two front guns on a rack you swap mid-fight, a rear gun, two sidekick pods
+- 11 weapons with up to 7 levels each: two front guns on a rack you swap mid-fight, a rear gun, two sidekick pods; plus 3 secret guns and 3 salvage guns
 - Kinetic, beam and blast damage against glass, sun-fed and plated enemies
 - Grazing bullets builds heat; the Breaker spends it to strip every defence it touches for six seconds
 - The Magpie: a shop between stages; everything sells back at half price
-- A death costs one weapon a single level, never the whole build
+- Death removes your salvage gun and at most one temporary weapon level; bought upgrades stay
 - Later stages bring darkness, wind, reverse and triple-speed scrolling, corridors and a branching route
 - 320×256, 32 colours, tracker soundtrack, 8-bit digitised speech, an illustrated story intro
 - Locked 60 fps, 4-pixel hitbox, Easy / Normal / Hard, continues, campaign saves at every shop visit
