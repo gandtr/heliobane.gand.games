@@ -3,10 +3,13 @@
 The official page for **HELIOBANE**, an Amiga-style vertical shoot 'em up in
 development at Gand, published under [Gand Games](https://gand.games/).
 
-- Address: `https://heliobane.gand.games/` (`CNAME`)
-- Hosting: GitHub Pages, `main` branch, repository root, same as the Aldith and
-  Studs Up sites. `.nojekyll` is present.
-- DNS: CNAME `heliobane` → `gandtr.github.io` (not set up yet; the site owner manages DNS).
+- Address: `https://heliobane.gand.games/`
+- Hosting: a Cloudflare Worker with static assets (`heliobane-gand-games`, Gand account),
+  deployed **by hand** (see Deploy). Until 2026-11-25 it was GitHub Pages from `main`; GitHub
+  could not renew its certificate behind the Cloudflare proxy and the site went down (526).
+- Large media: files over the Workers 25 MiB limit (`tools/r2_media.txt`: the trailers and the
+  press-kit zip) are served from the R2 bucket `heliobane-media` at
+  `https://media.heliobane.gand.games/<repo path>`; the pages link there.
 - No framework, build step, external fonts or third-party-hosted scripts. The music player
   (chiptune3 + libopenmpt, MIT / BSD) is vendored under `public/music/player/` and loads only
   when a visitor turns the music on.
@@ -15,7 +18,9 @@ development at Gand, published under [Gand Games](https://gand.games/).
 
 ```
 index.html                  The whole site: markup, one <style>, one vanilla-JS IIFE
-CNAME, robots.txt, sitemap.xml, .nojekyll
+robots.txt, sitemap.xml     (CNAME, .nojekyll: GitHub Pages leftovers, not deployed)
+wrangler.jsonc              the Worker (assets only, custom domain heliobane.gand.games)
+tools/                      build_site.sh, deploy_cloudflare.sh, push_media_r2.sh, r2_media.txt (see Deploy)
 privacy/index.html          Privacy policy (all platforms; the store listings link here). English only.
                             Sections follow Epic's brand review: what is captured, how it is used, who it
                             is shared with, how long it is kept and how to delete it. Facts checked against
@@ -43,6 +48,20 @@ public/
   stores/                   official store logos and badges for the hero's release row (Steam, Epic Games Store,
                             Google Play EN/JA, itch.io); provenance and hashes in stores/SOURCE.md
 ```
+
+## Deploy
+
+```sh
+tools/deploy_cloudflare.sh
+```
+
+It runs `tools/build_site.sh`, which builds `_site/` from the **committed** tree (commit first):
+`index.html`, `privacy/`, `public/`, `robots.txt` and `sitemap.xml` only, so `PROJECT.md`, `tests/`
+and the dotfiles are not served. It leaves out the files in `tools/r2_media.txt` and writes a
+`_redirects` that sends their old paths to the media host. Then `wrangler deploy` uploads it with
+your local wrangler login. A changed trailer or zip goes to R2 first: commit it, then
+`tools/push_media_r2.sh` (by hand; a new file also needs a line in `tools/r2_media.txt` and its links
+pointed at `https://media.heliobane.gand.games/`).
 
 ## Design notes
 
@@ -229,7 +248,9 @@ ffmpeg -i $T/output/heliobane-trailer.srt public/trailer.en.vtt
 The `<video>` in `#trailer` has `preload="none"`, native controls and an English
 captions `<track>`; the JSON-LD carries a `trailer` VideoObject. The script still sends
 a `HEAD` for `trailer.mp4` and falls back to the title-screen still with a "Trailer
-incoming" label if it is missing or not served as `video/*`.
+incoming" label if it is missing or not served as `video/*`. `public/trailer.mp4` is served from
+R2 (`https://media.heliobane.gand.games/public/trailer.mp4`, whose CORS rule lets the site send that
+`HEAD`): after a new encode, commit it and run `tools/push_media_r2.sh public/trailer.mp4`.
 
 ## Validation done
 

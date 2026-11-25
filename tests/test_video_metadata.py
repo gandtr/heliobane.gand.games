@@ -13,7 +13,7 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-VIDEO_URL = 'https://heliobane.gand.games/public/trailer.mp4'
+VIDEO_URL = 'https://media.heliobane.gand.games/public/trailer.mp4'
 PUBLISHED_AT = '2026-09-24T23:52:11Z'
 
 

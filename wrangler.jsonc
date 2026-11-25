@@ -1,0 +1,18 @@
+// Cloudflare Worker serving the static site (assets only, no script).
+// Deploy by hand: tools/deploy_cloudflare.sh (builds _site/, then wrangler deploy).
+// Hosting moved here from GitHub Pages on 2026-11-25: GitHub could not renew
+// its certificate behind the Cloudflare proxy, and the site went down (526).
+// Files over 25 MiB live on R2 (media.heliobane.gand.games, tools/r2_media.txt).
+{
+  "name": "heliobane-gand-games",
+  "account_id": "cb007ac207439fd308a2b85acb25a986", // Gand
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "heliobane.gand.games", "custom_domain": true }],
+  "assets": {
+    "directory": "./_site",
+    // /privacy redirects to /privacy/, as GitHub Pages did.
+    "html_handling": "auto-trailing-slash"
+  }
+}
